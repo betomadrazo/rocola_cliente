@@ -1,7 +1,7 @@
 <template>
 	<div class="contenedor">
 		<Player></Player>
-		<!-- <CatalogoArtistas></CatalogoArtistas> -->
+		<CatalogoArtistas></CatalogoArtistas>
 		<Canciones></Canciones>
 		<!-- <BotonPedir></BotonPedir> -->
 		<Cola></Cola>

@@ -12,12 +12,12 @@
 		</div>
 		<div class="contenedor-catalogo_artista">
 			<ul>
-				<Cancion v-for="(cancion, index) in canciones" :cancion="cancion.cancion" :artista_album="cancion.album" :album="cancion.album" :duracion="cancion.duracion" :index="index" :key="index"></Cancion>
-				<Cancion></Cancion>
+				<Cancion @click="showModal = true" v-for="(cancion, index) in canciones" :cancion="cancion.cancion" :artista_album="cancion.album" :album="cancion.album" :duracion="cancion.duracion" :index="index" :key="index"></Cancion>
+				<!-- <Cancion></Cancion> -->
 			</ul>
 		</div>
 	</div>
-	<!-- <CancionDetail></CancionDetail> -->
+	<CancionDetail v-if="showModal" @close="showModal=false"></CancionDetail>
 		
 	</div>
 	
@@ -43,7 +43,8 @@ export default {
 				{artista: 'Radiohead', cancion: 'Knives Out', album: 'Amnesiac', duracion:'3:46'},
 				{artista: 'Radiohead', cancion: 'Let Down', album: 'OK Computer', duracion:'3:59'},
 				{artista: 'Radiohead', cancion: 'Weird Fishes', album: 'In Rainbows', duracion:'4:20'}
-			]
+			],
+			showModal: false
 		}
 	}
 };
