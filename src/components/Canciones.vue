@@ -12,8 +12,7 @@
 		</div>
 		<div class="contenedor-catalogo_artista">
 			<ul>
-				<Cancion @click="showModal = true" v-for="(cancion, index) in canciones" :cancion="cancion.cancion" :artista_album="cancion.album" :album="cancion.album" :duracion="cancion.duracion" :index="index" :key="index"></Cancion>
-				<!-- <Cancion></Cancion> -->
+				<Cancion @click.native="showModal=true" v-for="(cancion, index) in canciones" :id="cancion.id_cancion" :cancion="cancion.cancion" :artista_album="cancion.album" :album="cancion.album" :duracion="cancion.duracion" :index="index" :key="index"></Cancion>
 			</ul>
 		</div>
 	</div>
@@ -38,11 +37,11 @@ export default {
 	data: function() {
 		return {
 			canciones: [
-				{artista: 'Radiohead', cancion: 'I Will', album: 'Hail To The Thief', duracion:'4:57'},
-				{artista: 'Radiohead', cancion: 'There There', album: 'Hail To The Thief', duracion:'5:01'},
-				{artista: 'Radiohead', cancion: 'Knives Out', album: 'Amnesiac', duracion:'3:46'},
-				{artista: 'Radiohead', cancion: 'Let Down', album: 'OK Computer', duracion:'3:59'},
-				{artista: 'Radiohead', cancion: 'Weird Fishes', album: 'In Rainbows', duracion:'4:20'}
+				{id_cancion:1, artista: 'Radiohead', cancion: 'I Will', album: 'Hail To The Thief', duracion:'4:57'},
+				{id_cancion:2, artista: 'Radiohead', cancion: 'There There', album: 'Hail To The Thief', duracion:'5:01'},
+				{id_cancion:3, artista: 'Radiohead', cancion: 'Knives Out', album: 'Amnesiac', duracion:'3:46'},
+				{id_cancion:4, artista: 'Radiohead', cancion: 'Let Down', album: 'OK Computer', duracion:'3:59'},
+				{id_cancion:5, artista: 'Radiohead', cancion: 'Weird Fishes', album: 'In Rainbows', duracion:'4:20'}
 			],
 			showModal: false
 		}

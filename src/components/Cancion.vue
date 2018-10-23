@@ -1,6 +1,6 @@
 <template>
 
-	<div :class="alte" class="contenedor-cancion">
+	<div @click="$emit('open')" :class="alte" class="contenedor-cancion">
 
 		<span class="titulo">{{ cancion }}</span><!--
 	--><span class="album-o-artista">{{ artista_album }}</span><!--
@@ -14,7 +14,7 @@
 
 export default {
 	name: 'Cancion',
-	props: ['artista_album', 'cancion', 'album', 'duracion', 'index'],
+	props: ['cancion_id', 'artista_album', 'cancion', 'album', 'duracion', 'index'],
 	computed: {
 		alte: function() {
 			return {

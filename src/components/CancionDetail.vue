@@ -8,8 +8,8 @@
 				<div class="info">
 					<h1>Let Down</h1>
 					<p>4:25</p>
-					<button>Pedir canci&oacute;n</button>
-					<p>Cancelar</p>
+					<button @click="$emit('close')">Pedir canci&oacute;n</button>
+					<p @click="$emit('close')">Cancelar</p>
 				</div>
 			</div>
 		</div>
