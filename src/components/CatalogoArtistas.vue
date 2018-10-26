@@ -1,23 +1,6 @@
 <template>
 	<div class="contenedor-catalogo">
-		<ThumbArtista></ThumbArtista>
-		<ThumbArtista></ThumbArtista>
-		<ThumbArtista></ThumbArtista>
-		<ThumbArtista></ThumbArtista>
-		<ThumbArtista></ThumbArtista>
-		<ThumbArtista></ThumbArtista>
-		<ThumbArtista></ThumbArtista>
-		<ThumbArtista></ThumbArtista>
-		<ThumbArtista></ThumbArtista>
-		<ThumbArtista></ThumbArtista>
-		<ThumbArtista></ThumbArtista>
-		<ThumbArtista></ThumbArtista>
-		<ThumbArtista></ThumbArtista>
-		<ThumbArtista></ThumbArtista>
-		<ThumbArtista></ThumbArtista>
-		<ThumbArtista></ThumbArtista>
-		<ThumbArtista></ThumbArtista>
-		<ThumbArtista></ThumbArtista>
+		<ThumbArtista v-for="artista in artistas" :artista="artista">fd</ThumbArtista>
 	</div>
 </template>
 
@@ -28,6 +11,7 @@ import ThumbArtista from './ThumbArtista';
 
 export default {
 	name: 'CatalogoArtistas',
+	props: ['artistas'],
 	components: {
 		ThumbArtista
 	}

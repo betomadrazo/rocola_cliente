@@ -1,13 +1,14 @@
 <template>
 	<div class="contenedor-thumb">
-		<img src="http://www.betomad.com/rocola/consola/album_artwork/img_placeholder.jpg" alt="">
-		<p>artistilla</p>
+		<img :src="artista.foto_path" alt="">
+		<p>{{ artista.nombre_artista }}</p>
 	</div>
 </template>
 <script>
 	
 export default {
-	name: 'ThumbArtista'
+	name: 'ThumbArtista',
+	props: ['artista'],
 };
 
 </script>
@@ -28,6 +29,7 @@ export default {
 img {
 	width:100%;
 	max-height: 90px;
+
 }
 
 p {
