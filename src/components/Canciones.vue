@@ -12,10 +12,22 @@
 		</div>
 		<div class="contenedor-catalogo_artista">
 			<ul>
-				<Cancion @click.native="showModal=true" v-for="(cancion, index) in canciones" :id="cancion.id_cancion" :cancion="cancion.cancion" :artista_album="cancion.album" :album="cancion.album" :duracion="cancion.duracion" :index="index" :key="index"></Cancion>
+				<Cancion 
+					@click.native="showModal=true" 
+					v-for="(cancion, index) in canciones" 
+					:id="cancion.id_cancion" 
+					:cancion="cancion.cancion" 
+					:artista_album="cancion.album" 
+					:album="cancion.album" 
+					:duracion="cancion.duracion" 
+					:index="index" 
+					:key="index"
+				></Cancion>
 			</ul>
 		</div>
 	</div>
+		<router-link  class="linko" to="/"><span>Atr&aacute;s</span></router-link>
+
 	<CancionDetail v-if="showModal" @close="showModal=false"></CancionDetail>
 		
 	</div>
@@ -45,6 +57,9 @@ export default {
 			],
 			showModal: false
 		}
+	},
+	methods: {
+
 	}
 };
 

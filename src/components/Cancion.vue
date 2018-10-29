@@ -1,10 +1,12 @@
 <template>
 
-	<div @click="$emit('open')" :class="alte" class="contenedor-cancion">
-
-		<span class="titulo">{{ cancion }}</span><!--
-	--><span class="album-o-artista">{{ artista_album }}</span><!--
-	--><span class="duracion">{{ duracion }}</span>
+		<!-- @click="$emit('open')"  -->
+	<div 
+		:class="alte" 
+		class="contenedor-cancion"
+		@click="sendSongData"
+	>
+		<span class="titulo">{{ cancion }}</span><span class="album-o-artista">{{ artista_album }}</span><span class="duracion">{{ duracion }}</span>
 
 	</div>
 
@@ -15,6 +17,13 @@
 export default {
 	name: 'Cancion',
 	props: ['cancion_id', 'artista_album', 'cancion', 'album', 'duracion', 'index'],
+	methods: {
+		sendSongData(){
+			console.log(this.cancion);
+			this.$router.app.$emit('songData', this.cancion);
+			// alert("song data");
+		},
+	},
 	computed: {
 		alte: function() {
 			return {

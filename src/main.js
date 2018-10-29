@@ -4,6 +4,12 @@ import VueRouter from 'vue-router';
 
 import CatalogoArtistas from './components/CatalogoArtistas';
 import Canciones from './components/Canciones';
+		// Player,
+		// CatalogoArtistas,
+		// Canciones,
+		// Cola,
+		// BotonPedir,
+		// Status,
 
 Vue.use(VueRouter);
 
@@ -12,7 +18,12 @@ const router = new VueRouter({
 	routes: [
 		{path:'/', component: CatalogoArtistas},
 		{path:'/canciones', component: Canciones},
-	]
+	],
+	methods: {
+		songData(x) {
+			alert("# ", x);
+		}
+	}
 });
 
 new Vue({

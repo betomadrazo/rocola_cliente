@@ -8,7 +8,7 @@
 				<div class="info">
 					<h1>Let Down</h1>
 					<p>4:25</p>
-					<button @click="$emit('close')">Pedir canci&oacute;n</button>
+					<button @click="greet">Pedir canci&oacute;n</button>
 					<p @click="$emit('close')">Cancelar</p>
 				</div>
 			</div>
@@ -17,9 +17,11 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
 
 export default {
-	name: 'CancionDetail'
+	name: 'CancionDetail',
+	methods: mapActions(['greet']),
 };
 
 </script>

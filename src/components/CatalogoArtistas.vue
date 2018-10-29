@@ -1,6 +1,9 @@
 <template>
+
 	<div class="contenedor-catalogo">
-		<ThumbArtista v-for="artista in artistas" :artista="artista">fd</ThumbArtista>
+		<router-link to="Canciones">
+		<ThumbArtista v-for="artista in artistas" :artista="artista" :id_artista="artista.id_artista"></ThumbArtista>
+		</router-link>
 	</div>
 </template>
 
@@ -30,6 +33,14 @@ export default {
 	overflow: scroll;
 	overflow-x: hidden;
 	background-color: #111;
+}
+
+.linko {
+	display: block;
+	background-color: emerald;
+	width: 200px;
+	height: 200px;
+	margin: auto;
 }
 
 </style>

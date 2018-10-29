@@ -1,17 +1,13 @@
 <template>
 	<div class="contenedor">
 		<Player></Player>
-		<CatalogoArtistas :artistas="artistas"></CatalogoArtistas>
-		<router-view></router-view>
-		<router-link to="/canciones">pederasta</router-link>
-		<!-- <Canciones></Canciones> -->
-		<!-- <BotonPedir></BotonPedir> -->
-		<!-- <Cola></Cola> -->
+		<router-view :artistas="artistas" @songData="songData"></router-view>
 		<Status></Status>
 	</div>
 </template>
 
 <script>
+import axios from 'axios';
 import Player from './components/Player';
 import CatalogoArtistas from './components/CatalogoArtistas';
 import Canciones from './components/Canciones';
@@ -23,21 +19,39 @@ export default {
 	name: 'App',
 	components: {
 		Player,
-		CatalogoArtistas,
-		Canciones,
-		Cola,
-		BotonPedir,
+		// CatalogoArtistas,
+		// Canciones,
+		// Cola,
+		// BotonPedir,
 		Status,
 	},
 	data() {
 		return {
-			artistas: [
-				{'nombre_artista': 'Radiohead', 'id_artista': 1, foto_path:'https://consequenceofsound.files.wordpress.com/2016/02/radiohead.jpg?quality=80&w=807'},
-				{'nombre_artista': 'The Beatles', 'id_artista': 2, foto_path:'https://ichef.bbci.co.uk/images/ic/960x540/p056fxzs.jpg'},
-				{'nombre_artista': 'Pink Floyd', 'id_artista': 3, foto_path:'https://upload.wikimedia.org/wikipedia/en/thumb/d/d6/Pink_Floyd_-_all_members.jpg/250px-Pink_Floyd_-_all_members.jpg'},
-			],
+			artistas: [],
 		}
-	}
+	},
+	created() {
+		axios.get('http://www.betomad.com/rocola/consola/controllers/controller_musica.php', {
+			params: {
+
+				accion: 'get_artistas_activos',
+				data: {}
+				// key: API_KEY,
+				// type: 'video',
+				// part: 'snippet',
+				// q: searchTerm
+			}
+		}).then(response => {
+			console.log(response.data);
+			this.artistas = response.data;
+			// this.videos = response.data.items;
+		});
+	},
+	methods: {
+		songData(x) {
+			alert("# ", x);
+		}
+	},
 };
 
 </script>
