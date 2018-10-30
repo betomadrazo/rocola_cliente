@@ -1,6 +1,8 @@
 <template>
 	<div class="contenedor-thumb" @click="getArtista">
-		<img :src="artista.foto_path" alt="">
+		<div class="wrapper-imagen">
+			<img :src="artista.foto_path" alt="">
+		</div>
 		<p>{{ artista.nombre_artista }}</p>
 	</div>
 </template>
@@ -34,22 +36,35 @@ export default {
 	cursor: pointer;
 }
 
+.wrapper-imagen {
+	width:90px;
+	height:90px;
+	overflow:hidden;
+	position:relative;
+	border-radius:5px;
+}
+
 img {
-	width:100%;
+	max-width:160px;
 	max-height: 90px;
 	min-height: 60px;
-	border: 1px solid;
+	display: inline-block;
+	position:absolute;
+	left:0;
+	/*border: 1px solid;*/
 
 }
 
 p {
 	margin: 0;
+	margin-top:5px;
 	color: #eee;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	font-size: 12px;
 	white-space: pre-wrap;
-	max-height: 24px;
+	height: 27px;
+	font-family: sans-serif;
 }
 
 </style>

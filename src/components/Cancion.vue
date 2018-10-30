@@ -4,9 +4,9 @@
 	<div 
 		:class="alte" 
 		class="contenedor-cancion"
-		@click="sendSongData"
+		@click="setCancion"
 	>
-		<span class="titulo">{{ cancion }}</span><span class="album-o-artista">{{ artista_album }}</span><span class="duracion">{{ duracion }}</span>
+		<span class="titulo">{{ cancion.titulo_cancion }}</span><span class="album-o-artista">{{ cancion.album }}</span><span class="duracion">{{ cancion.duracion }}</span>
 
 	</div>
 
@@ -16,20 +16,21 @@
 
 export default {
 	name: 'Cancion',
-	props: ['cancion_id', 'artista_album', 'cancion', 'album', 'duracion', 'index'],
+	props: ['id_cancion', 'artista_album', 'cancion', 'album', 'duracion', 'index'],
 	methods: {
-		sendSongData(){
-			console.log(this.cancion);
+		setCancion(){
+			console.log(this.id_cancion);
+			// this.$router.app.$emit('songData', this.cancion);
+			// alert("song data");
+			this.$store.dispatch('setCancion', this.id_cancion);
+
 		},
-		sapo() {
-			alert("valeverga");
-		}
 	},
 	computed: {
 		alte: function() {
 			return {
 				cancion_alt: parseInt(this.index) % 2 === 0
-			}
+			}	
 		}
 	}
 };

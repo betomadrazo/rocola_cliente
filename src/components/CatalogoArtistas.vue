@@ -20,10 +20,6 @@ export default {
 		ThumbArtista
 	},
 	methods: {
-		// setArtista() {
-		// 	console.log("sopos");
-
-		// }
 	},
 	computed: mapGetters(['artistas']),
 };
@@ -40,12 +36,12 @@ export default {
 	text-align: center;
 	overflow: scroll;
 	overflow-x: hidden;
-	background-color: #111;
+	background-color: #42A382;
 }
 
 .linko {
 	display: block;
-	background-color: emerald;
+	background-color: turquoise;
 	width: 200px;
 	height: 200px;
 	margin: auto;

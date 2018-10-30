@@ -15,19 +15,16 @@
 				<Cancion 
 					@click.native="showModal=true" 
 					v-for="(cancion, index) in canciones" 
-					:id="cancion.id_cancion" 
-					:cancion="cancion.cancion" 
-					:artista_album="cancion.album" 
-					:album="cancion.album" 
-					:duracion="cancion.duracion" 
-					:index="index" 
-					:key="index"
+					:cancion="cancion"
+					:id_cancion="cancion.id_cancion"
+					:index="index"
 				></Cancion>
-				{{canciones}}
 			</ul>
 		</div>
 	</div>
-		<router-link  class="linko" to="/"><span>Atr&aacute;s</span></router-link>
+	<div style="padding:20px; position:absolute; bottom:30px;">
+		<router-link  class="linko atras" to="/"><span>&#8249;</span></router-link>
+	</div>
 
 	<CancionDetail v-if="showModal" @close="showModal=false"></CancionDetail>
 		
@@ -51,20 +48,10 @@ export default {
 	},
 	data: function() {
 		return {
-			// canciones: [
-			// 	{id_cancion:1, artista: 'Radiohead', cancion: 'I Will', album: 'Hail To The Thief', duracion:'4:57'},
-			// 	{id_cancion:2, artista: 'Radiohead', cancion: 'There There', album: 'Hail To The Thief', duracion:'5:01'},
-			// 	{id_cancion:3, artista: 'Radiohead', cancion: 'Knives Out', album: 'Amnesiac', duracion:'3:46'},
-			// 	{id_cancion:4, artista: 'Radiohead', cancion: 'Let Down', album: 'OK Computer', duracion:'3:59'},
-			// 	{id_cancion:5, artista: 'Radiohead', cancion: 'Weird Fishes', album: 'In Rainbows', duracion:'4:20'}
-			// ],
-			showModal: false
+			showModal: false,
 		}
 	},
 	methods: {
-		sapo() {
-			alert("saporro!");
-		}
 	},
 	computed: mapGetters(['canciones', 'artista']),
 };
@@ -72,6 +59,10 @@ export default {
 </script>
 
 <style scoped>
+
+.contendor-song_detail {
+	background-color: #fff;
+}
 
 ul {
 	list-style: none;
@@ -96,6 +87,7 @@ img {
 	overflow-x: hidden;
 	min-height:120px;
 	max-height:200px;
+	background-color: #fff;
 }
 
 
@@ -131,6 +123,21 @@ h2 {
 .duracion {
 	width: 10%;
 	text-align: center;
+}
+
+.atras {
+    display: inline-block;
+    border-radius: 50%;
+    background-color: orangered;
+    width: 40px;
+    height: 40px;
+    vertical-align: middle;
+    line-height: 32px;
+    text-align: center;
+    text-decoration: none;
+    color:#000;
+    font-weight:bolder;
+    font-size:40px;
 }
 
 

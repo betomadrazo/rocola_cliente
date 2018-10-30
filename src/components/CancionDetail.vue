@@ -3,11 +3,11 @@
 		<div class="detail-wrapper">
 			<div class="contenedor-detail">
 				<div class="contenedor-imagen">
-					<img src="https://upload.wikimedia.org/wikipedia/en/6/63/Radiohead_-_Hail_to_the_Thief_-_album_cover.jpg" alt="">
+					<img :src="cancion.foto_path" alt="">
 				</div>
 				<div class="info">
-					<h1>Let Down</h1>
-					<p>4:25</p>
+					<h1>{{ cancion.titulo_cancion }}</h1>
+					<p>{{ cancion.duracion }}</p>
 					<button @click="greet">Pedir canci&oacute;n</button>
 					<p @click="$emit('close')">Cancelar</p>
 				</div>
@@ -17,11 +17,19 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapGetters } from 'vuex';
+
 
 export default {
 	name: 'CancionDetail',
-	methods: mapActions(['greet']),
+	methods: {
+		greet() {
+			this.$store.dispatch('pedirCancion', this.cancion.id_cancion);
+		}
+	},
+	computed: {
+		...mapGetters(['cancion']),
+	}
 };
 
 </script>
