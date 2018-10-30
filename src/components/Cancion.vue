@@ -6,7 +6,7 @@
 		class="contenedor-cancion"
 		@click="setCancion"
 	>
-		<span class="titulo">{{ cancion.titulo_cancion }}</span><span class="album-o-artista">{{ cancion.album }}</span><span class="duracion">{{ cancion.duracion }}</span>
+		<span class="titulo"><span class="flechita">&gt;</span>{{ cancion.titulo_cancion }}</span><span class="album-o-artista">{{ cancion.album }}</span><span class="duracion">{{ cancion.duracion }}</span>
 
 	</div>
 
@@ -40,14 +40,23 @@ export default {
 <style scoped>
 	
 .contenedor-cancion {
-	padding-top: 8px;
-	padding-bottom: 4px;
-	padding-left:5px;
-	padding-right:5px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	padding-left:25px;
+	padding-right:25px;
+	font-weight: bold;
 }
 
 .cancion_alt {
-	background-color: #fff2e6;
+	background-color: #61A693;
+}
+
+.flechita {
+	color: #FF9E16;
+	font-weight: bolder;
+	text-align: left;
+	margin-right:5px;
+	vertical-align: middle;
 }
 
 span {

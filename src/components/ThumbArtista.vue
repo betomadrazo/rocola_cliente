@@ -23,16 +23,14 @@ export default {
 </script>
 <style scoped>
 	
-.contenedor-thumb {
-	/*border:1px solid;*/	
+.contenedor-thumb {	
 	margin-top:4px;
 	margin-bottom:4px;
-	margin:4px;
+	margin:10px;
 	width:90px;
 	height:110px;
 	text-align: center;
 	display: inline-block;
-	/* vertical-align: bottom; */
 	cursor: pointer;
 }
 
@@ -42,17 +40,16 @@ export default {
 	overflow:hidden;
 	position:relative;
 	border-radius:5px;
+	box-shadow: 0 0 7px #000;
 }
 
 img {
-	max-width:160px;
-	max-height: 90px;
+	max-width:170px;
+	max-height: 100px;
 	min-height: 60px;
 	display: inline-block;
 	position:absolute;
 	left:0;
-	/*border: 1px solid;*/
-
 }
 
 p {
@@ -65,6 +62,7 @@ p {
 	white-space: pre-wrap;
 	height: 27px;
 	font-family: sans-serif;
+	font-weight: bold;
 }
 
 </style>

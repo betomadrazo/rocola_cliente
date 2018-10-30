@@ -2,7 +2,7 @@
 	<div class="contenedor">
 		<Player></Player>
 		<router-view></router-view>
-		<Status></Status>
+		<!-- <Status></Status> -->
 	</div>
 </template>
 
@@ -40,7 +40,9 @@ export default {
 	min-width:300px;
 	max-width: 1024px;
 	margin:auto;
-	margin-top:77px;
+	margin-top:160px;
+	font-family: sans-serif;
+	color: #fff;
 }
 
 </style>

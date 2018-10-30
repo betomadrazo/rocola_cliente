@@ -8,8 +8,8 @@
 				<div class="info">
 					<h1>{{ cancion.titulo_cancion }}</h1>
 					<p>{{ cancion.duracion }}</p>
-					<button @click="greet">Pedir canci&oacute;n</button>
-					<p @click="$emit('close')">Cancelar</p>
+					<button @click="greet">agregar</button>
+					<button  @click="$emit('close')">cancelar</button>
 				</div>
 			</div>
 		</div>
@@ -54,21 +54,25 @@ export default {
 }
 
 .contenedor-detail {
-	width:80%;
-	background-color: #fff;
-	min-height: 400px;
-	text-align: center;
-	margin:auto;
-	border-radius: 2px;
+	font-family: 'Roboto', sans-serif;
+	letter-spacing: 1px;
+    width: 80%;
+    background-color: #FF9E16;
+    height: 360px;
+    text-align: center;
+    margin: auto;
+    border-radius: 10px;
+    color: #fff;
 }
 
 .info {
 	padding:10px;
+	text-transform: uppercase;
 }
 
 .contenedor-imagen {
 	position:relative;
-	height:250px;
+	height:237px;
 	overflow: hidden;
 	border-radius: 2px 2px 0 0;
 }
@@ -80,24 +84,41 @@ img {
 }
 
 .contenedor-detail h1 {
-	margin:0 auto;
+    margin: 0 auto;
+    font-size: 26px;
+    font-weight: 400;
 }
 
 p:nth-of-type(1) {
-	font-size: 30px;
-	margin-top:10px;
-	margin-bottom:10px;
+	font-size: 24px;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 button {
-	width:100%;
-	background-color: #222;
-	color: orangered;
-	font-size: 24px;
-	text-align: center;
-	font-weight: bold;
-	border: 0;
-	height: 36px;
+    width: 110px;
+    border-radius: 20px;
+    background-color: #7B5011;
+    color: #fff;
+    font-size: 14px;
+    text-align: center;
+    font-weight: bold;
+    border: none;
+    height: 32px;
+    display: inline-block;
+    line-height: 16px;
+    text-transform: uppercase;
+}
+
+button:first-of-type {
+	margin-right:20px;
+    box-shadow: 1px 2px 0 #533605;
+}
+
+button:last-of-type {
+	background-color: #999;
+	text-transform: capitalize;
+	box-shadow: 1px 2px 0 #333;
 }
 
 p:nth-of-type(2) {

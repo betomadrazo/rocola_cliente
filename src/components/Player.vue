@@ -1,16 +1,25 @@
 <template>
 	<div class="consola">
+		<div class="navegador">
+			<router-link  class="linko atras" to="/">&#12296;</router-link>
+			<span class="loguito">
+				<!-- <img src="../assets/static/img/loguito.png" alt=""> -->
+			</span>
+		</div>
 		<div class="info">
 			<h4>Ahora se escucha</h4>
 			<h2>
 				<span>{{ playingSong.artista }}</span> - <span>{{ playingSong.cancion }}</span>
 				<!-- <span>{{ playingSong.artista }}</span> - <span>fnsadklf  fkldsaj fsdkla kljkfladsj l llkfsdjakl lkjklfas dkl</span> -->
 			</h2>
-			<div class="clearfix">
-				<span id="tiempo-total" style="float:left;">{{ playingSong.tiempo_total }}</span><span id="tiempo-transcurrido" style="float:right;">{{ playingSong.tiempo_transcurrido }}</span>
+			<div>
+				<span class="tiempo-total"><span>{{ playingSong.tiempo_total }}</span><span>&#8250;</span></span>
+				<span class="porcentaje">
+					<span class="porcentaje-transcurrido"></span>
+				</span>
+				<span class="tiempo-transcurrido">{{ playingSong.tiempo_transcurrido }}</span>
 			</div>
 		</div>
-		<div class="porcentaje"></div>
 	</div>
 </template>
 
@@ -46,6 +55,7 @@ h2 span {
 	white-space: nowrap;
 	display: inline-block;
 	vertical-align: middle;
+	text-transform: uppercase;
 }
 
 .clearfix::after {
@@ -54,29 +64,108 @@ h2 span {
     display: table;
 }
 
+.navegador {
+	height:50px;
+	width:100%;
+}
+
+.loguito {
+    float: right;
+    width: 50px;
+    height: 49px;
+    position: relative;
+    left: -20px;
+    top: 0px;
+    background-image: url(../assets/static/img/loguito.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 75%;
+}
+
+.loguito img {
+	height:24px;
+
+}
+
 .consola {
 	text-align: center;
-	color: #ff8533;
-	background-color: #111;
+	color: #fff;
+	background-color: #45A774;
 	padding-bottom: 0;
 	position: fixed;
 	width:100%;
 	left:0;
-	height:77;
+	height:130px;
 	top:0;
 	z-index:100;
-	box-shadow: 0 0 15px #000;
+	/*box-shadow: 0 0 15px #000;*/
 }
 
 .info {
 	padding:10px;
-	padding-bottom:0;
+	padding-top:0;
+	padding-bottom:10px;
 }
 
 .porcentaje {
+	background-color: #000;
+	background-color: #197A56;
+	position:relative;
+	width:58%;
+	text-align: left;
+}
+
+.tiempo-total, .tiempo-transcurrido {
+	font-weight: bold;
+	width:18%;
+	display:inline-block;
+}
+
+.tiempo-total {
+	width:22%;
+}
+
+.tiempo-total span:nth-of-type(1) {
+	width:85%;
+	display: inline-block;
+}
+
+.tiempo-total span:nth-of-type(2) {
+	width:15%;
+	display: inline-block;
+	text-align: left;
+	vertical-align: middle;
+	font-size:16px;
+	color: orange;
+}
+
+.porcentaje-transcurrido {
 	background-color: #ff8533;
 	width:30%;
-	height:4px;
+	
+}
+
+.porcentaje, .porcentaje-transcurrido {
+	border-radius:3px;
+	display: inline-block;
+	height:5px;
+}
+
+.porcentaje-transcurrido {
+	position:absolute;
+	width:60%;
+}
+
+.atras {
+    text-decoration: none;
+    color: #197A56;
+    font-size: 40px;
+    float: left;
+    border: none !important;
+}
+
+.atras:active {
+	color: #ff8533;
 }
 
 </style>
