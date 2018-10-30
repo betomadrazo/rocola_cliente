@@ -1,18 +1,19 @@
 <template>
-	<div class="contenedor-thumb">
+	<div class="contenedor-thumb" @click="getArtista">
 		<img :src="artista.foto_path" alt="">
 		<p>{{ artista.nombre_artista }}</p>
 	</div>
 </template>
 <script>
-import axios from 'axios';
+import { mapActions } from 'vuex';
 	
 export default {
 	name: 'ThumbArtista',
 	props: ['artista', 'id_artista'],
 	methods: {
-		getCanciones(idArtista) {
-			console.log("idArtis ta", idArtista);
+		// ...mapActions(['setArtista']),
+		getArtista() {
+			this.$store.dispatch('setArtista', this.id_artista);
 		}
 	}
 };

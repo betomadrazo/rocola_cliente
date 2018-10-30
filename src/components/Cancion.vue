@@ -20,8 +20,6 @@ export default {
 	methods: {
 		sendSongData(){
 			console.log(this.cancion);
-			this.$router.app.$emit('songData', this.cancion);
-			// alert("song data");
 		},
 		sapo() {
 			alert("valeverga");

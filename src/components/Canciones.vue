@@ -2,9 +2,9 @@
 	<div>
 	<div class="contendor-song_detail">
 		<div class="contenedor-foto_artista">
-			<img src="https://enmoreaudio.com/wp-content/uploads/2017/10/RadioHed.jpg" alt="">
+			<img :src="artista.foto_path" alt="">
 		</div>
-		<h2>Radiohead</h2>
+		<h2>{{ artista.nombre_artista }}</h2>
 		<div class="elementos-cancion">
 			<span class="titulo">Canci&oacute;n</span>
 			<span class="album-o-artista">Album</span>
@@ -23,6 +23,7 @@
 					:index="index" 
 					:key="index"
 				></Cancion>
+				{{canciones}}
 			</ul>
 		</div>
 	</div>
@@ -65,7 +66,7 @@ export default {
 			alert("saporro!");
 		}
 	},
-	computed: mapGetters(['canciones']),
+	computed: mapGetters(['canciones', 'artista']),
 };
 
 </script>
