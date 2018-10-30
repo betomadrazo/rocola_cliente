@@ -40,6 +40,8 @@
 import Cancion from './Cancion';
 import CancionDetail from './CancionDetail';
 
+import { mapGetters } from 'vuex';
+
 export default {
 	name: 'Canciones',
 	components: {
@@ -48,19 +50,22 @@ export default {
 	},
 	data: function() {
 		return {
-			canciones: [
-				{id_cancion:1, artista: 'Radiohead', cancion: 'I Will', album: 'Hail To The Thief', duracion:'4:57'},
-				{id_cancion:2, artista: 'Radiohead', cancion: 'There There', album: 'Hail To The Thief', duracion:'5:01'},
-				{id_cancion:3, artista: 'Radiohead', cancion: 'Knives Out', album: 'Amnesiac', duracion:'3:46'},
-				{id_cancion:4, artista: 'Radiohead', cancion: 'Let Down', album: 'OK Computer', duracion:'3:59'},
-				{id_cancion:5, artista: 'Radiohead', cancion: 'Weird Fishes', album: 'In Rainbows', duracion:'4:20'}
-			],
+			// canciones: [
+			// 	{id_cancion:1, artista: 'Radiohead', cancion: 'I Will', album: 'Hail To The Thief', duracion:'4:57'},
+			// 	{id_cancion:2, artista: 'Radiohead', cancion: 'There There', album: 'Hail To The Thief', duracion:'5:01'},
+			// 	{id_cancion:3, artista: 'Radiohead', cancion: 'Knives Out', album: 'Amnesiac', duracion:'3:46'},
+			// 	{id_cancion:4, artista: 'Radiohead', cancion: 'Let Down', album: 'OK Computer', duracion:'3:59'},
+			// 	{id_cancion:5, artista: 'Radiohead', cancion: 'Weird Fishes', album: 'In Rainbows', duracion:'4:20'}
+			// ],
 			showModal: false
 		}
 	},
 	methods: {
-
-	}
+		sapo() {
+			alert("saporro!");
+		}
+	},
+	computed: mapGetters(['canciones']),
 };
 
 </script>

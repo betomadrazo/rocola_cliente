@@ -1,7 +1,7 @@
 <template>
 	<div class="contenedor">
 		<Player></Player>
-		<router-view :artistas="artistas" @songData="songData"></router-view>
+		<router-view></router-view>
 		<Status></Status>
 	</div>
 </template>
@@ -15,43 +15,21 @@ import Cola from './components/Cola';
 import BotonPedir from './components/BotonPedir';
 import Status from './components/Status';
 
+import { mapActions } from 'vuex';
+
 export default {
 	name: 'App',
 	components: {
 		Player,
-		// CatalogoArtistas,
-		// Canciones,
-		// Cola,
-		// BotonPedir,
 		Status,
 	},
-	data() {
-		return {
-			artistas: [],
-		}
-	},
 	created() {
-		axios.get('http://www.betomad.com/rocola/consola/controllers/controller_musica.php', {
-			params: {
-
-				accion: 'get_artistas_activos',
-				data: {}
-				// key: API_KEY,
-				// type: 'video',
-				// part: 'snippet',
-				// q: searchTerm
-			}
-		}).then(response => {
-			console.log(response.data);
-			this.artistas = response.data;
-			// this.videos = response.data.items;
+		var self = this;
+		let proxeneta = new Promise(function(resolve, reject) {
+			self.$store.dispatch('getArtistas');
 		});
 	},
-	methods: {
-		songData(x) {
-			alert("# ", x);
-		}
-	},
+	methods: mapActions(['getArtistas']),
 };
 
 </script>

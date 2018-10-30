@@ -2,7 +2,7 @@
 
 	<div class="contenedor-catalogo">
 		<router-link to="Canciones">
-		<ThumbArtista v-for="artista in artistas" :artista="artista" :id_artista="artista.id_artista"></ThumbArtista>
+		<ThumbArtista v-for="artista in artistas" :artista="artista" :id_artista="artista.id_artista" @click.native="setArtista"></ThumbArtista>
 		</router-link>
 	</div>
 </template>
@@ -11,13 +11,22 @@
 <script>
 
 import ThumbArtista from './ThumbArtista';
+import { mapActions, mapGetters } from 'vuex';
+
 
 export default {
 	name: 'CatalogoArtistas',
-	props: ['artistas'],
 	components: {
 		ThumbArtista
-	}
+	},
+	methods: {
+		...mapActions(['setArtista'])
+		// setArtista() {
+		// 	console.log("sopos");
+
+		// }
+	},
+	computed: mapGetters(['artistas']),
 };
 
 </script>

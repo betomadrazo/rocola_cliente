@@ -2,6 +2,8 @@ import Vue from 'vue';
 import App from './App';
 import VueRouter from 'vue-router';
 
+import store from './store';
+
 import CatalogoArtistas from './components/CatalogoArtistas';
 import Canciones from './components/Canciones';
 		// Player,
@@ -28,5 +30,6 @@ const router = new VueRouter({
 
 new Vue({
 	router,
+	store,
 	render: h => h(App)
 }).$mount('#app');

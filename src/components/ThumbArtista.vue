@@ -11,16 +11,9 @@ export default {
 	name: 'ThumbArtista',
 	props: ['artista', 'id_artista'],
 	methods: {
-		getCanciones() {
-			axios.get('http://www.betomad.com/rocola/consola/controllers/controller_musica.php', {
-				params: {
-					accion: 'get_canciones_de_artista_activo',
-					id_artista: this.id_artista,
-					data: {}
-				}
-			}).then(response => {
-				console.log("canciones: ", response.data);
-			});
+		getCanciones(idArtista) {
+			console.log("idArtista", idArtista);
+			this.$store.dispatch('setArtista', idArtista);
 		}
 	}
 };

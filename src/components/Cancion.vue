@@ -23,6 +23,9 @@ export default {
 			this.$router.app.$emit('songData', this.cancion);
 			// alert("song data");
 		},
+		sapo() {
+			alert("valeverga");
+		}
 	},
 	computed: {
 		alte: function() {
