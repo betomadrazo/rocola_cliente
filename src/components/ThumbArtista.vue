@@ -1,5 +1,5 @@
 <template>
-	<div class="contenedor-thumb" @click="getCanciones">
+	<div class="contenedor-thumb">
 		<img :src="artista.foto_path" alt="">
 		<p>{{ artista.nombre_artista }}</p>
 	</div>
@@ -12,8 +12,7 @@ export default {
 	props: ['artista', 'id_artista'],
 	methods: {
 		getCanciones(idArtista) {
-			console.log("idArtista", idArtista);
-			this.$store.dispatch('setArtista', idArtista);
+			console.log("idArtis ta", idArtista);
 		}
 	}
 };
