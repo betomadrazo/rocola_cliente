@@ -2,7 +2,10 @@
 	<div>
 	<div class="contendor-song_detail">
 		<div class="contenedor-foto_artista">
-			<img :src="artista.foto_path" alt="">
+			<div class="clipper-imagen">
+				<!-- <img :src="artista.foto_path" alt=""> -->
+				<img :src="foto" alt="">
+			</div>
 			<h2>{{ artista.nombre_artista }}</h2>
 		</div>
 		<div class="contenedor-catalogo_artista">
@@ -44,7 +47,14 @@ export default {
 	},
 	methods: {
 	},
-	computed: mapGetters(['canciones', 'artista']),
+	computed: {
+		...mapGetters(['canciones', 'artista']),
+		foto() {
+			return (this.artista.foto_path) ? 
+				this.artista.foto_path : 
+				'http://betomad.com/rocola/consola/artist_photo/artist_placeholder.jpg';
+		}
+	}
 };
 
 </script>
@@ -56,6 +66,13 @@ ul {
 	list-style: none;
 	padding: 0;
 	margin:0;
+}
+
+.clipper-imagen {
+	width: 200px;
+	height: 190px;
+	overflow: hidden;
+	position: relative;
 }
 
 .contenedor-foto_artista {
@@ -77,8 +94,11 @@ ul {
 }
 
 img {
-	height: 80%;
+	height: 190px;
+	min-width: 100%;
+	max-width: 350px;
 	display: block;
+	position: absolute;
 }
 
 .contenedor-catalogo_artista {

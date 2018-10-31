@@ -3,7 +3,8 @@
 		<div class="detail-wrapper">
 			<div class="contenedor-detail">
 				<div class="contenedor-imagen">
-					<img :src="cancion.foto_path" alt="">
+					<!-- <img :src="cancion.foto_path" alt=""> -->
+					<img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/be/Black_market_music.jpg/220px-Black_market_music.jpg" alt="">
 				</div>
 				<div class="info">
 					<h1>{{ cancion.titulo_cancion }}</h1>
@@ -56,12 +57,12 @@ export default {
 .contenedor-detail {
 	font-family: 'Roboto', sans-serif;
 	letter-spacing: 1px;
-    width: 80%;
+    width: 300px;
     background-color: #FF9E16;
     height: 360px;
     text-align: center;
     margin: auto;
-    border-radius: 10px;
+    border-radius: 15px;
     color: #fff;
 }
 
@@ -72,13 +73,14 @@ export default {
 
 .contenedor-imagen {
 	position:relative;
+	width: 300px;
 	height:237px;
 	overflow: hidden;
-	border-radius: 2px 2px 0 0;
+	border-radius: 15px 15px 0 0;
 }
 
 img {
-	width:100%;
+	min-width:100%;
 	position:absolute;
 	display: block;
 }

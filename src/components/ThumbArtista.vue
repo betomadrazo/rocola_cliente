@@ -1,7 +1,7 @@
 <template>
 	<div class="contenedor-thumb" @click="getArtista">
 		<div class="wrapper-imagen">
-			<img :src="artista.foto_path" alt="">
+			<img :src="foto" alt="">
 		</div>
 		<p>{{ artista.nombre_artista }}</p>
 	</div>
@@ -16,6 +16,13 @@ export default {
 		// ...mapActions(['setArtista']),
 		getArtista() {
 			this.$store.dispatch('setArtista', this.id_artista);
+		}
+	},
+	computed: {
+		foto() {
+			return (this.artista.foto_path) ? 
+				this.artista.foto_path : 
+				'http://betomad.com/rocola/consola/artist_photo/artist_placeholder.jpg';
 		}
 	}
 };
