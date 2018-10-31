@@ -4,15 +4,19 @@ import VueRouter from 'vue-router';
 
 import store from './store';
 
+import Bienvenido from './components/Bienvenido';
+import Cola from './components/Cola';
 import CatalogoArtistas from './components/CatalogoArtistas';
 import Canciones from './components/Canciones';
 
 Vue.use(VueRouter);
 
-const router = new VueRouter({
+export const router = new VueRouter({
 	mode: 'abstract',
 	routes: [
-		{path:'/', component: CatalogoArtistas},
+		{path:'/', 					component: Bienvenido},
+		{path:'/cola', 			component: Cola},
+		{path:'/catalogo',  component: CatalogoArtistas},
 		{path:'/canciones', component: Canciones},
 	]
 });

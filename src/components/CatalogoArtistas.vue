@@ -1,25 +1,26 @@
 <template>
 	<div>
+		<Player></Player>
 		<h3 style="position:fixed; z-index: 2; text-align: center;">Artistas</h3>
-	<div class="contenedor-catalogo">
-		<router-link to="Canciones">
-			<ThumbArtista v-for="artista in artistas" :artista="artista" :id_artista="artista.id_artista"></ThumbArtista>
-		</router-link>
-	</div>
-		
+		<div class="contenedor-catalogo">
+			<router-link to="Canciones">
+				<ThumbArtista v-for="artista in artistas" :artista="artista" :id_artista="artista.id_artista"></ThumbArtista>
+			</router-link>
+		</div>
 	</div>
 </template>
 
 
 <script>
 
+import Player from './Player';
 import ThumbArtista from './ThumbArtista';
 import { mapGetters } from 'vuex';
-
 
 export default {
 	name: 'CatalogoArtistas',
 	components: {
+		Player,
 		ThumbArtista
 	},
 	methods: {

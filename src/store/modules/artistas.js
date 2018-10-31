@@ -10,6 +10,8 @@ const state = {
 	canciones: null,
 	cancion: null,
 	cancionPedida: null,
+
+	cancionesEnCola: null,
 };
 
 // Estos dan la información del state
@@ -17,7 +19,9 @@ const getters = {
 	artista: state => state.artista,
 	artistas: state => state.artistas,
 	canciones: state => state.canciones,
-	cancion: state => state.cancion
+	cancion: state => state.cancion,
+
+	cancionesEnCola: state => state.cancionesEnCola,
 };
 
 // Estas realizan funciones y llaman a mutations
@@ -49,6 +53,18 @@ const actions = {
 		var cancioncilla = _.keyBy(state.canciones, 'id_cancion')[idCancion];
 		console.log(cancioncilla);
 		commit('setCancion', cancioncilla);
+	},
+
+	getCancionesEnCola({ commit }) {
+		axios.get(BASE_URL, {
+			params: {
+				accion: 'get_queue_from_server',
+				sucursal_id: ID_SUCURSAL,
+			}
+		}).then(response => {
+			console.log("canciones: ", response.data);
+			commit('setCancionesEnCola', response.data);
+		});
 	},
 
 
@@ -83,6 +99,10 @@ const mutations = {
 	},
 	setCancion(state, cancion) {
 		state.cancion = cancion;
+	},
+
+	setCancionesEnCola(state, canciones) {
+		state.cancionesEnCola = canciones;
 	},
 }
 

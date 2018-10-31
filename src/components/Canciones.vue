@@ -1,5 +1,6 @@
 <template>
 	<div>
+	<Player></Player>
 	<div class="contendor-song_detail">
 		<div class="contenedor-foto_artista">
 			<div class="clipper-imagen">
@@ -29,6 +30,7 @@
 
 <script>
 
+import Player from './Player';
 import Cancion from './Cancion';
 import CancionDetail from './CancionDetail';
 
@@ -37,6 +39,7 @@ import { mapGetters } from 'vuex';
 export default {
 	name: 'Canciones',
 	components: {
+		Player,
 		Cancion,
 		CancionDetail
 	},

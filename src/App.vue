@@ -1,27 +1,19 @@
 <template>
 	<div class="contenedor">
-		<Player></Player>
 		<router-view></router-view>
-		<!-- <Status></Status> -->
 	</div>
 </template>
 
 <script>
 import axios from 'axios';
-import Player from './components/Player';
-import CatalogoArtistas from './components/CatalogoArtistas';
-import Canciones from './components/Canciones';
-import Cola from './components/Cola';
-import BotonPedir from './components/BotonPedir';
-import Status from './components/Status';
+import Bienvenido from './components/Bienvenido';
 
 import { mapActions } from 'vuex';
 
 export default {
 	name: 'App',
 	components: {
-		Player,
-		Status,
+		Bienvenido,
 	},
 	created() {
 		var self = this;
