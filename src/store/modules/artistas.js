@@ -1,4 +1,6 @@
+import Vue from 'vue';
 import axios from 'axios';
+import $ from 'jquery-ajax';
 import _ from 'lodash';
 import {BASE_URL, ID_SUCURSAL} from '../../api/rocola';
 
@@ -35,6 +37,7 @@ const actions = {
 			commit('setArtistas', response.data);
 		});
 	},
+
 	setArtista({ commit }, idArtista) {
 		var artistilla = _.keyBy(state.artistas, 'id_artista')[idArtista];
 		commit('setArtista', artistilla);
@@ -49,6 +52,7 @@ const actions = {
 			commit('setCanciones', response.data);
 		});
 	},
+
 	setCancion({ commit }, idCancion) {
 		var cancioncilla = _.keyBy(state.canciones, 'id_cancion')[idCancion];
 		console.log(cancioncilla);
@@ -58,31 +62,35 @@ const actions = {
 	getCancionesEnCola({ commit }) {
 		axios.get(BASE_URL, {
 			params: {
-				accion: 'get_queue_from_server',
+				accion: 'get_queue_from_server2',
 				sucursal_id: ID_SUCURSAL,
 			}
 		}).then(response => {
-			console.log("canciones: ", response.data);
+			console.log("colita: ", response.data);
 			commit('setCancionesEnCola', response.data);
 		});
 	},
 
-
-	pedirCancion({ commit }, idCancion) {
-		// alert(idCancion+ID_SUCURSAL+"#");
-		axios.post(BASE_URL, {
-			params: {
-				accion: 'add_to_queue',
-            	song_id: idCancion,
-            	sucursal_id: ID_SUCURSAL,
-			}
-		}).then(
-			(response) => {console.log(response)},
-
-			(error, bb) =>{alert(error, bb)}
-			// console.log("canciones: ", response.data);
-			// commit('setCanciones', response.data);
-		);
+	pedirCancion({ commit, dispatch }, idCancion) {
+	    $.ajax({
+	        url: BASE_URL,
+	        type: 'POST',
+	        dataType: 'json',
+	        data: {
+	            'accion': 'add_to_queue',
+	            'song_id': idCancion,
+	            sucursal_id: ID_SUCURSAL
+	        },
+	        success: function(response) {
+	            console.log(response);
+	            commit('setCancionPedida', true);
+	            dispatch('getCancionesEnCola');
+	        },
+	        error: function(response, err) {
+	            console.log(response, err);
+	        }
+	    }); 
+    
 	}
 };
 
@@ -103,7 +111,12 @@ const mutations = {
 
 	setCancionesEnCola(state, canciones) {
 		state.cancionesEnCola = canciones;
+		// Vue.set(state.cancionesEnCola, 'cancionesEnCola', canciones);
 	},
+
+	setCancionPedida(state, status) {
+		state.cancionPedida = status;
+	}
 }
 
 export default {

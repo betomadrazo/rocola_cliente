@@ -2,9 +2,8 @@
 	<div class="contenedor-cola">
 		<Player></Player>
 		<div v-if="cancionesEnCola.length">
-			<h2>Canciones en cola</h2>
 			<div style="min-height:90px; max-height:300px; margin-bottom:40px; overflow-x:scroll;">
-				<ul>
+				<ul style="margin:0;">
 					<li>
 						<!-- {{ cancionesEnCola }} -->
 						<Cancion v-for="(cancion, index) in cancionesEnCola" :index="index" :cancion="cancion"></Cancion>
@@ -14,7 +13,7 @@
 			
 		</div>
 		<h2 v-else>No hay canciones en cola, escoge una canci&oacute;n.</h2>
-		<div>
+		<div class="contenedor-megaboton">
 			<router-link class="boton-pedir boton-grande" to="/catalogo" tag="button">Pedir canci&oacute;n</router-link>
 		</div>
 	</div>
@@ -50,7 +49,6 @@ ul {
 	padding: 0;
 }
 
-
 .boton-pedir {
     border-radius: 20px;
     color: #fff;
@@ -76,5 +74,12 @@ ul {
     box-shadow: none;
 }
 
+.contenedor-megaboton {
+    position: absolute;
+    margin: auto;
+    width: 100%;
+    bottom: 0;
+    margin-bottom: 40px;
+}
 
 </style>

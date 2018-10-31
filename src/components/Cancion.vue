@@ -6,8 +6,7 @@
 		class="contenedor-cancion"
 		@click="setCancion"
 	>
-		<span class="titulo"><span class="flechita">&gt;</span>{{ cancion.titulo_cancion }}</span><span class="album-o-artista">{{ cancion.album }}</span><span class="duracion">{{ cancion.duracion }}</span>
-
+		<span class="titulo"><span class="flechita">&gt;</span>{{ cancion.titulo_cancion }}</span><span class="album-o-artista">{{ artistaOAlbum }}</span><span class="duracion">{{ cancion.duracion }}</span>
 	</div>
 
 </template>
@@ -16,14 +15,11 @@
 
 export default {
 	name: 'Cancion',
-	props: ['id_cancion', 'artista_album', 'cancion', 'album', 'duracion', 'index'],
+	props: ['id_cancion', 'artista_album', 'cancion', 'album', 'duracion', 'index', 'isCola'],
 	methods: {
 		setCancion(){
 			console.log(this.id_cancion);
-			// this.$router.app.$emit('songData', this.cancion);
-			// alert("song data");
 			this.$store.dispatch('setCancion', this.id_cancion);
-
 		},
 	},
 	computed: {
@@ -31,6 +27,9 @@ export default {
 			return {
 				cancion_alt: parseInt(this.index) % 2 === 0
 			}	
+		},
+		artistaOAlbum: function() {
+			return (this.cancion.cola) ? this.cancion.artista : this.cancion.album;
 		}
 	}
 };

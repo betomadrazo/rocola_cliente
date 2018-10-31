@@ -3,13 +3,13 @@
 		<div class="detail-wrapper">
 			<div class="contenedor-detail">
 				<div class="contenedor-imagen">
-					<!-- <img :src="cancion.foto_path" alt=""> -->
-					<img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/be/Black_market_music.jpg/220px-Black_market_music.jpg" alt="">
+					<img :src="getFotoPath" alt="">
 				</div>
 				<div class="info">
+					<h3>{{ artista.nombre_artista }}</h3>
 					<h1>{{ cancion.titulo_cancion }}</h1>
 					<p>{{ cancion.duracion }}</p>
-					<button @click="greet">agregar</button>
+					<button @click="pedirCancion">agregar</button>
 					<button  @click="$emit('close')">cancelar</button>
 				</div>
 			</div>
@@ -19,17 +19,22 @@
 
 <script>
 import { mapGetters } from 'vuex';
+import { router } from '../main';
 
-
-export default {
+export default { 
 	name: 'CancionDetail',
 	methods: {
-		greet() {
+		pedirCancion() {
+			this.$emit('close');
 			this.$store.dispatch('pedirCancion', this.cancion.id_cancion);
+			router.push('/cola');
 		}
 	},
 	computed: {
-		...mapGetters(['cancion']),
+		...mapGetters(['cancion', 'artista']),
+		getFotoPath() {
+			return (this.cancion.foto_path) ? this.cancion.foto_path : 'http://www.betomad.com/rocola/consola/album_artwork/img_placeholder.jpg';
+		}
 	}
 };
 
@@ -71,10 +76,28 @@ export default {
 	text-transform: uppercase;
 }
 
+.info h1 {
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.info h3 {
+	font-size: 18px;
+	font-weight: 400;
+}
+
+.info h1, .info h3 {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	letter-spacing: 1px;
+    margin: 0 auto;
+}
+
 .contenedor-imagen {
 	position:relative;
 	width: 300px;
-	height:237px;
+	height:232px;
 	overflow: hidden;
 	border-radius: 15px 15px 0 0;
 }
@@ -85,14 +108,8 @@ img {
 	display: block;
 }
 
-.contenedor-detail h1 {
-    margin: 0 auto;
-    font-size: 26px;
-    font-weight: 400;
-}
-
 p:nth-of-type(1) {
-	font-size: 24px;
+	font-size: 20px;
     margin-top: 5px;
     margin-bottom: 5px;
 }

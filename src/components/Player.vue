@@ -1,7 +1,10 @@
 <template>
 	<div class="consola">
 		<div class="navegador">
-			<router-link  class="linko atras" to="/">&#12296;</router-link>
+			<!-- <router-link  class="linko atras" to="/">&#12296;</router-link> -->
+			<span v-if="$routerHistory.hasPrevious()">
+				<router-link  class="linko atras" :to="{ path: $routerHistory.previous().path }">&#12296;</router-link>
+			</span>
 			<span class="loguito">
 				<!-- <img src="../assets/static/img/loguito.png" alt=""> -->
 			</span>
@@ -20,10 +23,12 @@
 				<span class="tiempo-transcurrido">{{ playingSong.tiempo_transcurrido }}</span>
 			</div>
 		</div>
+		<h3 class="seccion">Artistas</h3>
 	</div>
 </template>
 
 <script>
+import router from '../main';
 	
 export default {
 	name: 'Player',
@@ -35,7 +40,10 @@ export default {
 				tiempo_total: '4:27',
 				tiempo_transcurrido: '2:11'
 			}
-		}
+		};
+	},
+	created() {
+		console.log(this.$router);
 	}
 }
 
@@ -166,6 +174,18 @@ h2 span {
 
 .atras:active {
 	color: #ff8533;
+}
+
+
+.seccion {
+	margin-top:0;
+	font-weight: normal;
+	width:100%;
+	position:fixed;
+	background-color: #42A382;
+	top:127px;
+	padding-top:5px;
+	padding-bottom:5px;
 }
 
 </style>

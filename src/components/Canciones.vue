@@ -48,8 +48,6 @@ export default {
 			showModal: false,
 		}
 	},
-	methods: {
-	},
 	computed: {
 		...mapGetters(['canciones', 'artista']),
 		foto() {

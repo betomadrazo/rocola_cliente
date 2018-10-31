@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import App from './App';
 import VueRouter from 'vue-router';
+import { routerHistory, writeHistory } from 'vue-router-back-button';
 
 import store from './store';
 
@@ -10,6 +11,7 @@ import CatalogoArtistas from './components/CatalogoArtistas';
 import Canciones from './components/Canciones';
 
 Vue.use(VueRouter);
+Vue.use(routerHistory);
 
 export const router = new VueRouter({
 	mode: 'abstract',
@@ -22,9 +24,11 @@ export const router = new VueRouter({
 });
 
 router.replace('/');
+router.afterEach(writeHistory);
 
 new Vue({
 	router,
+	routerHistory,
 	store,
 	render: h => h(App)
 }).$mount('#app');
