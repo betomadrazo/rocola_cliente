@@ -12,15 +12,15 @@
 		<div class="info">
 			<h4>Ahora se escucha</h4>
 			<h2>
-				<span>{{ playingSong.artista }}</span> - <span>{{ playingSong.cancion }}</span>
+				<span>{{ artistaAhora }}</span> - <span>{{ cancionAhora }}</span>
 				<!-- <span>{{ playingSong.artista }}</span> - <span>fnsadklf  fkldsaj fsdkla kljkfladsj l llkfsdjakl lkjklfas dkl</span> -->
 			</h2>
 			<div>
-				<span class="tiempo-total"><span>{{ playingSong.tiempo_total }}</span><span>&#8250;</span></span>
+				<span class="tiempo-total"><span>{{ total }}</span><span>&#8250;</span></span>
 				<span class="porcentaje">
 					<span class="porcentaje-transcurrido"></span>
 				</span>
-				<span class="tiempo-transcurrido">{{ playingSong.tiempo_transcurrido }}</span>
+				<span class="tiempo-transcurrido">{{ tiempoFaltante }}</span>
 			</div>
 		</div>
 		<h3 class="seccion">Artistas</h3>
@@ -29,21 +29,76 @@
 
 <script>
 import router from '../main';
+import { mapActions, mapGetters } from 'vuex';
 	
 export default {
 	name: 'Player',
 	data: () => {
 		return {
-			playingSong: {
-				artista: 'Beck',
-				cancion: 'Nausea',
-				tiempo_total: '4:27',
-				tiempo_transcurrido: '2:11'
-			}
+			tiempoRestante: null,
+			tiempoFaltante: 0,
+			total: 0,
 		};
 	},
 	created() {
 		console.log(this.$router);
+	},
+	methods: {
+		...mapActions(['getPlayerVars']),
+
+		songStatus() {
+			var self = this;
+			self.$store.dispatch('getPlayerVars');
+
+
+			// 	// $('#artista-ahora').html(info.artista);
+			// 	// $('#titulo-ahora').html(info.titulo_cancion);
+	
+			// 	// var total = document.getElementById('tiempo-total');
+			// 	// var faltante = document.getElementById('tiempo-transcurrido');
+	
+			this.total = this.getTiempoFormateado(this.tiempoTotal);
+			console.log("_______", this.total);
+	
+			var currentTotal = this.tiempoTotal;
+			var currentTranscurrido = parseInt(this.tiempoTranscurrido);
+			console.log(this.getTiempoFormateado(currentTranscurrido));
+			// this.tiempoTranscurrido = currentTranscurrido;
+	
+			// clearInterval(this.tiempoRestante);
+
+			var potiempoRestante = setInterval(function() {
+				// var tiempo = new Date(null);
+				// console.log("WWWWW", currentTotal, " __ ", currentTranscurrido);
+				// tiempo.setSeconds(currentTotal - currentTranscurrido);
+				// this.tiempoFaltante = tiempo.toISOString().substr(11, 8);
+		
+				// currentTranscurrido += 1;
+				// console.log(currentTranscurrido);
+				// // faltante.innerHTML = falta;
+	
+				// if((currentTotal - currentTranscurrido) < 1) {
+				// 	self.$store.dispatch('getPlayerVars');
+				// 	// getInfoDeCancionEnPlay();
+
+			}, 1000);
+
+		},
+
+		getTiempoFormateado(segundos) {
+			var tiempo = new Date(null);
+			tiempo.setSeconds(segundos);
+			return tiempo.toISOString().substr(11, 8);	
+		},
+
+	},
+	computed: {
+		...mapGetters(['artistaAhora', 'cancionAhora', 'tiempoTotal', 'tiempoTranscurrido']),
+	},
+	mounted() {
+
+		
+		this.songStatus();
 	}
 }
 
@@ -57,7 +112,7 @@ h4, h3, h2 {
 }
 
 h2 span {
-	max-width: 140px;
+	max-width: 170px;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
