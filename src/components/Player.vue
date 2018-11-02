@@ -1,29 +1,28 @@
 <template>
 	<div class="consola">
 		<div class="navegador">
-			<!-- <router-link  class="linko atras" to="/">&#12296;</router-link> -->
 			<span v-if="$routerHistory.hasPrevious()">
 				<router-link  class="linko atras" :to="{ path: $routerHistory.previous().path }">&#12296;</router-link>
 			</span>
 			<span class="loguito">
-				<!-- <img src="../assets/static/img/loguito.png" alt=""> -->
 			</span>
 		</div>
 		<div class="info">
 			<h4>Ahora se escucha</h4>
 			<h2>
 				<span>{{ artistaAhora }}</span> - <span>{{ cancionAhora }}</span>
-				<!-- <span>{{ playingSong.artista }}</span> - <span>fnsadklf  fkldsaj fsdkla kljkfladsj l llkfsdjakl lkjklfas dkl</span> -->
 			</h2>
 			<div>
-				<span class="tiempo-total"><span>{{ total }}</span><span>&#8250;</span></span>
+				<span class="tiempo-total"><span>{{ printTranscurrido }}</span><span>&#8250;</span></span>
 				<span class="porcentaje">
-					<span class="porcentaje-transcurrido"></span>
+					<span class="porcentaje-transcurrido" :style="getPorcentaje"></span>
 				</span>
-				<span class="tiempo-transcurrido">{{ tiempoFaltante }}</span>
+				<span class="tiempo-transcurrido">{{ printFaltante }}</span>
 			</div>
 		</div>
-		<h3 class="seccion">Artistas</h3>
+		<div v-if="displayContenido">
+			<h3 class="seccion">{{ contenido }}</h3>
+		</div>
 	</div>
 </template>
 
@@ -35,52 +34,52 @@ export default {
 	name: 'Player',
 	data: () => {
 		return {
+			contenido: '',
+			displayContenido: true,
 			tiempoRestante: null,
 			tiempoFaltante: 0,
+			transcurrido:0,
+			restante:0,
 			total: 0,
+
+			potiempoRestante: null,
+			currentTranscurrido: 0,
 		};
 	},
 	created() {
-		console.log(this.$router);
+		this.getContenido();
+		this.songStatus();
+		var moco = setInterval(this.songStatus, 20000);
 	},
 	methods: {
 		...mapActions(['getPlayerVars']),
 
 		songStatus() {
-			var self = this;
-			self.$store.dispatch('getPlayerVars');
+			this.$store.dispatch('getPlayerVars');
 
-
-			// 	// $('#artista-ahora').html(info.artista);
-			// 	// $('#titulo-ahora').html(info.titulo_cancion);
-	
-			// 	// var total = document.getElementById('tiempo-total');
-			// 	// var faltante = document.getElementById('tiempo-transcurrido');
-	
+			
 			this.total = this.getTiempoFormateado(this.tiempoTotal);
-			console.log("_______", this.total);
+
+			this.transcurrido = this.tiempoTranscurrido;
+			this.restante = parseInt(this.total) - parseInt(this.tiempoTranscurrido);
 	
 			var currentTotal = this.tiempoTotal;
-			var currentTranscurrido = parseInt(this.tiempoTranscurrido);
-			console.log(this.getTiempoFormateado(currentTranscurrido));
-			// this.tiempoTranscurrido = currentTranscurrido;
-	
-			// clearInterval(this.tiempoRestante);
+			var currentTranscurrido = this.tiempoTranscurrido;
 
-			var potiempoRestante = setInterval(function() {
-				// var tiempo = new Date(null);
-				// console.log("WWWWW", currentTotal, " __ ", currentTranscurrido);
-				// tiempo.setSeconds(currentTotal - currentTranscurrido);
-				// this.tiempoFaltante = tiempo.toISOString().substr(11, 8);
-		
-				// currentTranscurrido += 1;
-				// console.log(currentTranscurrido);
-				// // faltante.innerHTML = falta;
-	
-				// if((currentTotal - currentTranscurrido) < 1) {
-				// 	self.$store.dispatch('getPlayerVars');
-				// 	// getInfoDeCancionEnPlay();
+			clearInterval(this.potiempoRestante);
 
+			var self = this;
+			this.potiempoRestante = setInterval(function() {
+
+				self.transcurrido +=1;
+				self.restante -=1;
+
+				currentTranscurrido += 1;
+	
+				if((currentTotal - currentTranscurrido) < 1) {
+					self.$store.dispatch('getPlayerVars');
+					// getInfoDeCancionEnPlay();
+				}
 			}, 1000);
 
 		},
@@ -88,18 +87,42 @@ export default {
 		getTiempoFormateado(segundos) {
 			var tiempo = new Date(null);
 			tiempo.setSeconds(segundos);
-			return tiempo.toISOString().substr(11, 8);	
+			return tiempo.toISOString().substr(14, 5);	
+		},
+
+		getContenido() {
+			switch(this.$router.currentRoute.path) {
+				case '/cola':
+				this.displayContenido = true;
+				this.contenido = 'Canciones en cola...';
+				break;
+				case '/catalogo':
+				this.displayContenido = true;
+				this.contenido = 'Artistas';
+				break;
+				case '/canciones':
+				this.displayContenido = false;
+				break;
+				default:
+				this.displayContenido = false;
+			}
 		},
 
 	},
 	computed: {
 		...mapGetters(['artistaAhora', 'cancionAhora', 'tiempoTotal', 'tiempoTranscurrido']),
+		printTranscurrido() {
+			return this.getTiempoFormateado(parseInt(this.transcurrido));
+		},
+		printFaltante() {
+			var tomi = this.tiempoTotal - this.transcurrido;
+			return this.getTiempoFormateado(parseInt(tomi));
+		},
+		getPorcentaje() {
+			var porcentaje = this.transcurrido * 100 / this.tiempoTotal;
+			return `width:${(porcentaje <= 100) ? porcentaje : 0}%;`;
+		}
 	},
-	mounted() {
-
-		
-		this.songStatus();
-	}
 }
 
 </script>
@@ -112,13 +135,14 @@ h4, h3, h2 {
 }
 
 h2 span {
-	max-width: 170px;
+	max-width: 150px;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
 	display: inline-block;
 	vertical-align: middle;
 	text-transform: uppercase;
+	font-size:21px;
 }
 
 .clearfix::after {

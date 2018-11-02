@@ -25,9 +25,12 @@ export default {
 	name: 'CancionDetail',
 	methods: {
 		pedirCancion() {
-			this.$emit('close');
 			this.$store.dispatch('pedirCancion', this.cancion.id_cancion);
-			router.push('/cola');
+			var self = this;
+			window.setTimeout(function() {
+				self.$emit('close');
+				router.push('/cola');
+			}, 500);
 		}
 	},
 	computed: {

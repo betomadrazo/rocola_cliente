@@ -11,6 +11,7 @@ const state = {
 	artistas: null,
 	canciones: null,
 	cancion: null,
+
 	cancionPedida: null,
 
 	cancionesEnCola: null,
@@ -24,6 +25,7 @@ const getters = {
 	cancion: state => state.cancion,
 
 	cancionesEnCola: state => state.cancionesEnCola,
+	cancionPedida: state => state.cancionPedida,
 };
 
 // Estas realizan funciones y llaman a mutations
@@ -66,7 +68,6 @@ const actions = {
 				sucursal_id: ID_SUCURSAL,
 			}
 		}).then(response => {
-			console.log("colita: ", response.data);
 			commit('setCancionesEnCola', response.data);
 		});
 	},
@@ -83,7 +84,7 @@ const actions = {
 	        },
 	        success: function(response) {
 	            console.log(response);
-	            commit('setCancionPedida', true);
+	            commit('setCancionPedida', idCancion);
 	            dispatch('getCancionesEnCola');
 	        },
 	        error: function(response, err) {

@@ -12,27 +12,42 @@
 			</div>
 			
 		</div>
-		<h2 v-else>No hay canciones en cola, escoge una canci&oacute;n.</h2>
+		<h2 class="mensaje-no_canciones" v-else>No hay canciones en cola, escoge una canci&oacute;n.</h2>
 		<div class="contenedor-megaboton">
-			<router-link class="boton-pedir boton-grande" to="/catalogo" tag="button">Pedir canci&oacute;n</router-link>
+			<BotonPedir></BotonPedir>
+			<!-- <router-link class="boton-pedir boton-grande" to="/catalogo" tag="button">agrega una canci&oacute;n</router-link> -->
 		</div>
 	</div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 
 import Player from './Player';
 import Cancion from './Cancion';
+import BotonPedir from './BotonPedir';
 
 export default {
 	name: 'Cola',
 	components: {
 		Player,
 		Cancion,
+		BotonPedir,
+	},
+	methods: {
+		...mapActions(['getCancionesEnCola']),
+		actualizaCola() {
+			var self = this;
+			window.setInterval(function() {
+				self.$store.dispatch('getCancionesEnCola');
+			}, 5000);
+		}
 	},
 	computed: {
 		...mapGetters(['cancionesEnCola']),
+	},
+	mounted() {
+		this.actualizaCola();
 	}
 };
 
@@ -49,29 +64,12 @@ ul {
 	padding: 0;
 }
 
-.boton-pedir {
-    border-radius: 20px;
-    color: #fff;
-    text-align: center;
-    font-weight: bold;
-    border: none;
-    text-transform: uppercase;
-}
-
-.boton-grande {
-    background-color: #ff8533;
-    width: 300px;
-    height: 80px;
-    font-size: 24px;
-    line-height: 32px;
-    box-shadow: 1px 4px 0 #533605;
-	margin: auto;
-	display: block;
-}
-
-.boton-grande:active {
-    background-color: #ffcc63;
-    box-shadow: none;
+.mensaje-no_canciones {
+	margin: 0;
+	font-size: 18px;
+	font-weight: 400;
+	margin-top: 300px;
+	text-align: center;
 }
 
 .contenedor-megaboton {
@@ -80,6 +78,8 @@ ul {
     width: 100%;
     bottom: 0;
     margin-bottom: 40px;
+    text-align: center;
+    min-height: 90px;
 }
 
 </style>

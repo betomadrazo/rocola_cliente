@@ -23,7 +23,7 @@ const getters = {
 
 const actions = {
 
-	getPlayerVars({ commit }) {
+	getPlayerVars({ commit, dispatch }) {
 		
 		$.ajax({
 			url: BASE_URL,
@@ -41,6 +41,9 @@ const actions = {
 				commit('setCancionAhora', info.titulo_cancion);
 				commit('setTiempoTotal', info.tiempo_total);
 				commit('setTiempoTranscurrido', info.tiempo_transcurrido);
+
+				
+
 			},
 			error: function(response, p) {
 				console.log("error->", response, p);

@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<h1>Bienvenido a la rocola!</h1>
+		<h1>Bienvenido a <br>la rocola<br>del p&eacute;ndulo</h1>
 	</div>
 </template>
 
@@ -12,11 +12,12 @@ export default {
 	name: 'Bienvenido',
 	created() {
 		this.$store.dispatch('getCancionesEnCola');
+		this.$store.dispatch('getPlayerVars');
 		var to = setTimeout(function() {
 			router.push('/cola');
 		}, 2000);
 	},
-	methods: mapActions(['getCancionesEnCola']),
+	methods: mapActions(['getCancionesEnCola', 'getPlayerVars']),
 };
 </script>
 

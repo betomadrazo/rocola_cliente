@@ -7,7 +7,9 @@
 				<!-- <img :src="artista.foto_path" alt=""> -->
 				<img :src="foto" alt="">
 			</div>
-			<h2>{{ artista.nombre_artista }}</h2>
+			<div class="nomi">
+				<h2>{{ artista.nombre_artista }}</h2>	
+			</div>
 		</div>
 		<div class="contenedor-catalogo_artista">
 			<ul>
@@ -92,6 +94,14 @@ ul {
 	margin-bottom: 10px;
 	text-align: center;
 	text-transform: uppercase;
+	text-overflow: ellipsis;
+	overflow:hidden;
+	/*white-space: nowrap;*/
+	font-size: 18px;
+	margin:0;
+	margin-top:5px;
+	display:table-cell;
+	vertical-align: middle;
 }
 
 img {
@@ -112,12 +122,18 @@ img {
 }
 
 
+.nomi {
+	height:50px;
+	display:table;
+	width:100%;
+}
 
 
 .elementos-cancion {
 	padding-top: 8px;
 	padding-bottom: 4px;
 	padding-left:5px;
+	max-height: 50px;
 	padding-right:5px;
 	font-weight: bold;
 }
