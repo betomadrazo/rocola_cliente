@@ -113,7 +113,6 @@ export default {
 		},
 		printFaltante() {
 			var segundosFaltantesEnCancion = this.tiempoTotal - this.transcurrido;
-			console.log("###", segundosFaltantesEnCancion);
 			this.$store.dispatch('setSegundosFaltantesEnCancion', segundosFaltantesEnCancion);
 			return this.getTiempoFormateado(parseInt(segundosFaltantesEnCancion));
 		},

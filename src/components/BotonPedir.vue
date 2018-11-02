@@ -58,9 +58,6 @@ export default {
 			};	
 		},
 		countDownCancion: function() {
-			console.log(this.segundosFaltantesEnCola, this.segundosFaltantesEnCancion);
-			console.log("************ ", this.getTiempoFormateado(this.segundosFaltantesEnCola + this.segundosFaltantesEnCancion));
-
 			return this.getTiempoFormateado(this.segundosFaltantesEnCola + this.segundosFaltantesEnCancion);
 		}
 	}

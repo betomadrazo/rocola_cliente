@@ -96,9 +96,6 @@ const actions = {
 					console.log(segs);
 				}
 			}
-			
-			console.log('segundos faltantes: ', segundosFaltantesEnCola + state.segundosFaltantesEnCancion);
-			console.log(">>> ", segundosFaltantesEnCola, state.segundosFaltantesEnCancion);
 
 			commit('setSegundosFaltantesEnCola', segundosFaltantesEnCola);
 			commit('setCancionesEnCola', response.data);
