@@ -19,7 +19,7 @@ export default {
 	name: 'Cancion',
 	props: ['id_cancion', 'artista_album', 'cancion', 'album', 'duracion', 'index', 'isCola'],
 	created() {
-		console.log("canción pedida ", this.cancionPedida, "id canción ", this.cancion.id_cancion);
+		// console.log("canción pedida ", this.cancionPedida, "id canción ", this.cancion.id_cancion);
 
 	},
 	methods: {

@@ -1,33 +1,31 @@
 <template>
 	<div>
-	<Player></Player>
-	<div class="contendor-song_detail">
-		<div class="contenedor-foto_artista">
-			<div class="clipper-imagen">
-				<!-- <img :src="artista.foto_path" alt=""> -->
-				<img :src="foto" alt="">
+		<Player></Player>
+		<div class="contendor-song_detail">
+			<div class="contenedor-foto_artista">
+				<div class="clipper-imagen">
+					<!-- <img :src="artista.foto_path" alt=""> -->
+					<img :src="foto" alt="">
+				</div>
+				<div class="nomi">
+					<h2>{{ artista.nombre_artista }}</h2>	
+				</div>
 			</div>
-			<div class="nomi">
-				<h2>{{ artista.nombre_artista }}</h2>	
+			<div class="contenedor-catalogo_artista">
+				<ul>
+					<Cancion 
+						@click.native="showModal=true" 
+						v-for="(cancion, index) in canciones" 
+						:cancion="cancion"
+						:id_cancion="cancion.id_cancion"
+						:index="index"
+					></Cancion>
+				</ul>
 			</div>
 		</div>
-		<div class="contenedor-catalogo_artista">
-			<ul>
-				<Cancion 
-					@click.native="showModal=true" 
-					v-for="(cancion, index) in canciones" 
-					:cancion="cancion"
-					:id_cancion="cancion.id_cancion"
-					:index="index"
-				></Cancion>
-			</ul>
-		</div>
-	</div>
-	<CancionDetail v-if="showModal" @close="showModal=false"></CancionDetail>
-		
+		<CancionDetail v-if="showModal" @close="showModal=false"></CancionDetail>
 	</div>
 	
-
 </template>
 
 <script>

@@ -38,11 +38,10 @@ export default {
 			displayContenido: true,
 			tiempoRestante: null,
 			tiempoFaltante: 0,
-			transcurrido:0,
-			restante:0,
+			transcurrido: 0,
+			restante: 0,
 			total: 0,
-
-			potiempoRestante: null,
+			intervaloSegundos: null,
 			currentTranscurrido: 0,
 		};
 	},
@@ -52,11 +51,10 @@ export default {
 		var moco = setInterval(this.songStatus, 20000);
 	},
 	methods: {
-		...mapActions(['getPlayerVars']),
+		...mapActions(['getPlayerVars', 'setSegundosFaltantesEnCancion']),
 
 		songStatus() {
 			this.$store.dispatch('getPlayerVars');
-
 			
 			this.total = this.getTiempoFormateado(this.tiempoTotal);
 
@@ -66,13 +64,13 @@ export default {
 			var currentTotal = this.tiempoTotal;
 			var currentTranscurrido = this.tiempoTranscurrido;
 
-			clearInterval(this.potiempoRestante);
+			clearInterval(this.intervaloSegundos);
 
 			var self = this;
-			this.potiempoRestante = setInterval(function() {
+			this.intervaloSegundos = setInterval(function() {
 
-				self.transcurrido +=1;
-				self.restante -=1;
+				self.transcurrido += 1;
+				self.restante -= 1;
 
 				currentTranscurrido += 1;
 	
@@ -81,7 +79,6 @@ export default {
 					// getInfoDeCancionEnPlay();
 				}
 			}, 1000);
-
 		},
 
 		getTiempoFormateado(segundos) {
@@ -115,8 +112,10 @@ export default {
 			return this.getTiempoFormateado(parseInt(this.transcurrido));
 		},
 		printFaltante() {
-			var tomi = this.tiempoTotal - this.transcurrido;
-			return this.getTiempoFormateado(parseInt(tomi));
+			var segundosFaltantesEnCancion = this.tiempoTotal - this.transcurrido;
+			console.log("###", segundosFaltantesEnCancion);
+			this.$store.dispatch('setSegundosFaltantesEnCancion', segundosFaltantesEnCancion);
+			return this.getTiempoFormateado(parseInt(segundosFaltantesEnCancion));
 		},
 		getPorcentaje() {
 			var porcentaje = this.transcurrido * 100 / this.tiempoTotal;

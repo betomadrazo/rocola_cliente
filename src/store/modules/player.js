@@ -34,24 +34,16 @@ const actions = {
 				sucursal_id: ID_SUCURSAL,
 			},
 			success: function(info) {
-	
-				console.log("###", info, "###");
-	
 				commit('setArtistaAhora', info.artista);
 				commit('setCancionAhora', info.titulo_cancion);
 				commit('setTiempoTotal', info.tiempo_total);
-				commit('setTiempoTranscurrido', info.tiempo_transcurrido);
-
-				
-
+				commit('setTiempoTranscurrido', info.tiempo_transcurrido);				
 			},
 			error: function(response, p) {
 				console.log("error->", response, p);
 			}
 		});
 	},
-
-
 };
 
 

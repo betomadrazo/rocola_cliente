@@ -2,7 +2,7 @@
 
 	<div class="contenedor-pedir">
 
-		<div class="detail-mask">
+		<div class="detail-mask" :class="{modal: modalVisible}">
 			<div class="detail-wrapper">
 				<div class="alerta-cancion_pedida">
 					<span>
@@ -13,12 +13,11 @@
 		</div>
 
 		<div v-if="cancionPedida">
-			<h3>Tu canci&oacute;n sonar&aacute; en </h3>
+			<h4>Tu canci&oacute;n sonar&aacute; en {{ countDownCancion }} minutos.</h4>
 		</div>
-		<router-link :class="desactivado" class="boton-pedir boton-grande" to="/catalogo" tag="button">agrega una canci&oacute;n</router-link>
-	
+		<!-- <router-link :class="desactivado" @click="pedo" class="boton-pedir boton-grande" to="/catalogo" tag="button">agrega una canci&oacute;n</router-link> -->
+		<button :class="desactivado" @click="pedorro" class="boton-pedir boton-grande">agrega una canci&oacute;n</button>
 	</div>
-
 
 </template>
 
@@ -27,25 +26,53 @@ import { mapGetters } from 'vuex';
 
 export default {
 	name: 'BotonPedir',
+
+	data() {
+		return {
+			modalVisible: false,
+			// countDownCancion: null,
+		};
+	},
 	methods: {
-		pideCancion() {
+		pedorro() {
 			if(this.cancionPedida) {
-				;
+				this.modalVisible = true;
+				window.setTimeout(() => {
+					this.modalVisible = false;
+				}, 3000);
+			} else {
+				this.$router.push('/catalogo');
 			}
-		}
+		},
+		getTiempoFormateado(segundos) {
+			var tiempo = new Date(null);
+			tiempo.setSeconds(segundos);
+			return tiempo.toISOString().substr(14, 5);	
+		},
 	},
 	computed: {
-		...mapGetters(['cancionPedida']),
+		...mapGetters(['cancionPedida', 'segundosFaltantesEnCola', 'segundosFaltantesEnCancion']),
 		desactivado: function() {
 			return {
 				boton_desactivado: this.cancionPedida
 			};	
 		},
+		countDownCancion: function() {
+			console.log(this.segundosFaltantesEnCola, this.segundosFaltantesEnCancion);
+			console.log("************ ", this.getTiempoFormateado(this.segundosFaltantesEnCola + this.segundosFaltantesEnCancion));
+
+			return this.getTiempoFormateado(this.segundosFaltantesEnCola + this.segundosFaltantesEnCancion);
+		}
 	}
 };
 
 </script>
+
 <style scoped>
+
+.modal {
+	display:table !important;
+}
 
 .boton-pedir {
     border-radius: 16px;
@@ -85,7 +112,7 @@ export default {
 	width: 100%;
 	height: 100%;
 	background-color: rgba(0, 0, 0, .5);
-	display: table;
+	display: none;
 }
 
 .detail-wrapper {
@@ -114,15 +141,7 @@ export default {
 	display: table-cell;
 }
 
-
-
-
-
-
-
-
-
-h3 {
+h4 {
 	margin-top:5px;
 	margin-bottom: 5px;
 	width:100%;
