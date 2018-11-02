@@ -25,16 +25,20 @@ export default {
 	name: 'CancionDetail',
 	methods: {
 		pedirCancion() {
-			this.$store.dispatch('pedirCancion', this.cancion.id_cancion);
-			var self = this;
-			window.setTimeout(function() {
-				self.$emit('close');
-				router.push('/cola');
-			}, 500);
+			if(this.cancionPedida) {
+				;
+			} else {
+				this.$store.dispatch('pedirCancion', this.cancion.id_cancion);
+				var self = this;
+				window.setTimeout(function() {
+					self.$emit('close');
+					router.push('/cola');
+				}, 500);
+			}
 		}
 	},
 	computed: {
-		...mapGetters(['cancion', 'artista']),
+		...mapGetters(['cancion', 'artista', 'cancionPedida']),
 		getFotoPath() {
 			return (this.cancion.foto_path) ? this.cancion.foto_path : 'http://www.betomad.com/rocola/consola/album_artwork/img_placeholder.jpg';
 		}
