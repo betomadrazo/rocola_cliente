@@ -5,11 +5,11 @@ import { BASE_URL, ID_SUCURSAL } from '../../api/rocola';
 
 
 const state = {
-	artistaAhora: null,
-	cancionAhora: null,
-	tiempoTotal: null,
-	tiempoTranscurrido: null,
-	porcentaje: null,
+	artistaAhora: " ",
+	cancionAhora: " ",
+	tiempoTotal: 0,
+	tiempoTranscurrido: 0,
+	porcentaje: 0,
 };
 
 

@@ -51,6 +51,7 @@ export default {
 	computed: {
 		...mapGetters(['canciones', 'artista']),
 		foto() {
+			console.log(this.artista.foto_path);
 			return (this.artista.foto_path) ? 
 				this.artista.foto_path : 
 				'http://betomad.com/rocola/consola/artist_photo/artist_placeholder.jpg';
