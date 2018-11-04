@@ -17,6 +17,8 @@ const state = {
 	cancionesEnCola: null,
 	segundosFaltantesEnCola: null,
 	segundosFaltantesEnCancion: null,
+
+	deviceId: null,
 };
 
 // Estos dan la información del state
@@ -31,6 +33,8 @@ const getters = {
 
 	segundosFaltantesEnCola: state => state.segundosFaltantesEnCola,
 	segundosFaltantesEnCancion: state => state.segundosFaltantesEnCancion,
+
+	deviceId: state => state.deviceId,
 };
 
 // Estas realizan funciones y llaman a mutations
@@ -110,7 +114,8 @@ const actions = {
 			data: {
 				'accion': 'add_to_queue',
 				'song_id': idCancion,
-				sucursal_id: ID_SUCURSAL
+				sucursal_id: ID_SUCURSAL,
+				dispositivo_id: state.deviceId,
 			},
 			success: function(response) {
 				console.log(response);
@@ -129,6 +134,10 @@ const actions = {
 
 	setSegundosFaltantesEnCancion({ commit }, segundos) {
 		commit('setSegundosFaltantesEnCancion', segundos);
+	},
+
+	setDeviceId({ commit }, hash) {
+		commit('setDeviceId', hash);
 	},
 };
 
@@ -165,6 +174,10 @@ const mutations = {
 	setSegundosFaltantesEnCancion(state, segundos) {
 		state.segundosFaltantesEnCancion = segundos;
 	},
+
+	setDeviceId(state, hash) {
+		state.deviceId = hash;
+	}
 }
 
 export default {

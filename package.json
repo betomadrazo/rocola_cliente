@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "fingerprintjs2": "^2.0.3",
     "jquery-ajax": "^2.1.4",
     "lodash": "^4.17.11",
     "qs": "^6.5.2",

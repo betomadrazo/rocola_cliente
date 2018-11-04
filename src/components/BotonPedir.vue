@@ -13,7 +13,7 @@
 		</div>
 
 		<div v-if="cancionPedida">
-			<h4>Tu canci&oacute;n sonar&aacute; en {{ countDownCancion }} minutos.</h4>
+			<h4>{{ getMsgCanciones }}</h4>
 		</div>
 		<!-- <router-link :class="desactivado" @click="pedo" class="boton-pedir boton-grande" to="/catalogo" tag="button">agrega una canci&oacute;n</router-link> -->
 		<button :class="desactivado" @click="pedorro" class="boton-pedir boton-grande">agrega una canci&oacute;n</button>
@@ -30,6 +30,7 @@ export default {
 	data() {
 		return {
 			modalVisible: false,
+			// mensajeCanciones: this.getMsgCanciones(),
 			// countDownCancion: null,
 		};
 	},
@@ -51,7 +52,13 @@ export default {
 		},
 	},
 	computed: {
-		...mapGetters(['cancionPedida', 'segundosFaltantesEnCola', 'segundosFaltantesEnCancion']),
+		...mapGetters([
+			'cancionPedida', 
+			'segundosFaltantesEnCola', 
+			'segundosFaltantesEnCancion', 
+			'currentPlayingDispositivoId', 
+			'mySongIsPlaying'
+		]),
 		desactivado: function() {
 			return {
 				boton_desactivado: this.cancionPedida
@@ -59,7 +66,17 @@ export default {
 		},
 		countDownCancion: function() {
 			return this.getTiempoFormateado(this.segundosFaltantesEnCola + this.segundosFaltantesEnCancion);
+		},
+		getMsgCanciones: function() {
+			if(this.cancionPedida && !this.mySongIsPlaying) {
+				return `Tu canción sonará en ${this.countDownCancion} minutos.`;
+			} else if(this.cancionPedida && this.mySongIsPlaying) {
+				return "tu canción está sonando!"
+			}
+			
+			return '';
 		}
+
 	}
 };
 
