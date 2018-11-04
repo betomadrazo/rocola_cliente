@@ -107,6 +107,7 @@ const actions = {
 	},
 
 	pedirCancion({ commit, dispatch }, idCancion) {
+		console.log("=======================> ", state.deviceId);
 		$.ajax({
 			url: BASE_URL,
 			type: 'POST',
@@ -118,7 +119,8 @@ const actions = {
 				dispositivo_id: state.deviceId,
 			},
 			success: function(response) {
-				console.log(response);
+
+				console.log("QQQQQQQQQQQQQQQ", response);
 				commit('setCancionPedida', idCancion);
 				dispatch('getCancionesEnCola');
 			},
@@ -164,6 +166,7 @@ const mutations = {
 	},
 
 	setCancionPedida(state, status) {
+		console.log("saataussssss", status);
 		state.cancionPedida = status;
 	},
 

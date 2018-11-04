@@ -3,7 +3,6 @@ import $ from 'jquery-ajax';
 import _ from 'lodash';
 import { BASE_URL, ID_SUCURSAL } from '../../api/rocola';
 
-
 const state = {
 	artistaAhora: " ",
 	cancionAhora: " ",
@@ -27,7 +26,7 @@ const getters = {
 
 const actions = {
 
-	getPlayerVars({ commit, dispatch }) {
+	getPlayerVars({ commit, dispatch, getters, rootGetters }) {
 		
 		$.ajax({
 			url: BASE_URL,
@@ -42,17 +41,20 @@ const actions = {
 				commit('setCancionAhora', info.titulo_cancion);
 				commit('setTiempoTotal', info.tiempo_total);
 				commit('setTiempoTranscurrido', info.tiempo_transcurrido);
-				// commit('setCurrentPlayingDispositivoId', info.dispositivo_id);
-				console.log(info);
-				console.log("PERO QUÉ MIERDA!", info.dispositivoId, " vs ", state.dispositivo_id);
-				
-				if(info.dispositivoId === state.dispositivo_id) {
-					dispatch('setMySongIsPlaying', true);
+
+				if(parseInt(info.cancion_id) === rootGetters.cancionPedida) {
+					commit('setMySongIsPlaying', true);
 				} else {
+
+					if(state.mySongIsPlaying) {
+						commit('setMySongIsPlaying', false);
+						commit('setCancionPedida', null, {root: true});
+					}
+
 					dispatch('setMySongIsPlaying', false);
 				}
 			},
-			error: function(response, p) {
+ 			error: function(response, p) {
 				console.log("error->", response, p);
 			}
 		});
