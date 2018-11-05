@@ -18,6 +18,9 @@ const state = {
 	segundosFaltantesEnCola: null,
 	segundosFaltantesEnCancion: null,
 
+	puedePedir: true,
+	limiteCanciones: 10,
+
 	deviceId: null,
 };
 
@@ -35,6 +38,10 @@ const getters = {
 	segundosFaltantesEnCancion: state => state.segundosFaltantesEnCancion,
 
 	deviceId: state => state.deviceId,
+
+	puedePedir: state => state.puedePedir,
+
+	limiteCanciones: state => state.limiteCanciones,
 };
 
 // Estas realizan funciones y llaman a mutations
@@ -79,35 +86,56 @@ const actions = {
 		}).then(response => {
 			var horas, minutos, segundos;
 			var segundosFaltantesEnCola = 0;
-			for(var c of response.data) {
-				if(c.hasOwnProperty('duracion')) {
-					console.log(c.duracion);
-					var tiempo = c.duracion.split(':');
 
-					// switch(tiempo.length) {
-					// 	case 3:
-					// 	horas = parseInt(tiempo[0], 10) * 60 * 60;
-					// 	case 2:
-					// 	minutos = parseInt(tiempo[0], 10) * 60;
-					// 	case 1:
-					// 	segundos = parseInt(tiempo[1], 10);
-					// }
-
-					if(tiempo.length === 2) {
-						var segs = (parseInt(tiempo[0], 10) * 60) + (parseInt(tiempo[1], 10));
-						segundosFaltantesEnCola += segs;
+			if(response.data.length) {
+				for(var c of response.data) {
+					if(c.hasOwnProperty('duracion')) {
+						console.log(c.duracion);
+						var tiempo = c.duracion.split(':');
+	
+						// switch(tiempo.length) {
+						// 	case 3:
+						// 	horas = parseInt(tiempo[0], 10) * 60 * 60;
+						// 	case 2:
+						// 	minutos = parseInt(tiempo[0], 10) * 60;
+						// 	case 1:
+						// 	segundos = parseInt(tiempo[1], 10);
+						// }
+	
+						if(tiempo.length === 2) {
+							if(c.id_cancion !== state.cancionPedida) {
+								var segs = (parseInt(tiempo[0], 10) * 60) + (parseInt(tiempo[1], 10));
+								segundosFaltantesEnCola += segs;
+							}
+						}
+						console.log(segs);
 					}
-					console.log(segs);
 				}
+	
+				commit('setSegundosFaltantesEnCola', segundosFaltantesEnCola);
 			}
 
-			commit('setSegundosFaltantesEnCola', segundosFaltantesEnCola);
 			commit('setCancionesEnCola', response.data);
 		});
 	},
 
+	getPuedePedir({ commit }) {
+
+		axios.get(BASE_URL, {
+			params: {
+				accion: 'get_pedir_cancion',
+				sucursal_id: ID_SUCURSAL,
+				limite_canciones: state.limiteCanciones, 
+				dispositivo_id: state.deviceId,
+			}
+		}).then(response => {
+			if(!response.data.puede_pedir) {
+				commit('setPuedePedir', false);
+			}
+		});
+	},
+
 	pedirCancion({ commit, dispatch }, idCancion) {
-		console.log("=======================> ", state.deviceId);
 		$.ajax({
 			url: BASE_URL,
 			type: 'POST',
@@ -117,12 +145,13 @@ const actions = {
 				'song_id': idCancion,
 				sucursal_id: ID_SUCURSAL,
 				dispositivo_id: state.deviceId,
+				limite_canciones: state.limiteCanciones,
 			},
 			success: function(response) {
-
-				console.log("QQQQQQQQQQQQQQQ", response);
-				commit('setCancionPedida', idCancion);
-				dispatch('getCancionesEnCola');
+				if(response.puede_pedir) {
+					commit('setCancionPedida', idCancion);
+					dispatch('getCancionesEnCola');
+				}
 			},
 			error: function(response, err) {
 				console.log(response, err);
@@ -141,6 +170,22 @@ const actions = {
 	setDeviceId({ commit }, hash) {
 		commit('setDeviceId', hash);
 	},
+
+	getCancionPedida({ commit }) {
+		axios.get(BASE_URL, {
+			params: {
+				accion: 'get_cancion_pedida',
+				sucursal_id: ID_SUCURSAL,
+				dispositivo_id: state.deviceId,
+			}
+		}).then(response => {
+			console.log("CANCION PARA MI SOL: ", response.data);
+			if(response.data.cancion_pedida) {
+				console.log("nomás se está haciendo pendejo este bro!");
+				commit('setCancionPedida', response.data.cancion_pedida);
+			}
+		});
+	}
 };
 
 // Estas cambian el state
@@ -180,6 +225,10 @@ const mutations = {
 
 	setDeviceId(state, hash) {
 		state.deviceId = hash;
+	},
+
+	setPuedePedir(state, value) {
+		state.puedePedir = false;
 	}
 }
 

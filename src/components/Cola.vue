@@ -21,7 +21,6 @@
 </template>
 
 <script>
-import Fingerprint2 from 'fingerprintjs2';
 import { mapActions, mapGetters } from 'vuex';
 
 import Player from './Player';
@@ -36,7 +35,7 @@ export default {
 		BotonPedir,
 	},
 	methods: {
-		...mapActions(['getCancionesEnCola', 'setDeviceId']),
+		...mapActions(['getCancionesEnCola']),
 		actualizaCola() {
 			var self = this;
 			window.setInterval(function() {
@@ -48,37 +47,6 @@ export default {
 		...mapGetters(['cancionesEnCola', 'deviceId']),
 	},
 	mounted() {
-		var self = this;
-		console.log("### ", this.deviceId);
-		if(!this.deviceId) {
-			if(window.requestIdleCallback) {
-				requestIdleCallback(function() {
-					Fingerprint2.get(function(components) {
-						console.log(components);
-	
-						var values = components.map(function(component) { return component.value; });
-						var murmur = Fingerprint2.x64hash128(values.join(''), 31);
-						console.log(murmur);
-	
-						self.$store.dispatch('setDeviceId', murmur);
-					});
-				});
-			} else {
-				setTimeout(function() {
-					Fingerprint2.get(function(components) {
-						console.log(components);
-						console.log(murmur);
-	
-						var values = components.map(function(component) { return component.value; });
-						var murmur = Fingerprint2.x64hash128(values.join(''), 31);
-						console.log(murmur);
-	
-						self.$store.dispatch('setDeviceId', murmur);
-					})
-				}, 500);
-			}
-		}
-
 		this.actualizaCola();
 	}
 };

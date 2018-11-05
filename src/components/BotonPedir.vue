@@ -12,17 +12,16 @@
 			</div>
 		</div>
 
-		<div v-if="cancionPedida">
+		<div v-if="cancionPedida || !puedePedir">
 			<h4>{{ getMsgCanciones }}</h4>
 		</div>
-		<!-- <router-link :class="desactivado" @click="pedo" class="boton-pedir boton-grande" to="/catalogo" tag="button">agrega una canci&oacute;n</router-link> -->
 		<button :class="desactivado" @click="pedorro" class="boton-pedir boton-grande">agrega una canci&oacute;n</button>
 	</div>
 
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 
 export default {
 	name: 'BotonPedir',
@@ -30,11 +29,10 @@ export default {
 	data() {
 		return {
 			modalVisible: false,
-			// mensajeCanciones: this.getMsgCanciones(),
-			// countDownCancion: null,
 		};
 	},
 	methods: {
+		...mapActions(['getPuedePedir']),
 		pedorro() {
 			if(this.cancionPedida) {
 				this.modalVisible = true;
@@ -57,11 +55,15 @@ export default {
 			'segundosFaltantesEnCola', 
 			'segundosFaltantesEnCancion', 
 			'currentPlayingDispositivoId', 
-			'mySongIsPlaying'
+			'mySongIsPlaying',
+			'puedePedir',
+			'limiteCanciones',
 		]),
 		desactivado: function() {
+			console.log(this.cancionPedida, " === ", this.puedePedir)
 			return {
-				boton_desactivado: this.cancionPedida
+				// boton_desactivado: this.cancionPedida || this.puedePedir
+				boton_desactivado: this.cancionPedida || !this.puedePedir
 			};	
 		},
 		countDownCancion: function() {
@@ -71,12 +73,18 @@ export default {
 			if(this.cancionPedida && !this.mySongIsPlaying) {
 				return `Tu canción sonará en ${this.countDownCancion} minutos.`;
 			} else if(this.cancionPedida && this.mySongIsPlaying) {
-				return "tu canción está sonando!"
+				return "tu canción está sonando!";
+			}
+
+			if(!this.puedePedir) {
+				return `Has alcanzado el límite de ${this.limiteCanciones} canciones al día.`;
 			}
 			
 			return '';
 		}
-
+	},
+	created() {
+		this.$store.dispatch('getPuedePedir');
 	}
 };
 
@@ -156,10 +164,10 @@ export default {
 }
 
 h4 {
-	margin-top:5px;
-	margin-bottom: 5px;
-	width:100%;
-	height:20px;
+	margin: auto;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 300px;
 }
 
 </style>
