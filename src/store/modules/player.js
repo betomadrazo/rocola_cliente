@@ -6,6 +6,7 @@ import { BASE_URL, ID_SUCURSAL } from '../../api/rocola';
 const state = {
 	artistaAhora: " ",
 	cancionAhora: " ",
+	idCancionAhora: null,
 	tiempoTotal: 0,
 	tiempoTranscurrido: 0,
 	porcentaje: 0,
@@ -17,6 +18,7 @@ const state = {
 const getters = {
 	artistaAhora: state => state.artistaAhora,
 	cancionAhora: state => state.cancionAhora,
+	idCancionAhora: state => state.idCancionAhora,
 	tiempoTotal: state => state.tiempoTotal,
 	tiempoTranscurrido: state => state.tiempoTranscurrido,
 	currentPlayingDispositivoId: state => state.currentPlayingDispositivoId,
@@ -39,15 +41,42 @@ const actions = {
 			success: function(info) {
 				commit('setArtistaAhora', info.artista);
 				commit('setCancionAhora', info.titulo_cancion);
+				commit('setIdCancionAhora', info.cancion_id);
 				commit('setTiempoTotal', info.tiempo_total);
 				commit('setTiempoTranscurrido', info.tiempo_transcurrido);
 
+				// console.log("QQQQQQQQQQQQQQQQQQ", state.idCancionAhora);
+
 				if(parseInt(info.cancion_id) === rootGetters.cancionPedida) {
 					commit('setMySongIsPlaying', true);
+					console.log("WWWWWWWWW ", state.mySongIsPlaying);
 				} else {
+
+					console.log("Ptana")
 
 					if(state.mySongIsPlaying) {
 						commit('setMySongIsPlaying', false);
+
+						console.log("bisogno de cagare!");
+
+						$.ajax({
+							url: BASE_URL,
+							type: 'POST',
+							dataType: 'json',
+							data: {
+								accion: 'set_cancion_as_pedida',
+								song_id: rootGetters.cancionPedida,
+								sucursal_id: ID_SUCURSAL,
+								dispositivo_id: rootGetters.deviceId,
+							},
+							success: function(re) {
+								console.log("3333", re);
+							},
+							error: function(a, b) {
+								console.log(" **** ", a, b);
+							}
+						}); 
+
 						commit('setCancionPedida', null, {root: true});
 					}
 
@@ -72,6 +101,9 @@ const mutations = {
 	},
 	setCancionAhora(state, cancion) {
 		state.cancionAhora = cancion;
+	},
+	setIdCancionAhora(state, idCancion) {
+		state.idCancionAhora = idCancion;
 	},
 	setTiempoTotal(state, tiempo) {
 		state.tiempoTotal = parseInt(tiempo);

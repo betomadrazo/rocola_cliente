@@ -34,12 +34,20 @@ export default {
 	methods: {
 		...mapActions(['getPuedePedir']),
 		pedorro() {
+			// if(this.cancionPedida || !this.puedePedir) {
+			// 	this.modalVisible = true;
+			// 	window.setTimeout(() => {
+			// 		this.modalVisible = false;
+			// 	}, 3000);
+			// } else {
+			// 	this.$router.push('/catalogo');
+			// }
 			if(this.cancionPedida) {
 				this.modalVisible = true;
 				window.setTimeout(() => {
 					this.modalVisible = false;
 				}, 3000);
-			} else {
+			} else if(this.puedePedir){
 				this.$router.push('/catalogo');
 			}
 		},

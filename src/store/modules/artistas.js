@@ -19,7 +19,7 @@ const state = {
 	segundosFaltantesEnCancion: null,
 
 	puedePedir: true,
-	limiteCanciones: 10,
+	limiteCanciones: 5,
 
 	deviceId: null,
 };
@@ -171,7 +171,7 @@ const actions = {
 		commit('setDeviceId', hash);
 	},
 
-	getCancionPedida({ commit }) {
+	getCancionPedida({ commit, rootState }) {
 		axios.get(BASE_URL, {
 			params: {
 				accion: 'get_cancion_pedida',
@@ -180,9 +180,15 @@ const actions = {
 			}
 		}).then(response => {
 			console.log("CANCION PARA MI SOL: ", response.data);
+			console.log("$", rootState);
+
 			if(response.data.cancion_pedida) {
 				console.log("nomás se está haciendo pendejo este bro!");
 				commit('setCancionPedida', response.data.cancion_pedida);
+
+				if(parseInt(rootState.idCancionAhora) === response.data.cancionPedida) {
+					commit('setMySongIsPlaying', true, {root: true});
+				}
 			}
 		});
 	}
