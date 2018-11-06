@@ -15,7 +15,7 @@
 		<div v-if="cancionPedida || !puedePedir">
 			<h4>{{ getMsgCanciones }}</h4>
 		</div>
-		<button :class="desactivado" @click="pedorro" class="boton-pedir boton-grande">agrega una canci&oacute;n</button>
+		<button :class="botonDesactivado" @click="podraPedir" class="boton-pedir boton-grande">agrega una canci&oacute;n</button>
 	</div>
 
 </template>
@@ -31,18 +31,17 @@ export default {
 			modalVisible: false,
 		};
 	},
+	created() {
+		this.$store.dispatch('getPuedePedir');
+		console.log("puede pedir = ", this.puedePedir)
+	},
 	methods: {
 		...mapActions(['getPuedePedir']),
-		pedorro() {
-			// if(this.cancionPedida || !this.puedePedir) {
-			// 	this.modalVisible = true;
-			// 	window.setTimeout(() => {
-			// 		this.modalVisible = false;
-			// 	}, 3000);
-			// } else {
-			// 	this.$router.push('/catalogo');
-			// }
+		// al dar click al botón
+		podraPedir() {
+			// si tiene canción pedida
 			if(this.cancionPedida) {
+				// mostrar el modal durante 3 segundos
 				this.modalVisible = true;
 				window.setTimeout(() => {
 					this.modalVisible = false;
@@ -51,6 +50,7 @@ export default {
 				this.$router.push('/catalogo');
 			}
 		},
+		// cambia de número de segundos a minutos:segundos
 		getTiempoFormateado(segundos) {
 			var tiempo = new Date(null);
 			tiempo.setSeconds(segundos);
@@ -67,10 +67,9 @@ export default {
 			'puedePedir',
 			'limiteCanciones',
 		]),
-		desactivado: function() {
-			console.log(this.cancionPedida, " === ", this.puedePedir)
+		botonDesactivado: function() {
+			console.log("canción pedida: ", this.cancionPedida, " vs ", "puede pedir: ", this.puedePedir)
 			return {
-				// boton_desactivado: this.cancionPedida || this.puedePedir
 				boton_desactivado: this.cancionPedida || !this.puedePedir
 			};	
 		},
@@ -91,9 +90,6 @@ export default {
 			return '';
 		}
 	},
-	created() {
-		this.$store.dispatch('getPuedePedir');
-	}
 };
 
 </script>

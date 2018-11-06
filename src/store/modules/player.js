@@ -45,29 +45,26 @@ const actions = {
 				commit('setTiempoTotal', info.tiempo_total);
 				commit('setTiempoTranscurrido', info.tiempo_transcurrido);
 
-				// console.log("QQQQQQQQQQQQQQQQQQ", state.idCancionAhora);
-
 				if(parseInt(info.cancion_id) === rootGetters.cancionPedida) {
 					commit('setMySongIsPlaying', true);
 					console.log("WWWWWWWWW ", state.mySongIsPlaying);
 				} else {
-
-					console.log("Ptana")
-
 					if(state.mySongIsPlaying) {
 						commit('setMySongIsPlaying', false);
 
 						console.log("bisogno de cagare!");
 
+						console.log("GGGGGGGGG > ", rootGetters.horaCancionPedida);
 						$.ajax({
 							url: BASE_URL,
 							type: 'POST',
 							dataType: 'json',
 							data: {
-								accion: 'set_cancion_as_pedida',
+								accion: 'set_cancion_as_ya_tocada',
 								song_id: rootGetters.cancionPedida,
 								sucursal_id: ID_SUCURSAL,
 								dispositivo_id: rootGetters.deviceId,
+								added_at: rootGetters.horaCancionPedida,
 							},
 							success: function(re) {
 								console.log("3333", re);
@@ -78,6 +75,7 @@ const actions = {
 						}); 
 
 						commit('setCancionPedida', null, {root: true});
+						commit('setHoraCancionPedida', null, {root: true});
 					}
 
 					dispatch('setMySongIsPlaying', false);

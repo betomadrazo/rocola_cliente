@@ -13,6 +13,7 @@ const state = {
 	cancion: null,
 
 	cancionPedida: null,
+	horaCancionPedida: null,
 
 	cancionesEnCola: null,
 	segundosFaltantesEnCola: null,
@@ -33,6 +34,7 @@ const getters = {
 
 	cancionesEnCola: state => state.cancionesEnCola,
 	cancionPedida: state => state.cancionPedida,
+	horaCancionPedida: state => state.horaCancionPedida,
 
 	segundosFaltantesEnCola: state => state.segundosFaltantesEnCola,
 	segundosFaltantesEnCancion: state => state.segundosFaltantesEnCancion,
@@ -93,22 +95,12 @@ const actions = {
 						console.log(c.duracion);
 						var tiempo = c.duracion.split(':');
 	
-						// switch(tiempo.length) {
-						// 	case 3:
-						// 	horas = parseInt(tiempo[0], 10) * 60 * 60;
-						// 	case 2:
-						// 	minutos = parseInt(tiempo[0], 10) * 60;
-						// 	case 1:
-						// 	segundos = parseInt(tiempo[1], 10);
-						// }
-	
 						if(tiempo.length === 2) {
 							if(c.id_cancion !== state.cancionPedida) {
 								var segs = (parseInt(tiempo[0], 10) * 60) + (parseInt(tiempo[1], 10));
 								segundosFaltantesEnCola += segs;
 							}
 						}
-						console.log(segs);
 					}
 				}
 	
@@ -117,6 +109,10 @@ const actions = {
 
 			commit('setCancionesEnCola', response.data);
 		});
+	},
+
+	getHoraCancionPedida({ commit }, hora) {
+		commit('setHoraCancionPedida', hora);
 	},
 
 	getPuedePedir({ commit }) {
@@ -129,13 +125,18 @@ const actions = {
 				dispositivo_id: state.deviceId,
 			}
 		}).then(response => {
-			if(!response.data.puede_pedir) {
-				commit('setPuedePedir', false);
-			}
+			console.log("##---## ", response.data.puede_pedir);
+			commit('setPuedePedir', response.data.puede_pedir);
+			
+			// if(!response.data.puede_pedir) {
+			// }
 		});
 	},
 
 	pedirCancion({ commit, dispatch }, idCancion) {
+		// var fecha = Date.now();
+		var fecha = new Date().toISOString().slice(0, 19).replace('T', ' ');
+		console.log("++ FECHA ++", fecha);
 		$.ajax({
 			url: BASE_URL,
 			type: 'POST',
@@ -146,10 +147,12 @@ const actions = {
 				sucursal_id: ID_SUCURSAL,
 				dispositivo_id: state.deviceId,
 				limite_canciones: state.limiteCanciones,
+				added_at: fecha
 			},
 			success: function(response) {
 				if(response.puede_pedir) {
 					commit('setCancionPedida', idCancion);
+					commit('setHoraCancionPedida', fecha);
 					dispatch('getCancionesEnCola');
 				}
 			},
@@ -183,8 +186,10 @@ const actions = {
 			console.log("$", rootState);
 
 			if(response.data.cancion_pedida) {
-				console.log("nomás se está haciendo pendejo este bro!");
+			console.log("/////////////// ", response.data);
+				console.log(`----------canción pedida: ${response.data.cancion_pedida}, hora de pedido: ${response.data.added_at}`);
 				commit('setCancionPedida', response.data.cancion_pedida);
+				commit('setHoraCancionPedida', response.data.added_at);
 
 				if(parseInt(rootState.idCancionAhora) === response.data.cancionPedida) {
 					commit('setMySongIsPlaying', true, {root: true});
@@ -221,6 +226,10 @@ const mutations = {
 		state.cancionPedida = status;
 	},
 
+	setHoraCancionPedida(state, hora) {
+		state.horaCancionPedida = hora;
+	},
+
 	setSegundosFaltantesEnCola(state, segundos) {
 		state.segundosFaltantesEnCola = segundos;
 	},
@@ -234,7 +243,7 @@ const mutations = {
 	},
 
 	setPuedePedir(state, value) {
-		state.puedePedir = false;
+		state.puedePedir = value;
 	}
 }
 

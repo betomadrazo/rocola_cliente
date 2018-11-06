@@ -31,6 +31,8 @@ export default {
 						self.$store.dispatch('setDeviceId', murmur);
 
 						self.$store.dispatch('getCancionPedida');
+
+						self.$store.dispatch('getPuedePedir');
 					});
 				});
 			} else {

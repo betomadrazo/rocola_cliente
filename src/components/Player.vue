@@ -133,14 +133,14 @@ h4, h3, h2 {
 }
 
 h2 span {
-	max-width: 150px;
+	max-width: 140px;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
 	display: inline-block;
 	vertical-align: middle;
 	text-transform: uppercase;
-	font-size:21px;
+	font-size:18px;
 }
 
 .clearfix::after {
