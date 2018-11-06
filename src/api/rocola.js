@@ -1,6 +1,6 @@
 import qs from 'qs';
 
-const DEBUGGING = true;
+const DEBUGGING = false;
 
 const DEBUG_DOMAIN = (DEBUGGING) ? 'http://localhost' : 'http://www.betomad.com';
 

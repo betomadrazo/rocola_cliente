@@ -47,7 +47,6 @@ const actions = {
 
 				if(parseInt(info.cancion_id) === rootGetters.cancionPedida) {
 					commit('setMySongIsPlaying', true);
-					console.log("WWWWWWWWW ", state.mySongIsPlaying);
 				} else {
 					if(state.mySongIsPlaying) {
 						commit('setMySongIsPlaying', false);
