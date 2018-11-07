@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<h1>Bienvenido a <br>la rocola<br>del p&eacute;ndulo</h1>
+		<h1>{{ mensaje_bienvenida }}</h1>
 	</div>
 </template>
 
@@ -12,6 +12,11 @@ import { router } from '../main';
 
 export default {
 	name: 'Bienvenido',
+	data: function() {
+		return {
+			mensaje_bienvenida: "Bienvenido a \nla rocola\ndel péndulo",
+		}
+	},
 	created() {
 		var self = this;
 		this.$store.dispatch('getCancionesEnCola');
@@ -21,22 +26,17 @@ export default {
 			if(window.requestIdleCallback) {
 				requestIdleCallback(function() {
 					Fingerprint2.get(function(components) {
-						console.log(components);
-	
 						var values = components.map(function(component) { return component.value; });
 						var murmur = Fingerprint2.x64hash128(values.join(''), 31);
 	
 						self.$store.dispatch('setDeviceId', murmur);
-
 						self.$store.dispatch('getCancionPedida');
-
 						self.$store.dispatch('getPuedePedir');
 					});
 				});
 			} else {
 				setTimeout(function() {
 					Fingerprint2.get(function(components) {
-	
 						var values = components.map(function(component) { return component.value; });
 						var murmur = Fingerprint2.x64hash128(values.join(''), 31);
 	
@@ -46,11 +46,24 @@ export default {
 			}
 		}
 
+// ?c3VjdXJzYWxfaWQ9MSZub21icmVfc3VjdXJzYWw9Y29uZGVzYQ==
 
+		var encryptedQueryString = window.location.search.substring(1);
 
-		var to = setTimeout(function() {
-			router.push('/cola');
-		}, 2000);
+		try {
+			var decrypedQueryString = atob(encryptedQueryString);
+		} catch(error) {}
+
+		const ID_SUCURSAL = parseInt(new URLSearchParams(decrypedQueryString).get('sucursal_id'));
+
+		if(ID_SUCURSAL) {
+				window.history.replaceState({}, document.title, "/");
+			var to = setTimeout(function() {
+				router.push('/cola');
+			}, 2000);
+		} else {
+			this.mensaje_bienvenida = "Visítanos en nuestras sucursales"
+		}
 	},
 	methods: mapActions(['getCancionesEnCola', 'getPlayerVars', 'setDeviceId', 'getCancionPedida']),
 	computed: mapGetters(['deviceId']),

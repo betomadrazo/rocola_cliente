@@ -36,7 +36,7 @@ export default {
 		return {
 			contenido: '',
 			displayContenido: true,
-			tiempoRestante: null,
+			tiempoRestante: 0,
 			tiempoFaltante: 0,
 			transcurrido: 0,
 			restante: 0,
@@ -48,7 +48,7 @@ export default {
 	created() {
 		this.getContenido();
 		this.songStatus();
-		var moco = setInterval(this.songStatus, 20000);
+		var moco = setInterval(this.songStatus, 3000);
 	},
 	methods: {
 		...mapActions(['getPlayerVars', 'setSegundosFaltantesEnCancion']),
@@ -59,15 +59,38 @@ export default {
 			this.total = this.getTiempoFormateado(this.tiempoTotal);
 
 			// this.transcurrido = this.tiempoTranscurrido;
-			this.transcurrido = (this.transcurrido >= this.tiempoTranscurrido) ? this.tiempoTranscurrido : this.tiempoTranscurrido;
 
-			// this.restante = parseInt(this.total) - parseInt(this.tiempoTranscurrido);
-			this.restante = parseInt(this.total) - parseInt(this.transcurrido);
+console.log(this.transcurrido, " # vs # ", this.tiempoTranscurrido);
+
+
+			// this.transcurrido = (this.transcurrido >= this.tiempoTranscurrido) ? this.transcurrido : this.tiempoTranscurrido;
+
+console.log(this.transcurrido, " _ bz _ ", this.tiempoTranscurrido);
+
+			this.restante = parseInt(this.total) - parseInt(this.tiempoTranscurrido);
+
+console.log("$$$$ ", Math.abs(this.restante), this.restante, this.tiempoTotal);
+
+			if(Math.abs(this.restante) < 1) {
+				console.log("se acabó la canción.");
+			}
 	
 			var currentTotal = this.tiempoTotal;
 			var currentTranscurrido = this.tiempoTranscurrido;
 
 			clearInterval(this.intervaloSegundos);
+
+
+				this.transcurrido += 1;
+				this.restante -= 1;
+
+				currentTranscurrido += 1;
+	
+				if((currentTotal - currentTranscurrido) < 1) {
+					this.$store.dispatch('getPlayerVars');
+					// getInfoDeCancionEnPlay();
+				}
+
 
 			var self = this;
 			this.intervaloSegundos = setInterval(function() {
@@ -78,6 +101,15 @@ export default {
 				currentTranscurrido += 1;
 	
 				if((currentTotal - currentTranscurrido) < 1) {
+					console.log("####################################");
+					// self.transcurrido = self.tiempoTranscurrido;
+
+self.tiempoRestante = 0;
+self.tiempoFaltante = 0;
+self.transcurrido = 0;
+self.restante = 0;
+self.total = 0;
+					clearInterval(this.intervaloSegundos);
 					self.$store.dispatch('getPlayerVars');
 					// getInfoDeCancionEnPlay();
 				}

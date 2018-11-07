@@ -52,6 +52,8 @@ export default {
 	padding-left:25px;
 	padding-right:25px;
 	font-weight: bold;
+	height: 30px;
+	line-height: 30px;
 }
 
 .cancion_alt {

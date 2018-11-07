@@ -20,6 +20,9 @@ export default {
 		let proxeneta = new Promise(function(resolve, reject) {
 			self.$store.dispatch('getArtistas');
 		});
+
+		window.onbeforeunload = function() { return "¿Deseas salir de la rocola?"; };
+
 	},
 	methods: mapActions(['getArtistas']),
 };

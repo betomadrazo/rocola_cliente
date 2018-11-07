@@ -1,6 +1,6 @@
 import qs from 'qs';
 
-const DEBUGGING = false;
+const DEBUGGING = true;
 
 const DEBUG_DOMAIN = (DEBUGGING) ? 'http://localhost' : 'http://www.betomad.com';
 
@@ -9,15 +9,23 @@ const BASE_URL = `${DEBUG_DOMAIN}/rocola/consola/controllers/controller_musica.p
 
 var encryptedQueryString = window.location.search.substring(1);
 
-window.history.replaceState({}, document.title, "/");
-
 console.log(encryptedQueryString);
-var decrypedQueryString = atob(encryptedQueryString);
-console.log(decrypedQueryString);
+// var decrypedQueryString = atob(encryptedQueryString).catch(function(error) {
+// 			console.log("---------------------/ ", error);
+// 		});;
+// console.log(decrypedQueryString);}
 
-const ID_SUCURSAL = parseInt(new URLSearchParams(decrypedQueryString).get('sucursal_id')) || 1;
+
+try {
+	var decrypedQueryString = atob(encryptedQueryString);
+} catch(error) {}
+
+
+// const ID_SUCURSAL = parseInt(new URLSearchParams(encryptedQueryString).get('sucursal_id'));
+const ID_SUCURSAL = parseInt(new URLSearchParams(decrypedQueryString).get('sucursal_id'));
 
 console.log(ID_SUCURSAL);
+// window.history.replaceState({}, document.title, "/");
 
 export {
 	BASE_URL,
