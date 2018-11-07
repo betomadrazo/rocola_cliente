@@ -58,8 +58,11 @@ export default {
 			
 			this.total = this.getTiempoFormateado(this.tiempoTotal);
 
-			this.transcurrido = this.tiempoTranscurrido;
-			this.restante = parseInt(this.total) - parseInt(this.tiempoTranscurrido);
+			// this.transcurrido = this.tiempoTranscurrido;
+			this.transcurrido = (this.transcurrido >= this.tiempoTranscurrido) ? this.tiempoTranscurrido : this.tiempoTranscurrido;
+
+			// this.restante = parseInt(this.total) - parseInt(this.tiempoTranscurrido);
+			this.restante = parseInt(this.total) - parseInt(this.transcurrido);
 	
 			var currentTotal = this.tiempoTotal;
 			var currentTranscurrido = this.tiempoTranscurrido;
