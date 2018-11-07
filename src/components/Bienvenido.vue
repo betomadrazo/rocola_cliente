@@ -17,7 +17,6 @@ export default {
 		this.$store.dispatch('getCancionesEnCola');
 		this.$store.dispatch('getPlayerVars');
 
-		console.log("### ", this.deviceId);
 		if(!this.deviceId) {
 			if(window.requestIdleCallback) {
 				requestIdleCallback(function() {
@@ -26,7 +25,6 @@ export default {
 	
 						var values = components.map(function(component) { return component.value; });
 						var murmur = Fingerprint2.x64hash128(values.join(''), 31);
-						console.log(murmur);
 	
 						self.$store.dispatch('setDeviceId', murmur);
 
@@ -38,12 +36,9 @@ export default {
 			} else {
 				setTimeout(function() {
 					Fingerprint2.get(function(components) {
-						console.log(components);
-						console.log(murmur);
 	
 						var values = components.map(function(component) { return component.value; });
 						var murmur = Fingerprint2.x64hash128(values.join(''), 31);
-						console.log(murmur);
 	
 						self.$store.dispatch('setDeviceId', murmur);
 					})
