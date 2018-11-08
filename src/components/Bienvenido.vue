@@ -20,6 +20,8 @@ export default {
 	created() {
 		var self = this;
 		this.$store.dispatch('getCancionesEnCola');
+
+		// pide las variables del player al servidor
 		this.$store.dispatch('getPlayerVars');
 
 		if(!this.deviceId) {
@@ -46,7 +48,11 @@ export default {
 			}
 		}
 
-// ?c3VjdXJzYWxfaWQ9MSZub21icmVfc3VjdXJzYWw9Y29uZGVzYQ==
+/*
+
+?c3VjdXJzYWxfaWQ9MSZub21icmVfc3VjdXJzYWw9Y29uZGVzYQ==
+
+*/
 
 		var encryptedQueryString = window.location.search.substring(1);
 

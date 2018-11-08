@@ -53,19 +53,31 @@ export default {
 	methods: {
 		...mapActions(['getPlayerVars', 'setSegundosFaltantesEnCancion']),
 
+		// Esta inicia cada 3 segundos
 		songStatus() {
+			console.log("moco");
+			console.log(this.currentSongTotal);
+
 			this.$store.dispatch('getPlayerVars');
 			
 			this.total = this.getTiempoFormateado(this.tiempoTotal);
 
 			// this.transcurrido = this.tiempoTranscurrido;
 
-console.log(this.transcurrido, " # vs # ", this.tiempoTranscurrido);
+// console.log(this.transcurrido, " # vs # ", this.tiempoTranscurrido);
+// console.log(this.total, " o_O ", this.tiempoTotal);
 
+			this.transcurrido = this.tiempoTranscurrido;
+
+			console.log(this.tiempoTranscurrido, " __ ", this.tiempoTotal);
+
+			if(this.tiempoTranscurrido >= this.tiempoTotal) {
+				console.log("se acabó la canción &&&&&&&&&&&&&&&&&&&&&");
+			}
 
 			// this.transcurrido = (this.transcurrido >= this.tiempoTranscurrido) ? this.transcurrido : this.tiempoTranscurrido;
 
-console.log(this.transcurrido, " _ bz _ ", this.tiempoTranscurrido);
+// console.log(this.transcurrido, " _ bz _ ", this.tiempoTranscurrido);
 
 			this.restante = parseInt(this.total) - parseInt(this.tiempoTranscurrido);
 
@@ -104,11 +116,11 @@ console.log("$$$$ ", Math.abs(this.restante), this.restante, this.tiempoTotal);
 					console.log("####################################");
 					// self.transcurrido = self.tiempoTranscurrido;
 
-self.tiempoRestante = 0;
-self.tiempoFaltante = 0;
-self.transcurrido = 0;
-self.restante = 0;
-self.total = 0;
+// self.tiempoRestante = 0;
+// self.tiempoFaltante = 0;
+// self.transcurrido = 0;
+// self.restante = 0;
+// self.total = 0;
 					clearInterval(this.intervaloSegundos);
 					self.$store.dispatch('getPlayerVars');
 					// getInfoDeCancionEnPlay();
@@ -142,7 +154,8 @@ self.total = 0;
 
 	},
 	computed: {
-		...mapGetters(['artistaAhora', 'cancionAhora', 'tiempoTotal', 'tiempoTranscurrido']),
+		// ...mapGetters(['artistaAhora', 'cancionAhora', 'tiempoTotal', 'tiempoTranscurrido']),
+		...mapGetters(['artistaAhoraServer', 'cancionAhoraServer', 'tiempoTotalServer', 'tiempoTranscurridoServer']),
 		printTranscurrido() {
 			return this.getTiempoFormateado(parseInt(this.transcurrido));
 		},

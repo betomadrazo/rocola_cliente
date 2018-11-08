@@ -4,11 +4,15 @@ import _ from 'lodash';
 import { BASE_URL, ID_SUCURSAL } from '../../api/rocola';
 
 const state = {
-	artistaAhora: " ",
-	cancionAhora: " ",
+	// artistaAhora: " ",
+	artistaAhoraServer: " ",
+	// cancionAhora: " ",
+	cancionAhoraServer: " ",
 	idCancionAhora: null,
-	tiempoTotal: 0,
-	tiempoTranscurrido: 0,
+	// tiempoTotal: 0,
+	tiempoTotalServer: 0,
+	// tiempoTranscurrido: 0,
+	tiempoTranscurridoServer: 0,
 	porcentaje: 0,
 	mySongIsPlaying: false,
 	currentPlayingDispositivoId: null,
