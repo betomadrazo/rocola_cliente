@@ -62,7 +62,7 @@ export default {
 			
 			this.total = this.getTiempoFormateado(this.tiempoTotalServer);
 
-			// this.transcurrido = this.tiempoTranscurrido;
+			this.transcurrido = this.tiempoTranscurrido;
 
 // console.log(this.transcurrido, " # vs # ", this.tiempoTranscurrido);
 // console.log(this.total, " o_O ", this.tiempoTotal);
@@ -161,6 +161,11 @@ console.log("$$$$ ", Math.abs(this.restante), this.restante, this.tiempoTotalSer
 		},
 		printFaltante() {
 			var segundosFaltantesEnCancion = this.tiempoTotalServer - this.transcurrido;
+
+			if(segundosFaltantesEnCancion < 0) {
+				segundosFaltantesEnCancion = 0;
+			}
+
 			this.$store.dispatch('setSegundosFaltantesEnCancion', segundosFaltantesEnCancion);
 			return this.getTiempoFormateado(parseInt(segundosFaltantesEnCancion));
 		},
