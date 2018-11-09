@@ -4,8 +4,8 @@ import _ from 'lodash';
 import { BASE_URL, ID_SUCURSAL } from '../../api/rocola';
 
 const state = {
-	// artistaAhora: " ",
-	artistaAhoraServer: " ",
+	// artistaAhoraServer: " ",
+	artistaAhoraServerServer: " ",
 	// cancionAhora: " ",
 	cancionAhoraServer: " ",
 	idCancionAhora: null,
@@ -20,11 +20,11 @@ const state = {
 
 
 const getters = {
-	artistaAhora: state => state.artistaAhora,
-	cancionAhora: state => state.cancionAhora,
+	artistaAhoraServer: state => state.artistaAhoraServer,
+	cancionAhoraServer: state => state.cancionAhoraServer,
 	idCancionAhora: state => state.idCancionAhora,
-	tiempoTotal: state => state.tiempoTotal,
-	tiempoTranscurrido: state => state.tiempoTranscurrido,
+	tiempoTotalServer: state => state.tiempoTotalServer,
+	tiempoTranscurridoServer: state => state.tiempoTranscurridoServer,
 	currentPlayingDispositivoId: state => state.currentPlayingDispositivoId,
 	mySongIsPlaying: state => state.mySongIsPlaying
 };
@@ -43,11 +43,11 @@ const actions = {
 				sucursal_id: ID_SUCURSAL,
 			},
 			success: function(info) {
-				commit('setArtistaAhora', info.artista);
-				commit('setCancionAhora', info.titulo_cancion);
+				commit('setArtistaAhoraServer', info.artista);
+				commit('setCancionAhoraServer', info.titulo_cancion);
 				commit('setIdCancionAhora', info.cancion_id);
-				commit('setTiempoTotal', info.tiempo_total);
-				commit('setTiempoTranscurrido', info.tiempo_transcurrido);
+				commit('setTiempoTotalServer', info.tiempo_total);
+				commit('setTiempoTranscurridoServer', info.tiempo_transcurrido);
 
 				if(parseInt(info.cancion_id) === rootGetters.cancionPedida) {
 					commit('setMySongIsPlaying', true);
@@ -55,9 +55,6 @@ const actions = {
 					if(state.mySongIsPlaying) {
 						commit('setMySongIsPlaying', false);
 
-						console.log("bisogno de cagare!");
-
-						console.log("GGGGGGGGG > ", rootGetters.horaCancionPedida);
 						$.ajax({
 							url: BASE_URL,
 							type: 'POST',
@@ -97,20 +94,20 @@ const actions = {
 
 
 const mutations = {
-	setArtistaAhora(state, artista) {
-		state.artistaAhora = artista;
+	setArtistaAhoraServer(state, artista) {
+		state.artistaAhoraServer = artista;
 	},
-	setCancionAhora(state, cancion) {
-		state.cancionAhora = cancion;
+	setCancionAhoraServer(state, cancion) {
+		state.cancionAhoraServer = cancion;
 	},
 	setIdCancionAhora(state, idCancion) {
 		state.idCancionAhora = idCancion;
 	},
-	setTiempoTotal(state, tiempo) {
+	setTiempoTotalServer(state, tiempo) {
 		state.tiempoTotal = parseInt(tiempo);
 	},
-	setTiempoTranscurrido(state, tiempo) {
-		state.tiempoTranscurrido = parseInt(tiempo);
+	setTiempoTranscurridoServer(state, tiempo) {
+		state.tiempoTranscurridoServer = parseInt(tiempo);
 	},
 	setCurrentPlayingDispositivoId(state, dispositivo_id) {
 		state.currentPlayingDispositivoId = parseInt(dispositivo_id);

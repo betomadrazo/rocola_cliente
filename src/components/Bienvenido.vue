@@ -54,22 +54,22 @@ export default {
 
 */
 
-		var encryptedQueryString = window.location.search.substring(1);
+		// var encryptedQueryString = window.location.search.substring(1);
 
-		try {
-			var decrypedQueryString = atob(encryptedQueryString);
-		} catch(error) {}
+		// try {
+		// 	var decrypedQueryString = atob(encryptedQueryString);
+		// } catch(error) {}
 
-		const ID_SUCURSAL = parseInt(new URLSearchParams(decrypedQueryString).get('sucursal_id'));
+		// const ID_SUCURSAL = parseInt(new URLSearchParams(decrypedQueryString).get('sucursal_id'));
 
-		if(ID_SUCURSAL) {
-				window.history.replaceState({}, document.title, "/");
+		// if(ID_SUCURSAL) {
+		// 		window.history.replaceState({}, document.title, "/");
 			var to = setTimeout(function() {
 				router.push('/cola');
 			}, 2000);
-		} else {
-			this.mensaje_bienvenida = "Visítanos en nuestras sucursales"
-		}
+		// } else {
+		// 	this.mensaje_bienvenida = "Visítanos en nuestras sucursales"
+		// }
 	},
 	methods: mapActions(['getCancionesEnCola', 'getPlayerVars', 'setDeviceId', 'getCancionPedida']),
 	computed: mapGetters(['deviceId']),

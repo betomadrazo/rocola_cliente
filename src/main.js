@@ -14,7 +14,8 @@ Vue.use(VueRouter);
 Vue.use(routerHistory);
 
 export const router = new VueRouter({
-	mode: 'abstract',
+	base: '/rocolandia/',
+	// mode: 'abstract',
 	routes: [
 		{path:'/', 					component: Bienvenido},
 		{path:'/cola', 			component: Cola},
@@ -23,7 +24,7 @@ export const router = new VueRouter({
 	]
 });
 
-router.replace('/');
+// router.replace('/');
 router.afterEach(writeHistory);
 
 new Vue({

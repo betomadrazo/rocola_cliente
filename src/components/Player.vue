@@ -10,10 +10,10 @@
 		<div class="info">
 			<h4>Ahora se escucha</h4>
 			<h2>
-				<span>{{ artistaAhora }}</span> - <span>{{ cancionAhora }}</span>
+				<span>{{ artistaAhoraServer }}</span> - <span>{{ cancionAhoraServer }}</span>
 			</h2>
 			<div>
-				<span class="tiempo-total"><span>{{ printTranscurrido }}</span><span>&#8250;</span></span>
+				<span class="tiempo-total"><span>{{ printTranscurridoServer }}</span><span>&#8250;</span></span>
 				<span class="porcentaje">
 					<span class="porcentaje-transcurrido" :style="getPorcentaje"></span>
 				</span>
@@ -60,7 +60,7 @@ export default {
 
 			this.$store.dispatch('getPlayerVars');
 			
-			this.total = this.getTiempoFormateado(this.tiempoTotal);
+			this.total = this.getTiempoFormateado(this.tiempoTotalServer);
 
 			// this.transcurrido = this.tiempoTranscurrido;
 
@@ -69,9 +69,9 @@ export default {
 
 			this.transcurrido = this.tiempoTranscurrido;
 
-			console.log(this.tiempoTranscurrido, " __ ", this.tiempoTotal);
+			console.log(this.tiempoTranscurrido, " __ ", this.tiempoTotalServer);
 
-			if(this.tiempoTranscurrido >= this.tiempoTotal) {
+			if(this.tiempoTranscurrido >= this.tiempoTotalServer) {
 				console.log("se acabó la canción &&&&&&&&&&&&&&&&&&&&&");
 			}
 
@@ -81,13 +81,13 @@ export default {
 
 			this.restante = parseInt(this.total) - parseInt(this.tiempoTranscurrido);
 
-console.log("$$$$ ", Math.abs(this.restante), this.restante, this.tiempoTotal);
+console.log("$$$$ ", Math.abs(this.restante), this.restante, this.tiempoTotalServer);
 
 			if(Math.abs(this.restante) < 1) {
 				console.log("se acabó la canción.");
 			}
 	
-			var currentTotal = this.tiempoTotal;
+			var currentTotal = this.tiempoTotalServer;
 			var currentTranscurrido = this.tiempoTranscurrido;
 
 			clearInterval(this.intervaloSegundos);
@@ -160,12 +160,12 @@ console.log("$$$$ ", Math.abs(this.restante), this.restante, this.tiempoTotal);
 			return this.getTiempoFormateado(parseInt(this.transcurrido));
 		},
 		printFaltante() {
-			var segundosFaltantesEnCancion = this.tiempoTotal - this.transcurrido;
+			var segundosFaltantesEnCancion = this.tiempoTotalServer - this.transcurrido;
 			this.$store.dispatch('setSegundosFaltantesEnCancion', segundosFaltantesEnCancion);
 			return this.getTiempoFormateado(parseInt(segundosFaltantesEnCancion));
 		},
 		getPorcentaje() {
-			var porcentaje = this.transcurrido * 100 / this.tiempoTotal;
+			var porcentaje = this.transcurrido * 100 / this.tiempoTotalServer;
 			return `width:${(porcentaje <= 100) ? porcentaje : 0}%;`;
 		}
 	},
