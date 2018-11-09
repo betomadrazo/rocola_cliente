@@ -16,13 +16,13 @@ console.log(encryptedQueryString);
 // console.log(decrypedQueryString);}
 
 
-try {
-	var decrypedQueryString = atob(encryptedQueryString);
-} catch(error) {}
+// try {
+// 	var decrypedQueryString = atob(encryptedQueryString);
+// } catch(error) {}
 
 
-// const ID_SUCURSAL = parseInt(new URLSearchParams(encryptedQueryString).get('sucursal_id'));
-const ID_SUCURSAL = parseInt(new URLSearchParams(decrypedQueryString).get('sucursal_id'));
+const ID_SUCURSAL = parseInt(new URLSearchParams(encryptedQueryString).get('sucursal_id'));
+// const ID_SUCURSAL = parseInt(new URLSearchParams(decrypedQueryString).get('sucursal_id'));
 
 console.log(ID_SUCURSAL);
 // window.history.replaceState({}, document.title, "/");

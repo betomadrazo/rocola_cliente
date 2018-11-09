@@ -21,7 +21,7 @@ export default {
 			self.$store.dispatch('getArtistas');
 		});
 
-		window.onbeforeunload = function() { return "¿Deseas salir de la rocola?"; };
+		// window.onbeforeunload = function() { return "¿Deseas salir de la rocola?"; };
 
 	},
 	methods: mapActions(['getArtistas']),
