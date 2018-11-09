@@ -39,15 +39,6 @@ export default {
 	text-align: center;
 	overflow: scroll;
 	overflow-x: hidden;
-	background-color: #42A382;
-}
-
-.linko {
-	display: block;
-	background-color: turquoise;
-	width: 200px;
-	height: 200px;
-	margin: auto;
 }
 
 </style>

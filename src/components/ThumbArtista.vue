@@ -22,13 +22,26 @@ export default {
 		foto() {
 			return (this.artista.foto_path) ? 
 				this.artista.foto_path : 
-				'http://betomad.com/rocola/consola/artist_photo/artist_placeholder.jpg';
+				'http://betomad.com/rocola/consola/album_artwork/placeholder.png';
 		}
 	}
 };
 
 </script>
-<style scoped>
+
+<style lang="scss" scoped>
+@import '../sass/estilo';
+
+
+@font-face {
+	font-family: 'Knockout Junior';
+	src: url($font_path + "knockout-htf-29-junior-liteweight-1361516762.ttf") format("ttf");
+}
+
+@font-face {
+	font-family: 'Knockout Feather';
+	src: url($font_path + "knockout-htf-48-featherweight-1361516727.ttf") format("ttf");
+}
 	
 .contenedor-thumb {	
 	margin-top:4px;
@@ -68,7 +81,7 @@ p {
 	font-size: 12px;
 	white-space: pre-wrap;
 	height: 27px;
-	font-family: sans-serif;
+	font-family: $knockout;
 	font-weight: bold;
 }
 

@@ -54,15 +54,16 @@ export default {
 			console.log(this.artista.foto_path);
 			return (this.artista.foto_path) ? 
 				this.artista.foto_path : 
-				'http://betomad.com/rocola/consola/artist_photo/artist_placeholder.jpg';
+				// 'http://betomad.com/rocola/consola/artist_photo/artist_placeholder.jpg';
+				`http://betomad.com/rocola/consola/album_artwork/placeholder.png`;
 		}
 	}
 };
 
 </script>
 
-<style scoped>
-
+<style lang="scss" scoped>
+@import '../sass/estilo';
 
 ul {
 	list-style: none;
@@ -83,7 +84,7 @@ ul {
 	overflow: hidden;
 	width: 200px;
 	margin:auto;
-	background-color: #FF9E16;
+	background-color: $boton;
 	border-radius: 10px;
 	top: -15px;
 }
@@ -95,7 +96,6 @@ ul {
 	text-transform: uppercase;
 	text-overflow: ellipsis;
 	overflow:hidden;
-	/*white-space: nowrap;*/
 	font-size: 18px;
 	margin:0;
 	margin-top:5px;
@@ -117,7 +117,6 @@ img {
 	min-height:120px;
 	max-height:200px;
 	margin-top:10px;
-	/*background-color: #fff;*/
 }
 
 

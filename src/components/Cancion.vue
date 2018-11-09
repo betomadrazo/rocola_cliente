@@ -6,7 +6,7 @@
 		class="contenedor-cancion"
 		@click="setCancion"
 	>
-		<span class="titulo"><span class="flechita">&gt;</span>{{ cancion.titulo_cancion }}</span><span class="album-o-artista">{{ artistaOAlbum }}</span><span class="duracion">{{ cancion.duracion }}</span>
+		<span class="titulo"><span class="flechita"></span>{{ cancion.titulo_cancion }}</span><span class="album-o-artista">{{ artistaOAlbum }}</span><span class="duracion">{{ cancion.duracion }}</span>
 	</div>
 
 </template>
@@ -44,7 +44,8 @@ export default {
 
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@import '../sass/estilo';	
 	
 .contenedor-cancion {
 	padding-top: 2px;
@@ -57,7 +58,7 @@ export default {
 }
 
 .cancion_alt {
-	background-color: #61A693;
+	background-color: $cancion_alt;
 }
 
 .flechita {
@@ -65,6 +66,15 @@ export default {
 	text-align: left;
 	margin-right:5px;
 	vertical-align: middle;
+
+    background-image: url(../assets/static/img/CANCION.png);
+
+    background-size: 8px;
+    background-repeat: no-repeat;
+    width: 10px;
+    height: 10px;
+    background-position: center;
+    display: inline-blocK;
 }
 
 .tu_cancion {
@@ -74,6 +84,9 @@ export default {
 .tu_cancion .flechita {
 	color:  #42A382;
 	font-weight: bolder;
+
+    background-image: url(../assets/static/img/CANCION_PEDIDA.png) !important;
+
 }
 
 span {

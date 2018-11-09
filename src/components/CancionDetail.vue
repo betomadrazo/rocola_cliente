@@ -40,15 +40,15 @@ export default {
 	computed: {
 		...mapGetters(['cancion', 'artista', 'cancionPedida']),
 		getFotoPath() {
-			return (this.cancion.foto_path) ? this.cancion.foto_path : 'http://www.betomad.com/rocola/consola/album_artwork/img_placeholder.jpg';
+			return (this.cancion.foto_path) ? this.cancion.foto_path : '../assets/static/img/placeholder.png';
 		}
 	}
 };
 
 </script>
 
-<style scoped>
-	
+<style lang="scss" scoped>
+@import '../sass/estilo';	
 
 .detail-mask {
 	position: fixed;
@@ -67,38 +67,38 @@ export default {
 }
 
 .contenedor-detail {
-	font-family: 'Roboto', sans-serif;
+	font-family: $knockout;
 	letter-spacing: 1px;
     width: 300px;
-    background-color: #FF9E16;
+    background-color: $boton;
     height: 360px;
     text-align: center;
     margin: auto;
     border-radius: 15px;
-    color: #fff;
+    color: $blanco;
 }
 
 .info {
 	padding:10px;
 	text-transform: uppercase;
-}
 
-.info h1 {
-	font-size: 20px;
-	font-weight: bold;
-}
+	& h1 {
+		font-size: 20px;
+		font-weight: bold;
+	}
 
-.info h3 {
-	font-size: 18px;
-	font-weight: 400;
-}
-
-.info h1, .info h3 {
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	letter-spacing: 1px;
-    margin: 0 auto;
+	& h3 {
+		font-size: 18px;
+		font-weight: 400;
+	}
+	
+	& h1, & h3 {
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		letter-spacing: 1px;
+	    margin: 0 auto;
+	}
 }
 
 .contenedor-imagen {
@@ -124,8 +124,8 @@ p:nth-of-type(1) {
 button {
     width: 110px;
     border-radius: 20px;
-    background-color: #7B5011;
-    color: #fff;
+    background-color: $boton_agregar;
+    color: $blanco;
     font-size: 14px;
     text-align: center;
     font-weight: bold;
@@ -138,20 +138,23 @@ button {
 
 button:first-of-type {
 	margin-right:20px;
-    box-shadow: 1px 2px 0 #533605;
+    box-shadow: 1px 2px 0 $boton_agregar_sombra;
+
+	&:active {
+		background-color: 1px 2px 0 $boton_agregar_sombra;
+	}
 }
 
 button:last-of-type {
-	background-color: #999;
+	background-color: $boton_gris;
 	text-transform: capitalize;
-	box-shadow: 1px 2px 0 #333;
+	box-shadow: 1px 2px 0 $boton_gris_sombra;
+
+	&:active {
+		background-color: 1px 2px 0 $boton_gris_sombra;
+	}
 }
 
-p:nth-of-type(2) {
-	font-size: 16px;
-	color: fuchsia;
-	font-weight: bold;
-	margin-bottom:0;
-}
+
 
 </style>

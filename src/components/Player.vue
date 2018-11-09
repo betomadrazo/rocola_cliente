@@ -2,7 +2,7 @@
 	<div class="consola">
 		<div class="navegador">
 			<span v-if="$routerHistory.hasPrevious()">
-				<router-link  class="linko atras" :to="{ path: $routerHistory.previous().path }">&#12296;</router-link>
+				<router-link  class="linko atras" :to="{ path: $routerHistory.previous().path }"></router-link>
 			</span>
 			<span class="loguito">
 			</span>
@@ -13,7 +13,7 @@
 				<span>{{ artistaAhoraServer }}</span> - <span>{{ cancionAhoraServer }}</span>
 			</h2>
 			<div>
-				<span class="tiempo-total"><span>{{ printTranscurrido }}</span><span>&#8250;</span></span>
+				<span class="tiempo-total"><span>{{ printTranscurrido }}</span><span class="play"></span></span>
 				<span class="porcentaje">
 					<span class="porcentaje-transcurrido" :style="getPorcentaje"></span>
 				</span>
@@ -62,46 +62,22 @@ export default {
 
 			this.transcurrido = this.tiempoTranscurridoServer;
 
-			console.log(this.artistaAhoraServer);
-
-// console.log(this.transcurrido, " # vs # ", this.tiempoTranscurrido);
-// console.log(this.total, " o_O ", this.tiempoTotal);
-
-			// this.transcurrido = this.tiempoTranscurrido;
-
-			console.log(this.tiempoTranscurridoServer, " __ ", this.tiempoTotalServer);
-
-			// if(this.tiempoTranscurrido >= this.tiempoTotalServer) {
-			// 	console.log("se acabó la canción &&&&&&&&&&&&&&&&&&&&&");
-			// }
-
-			// this.transcurrido = (this.transcurrido >= this.tiempoTranscurrido) ? this.transcurrido : this.tiempoTranscurrido;
-
-// console.log(this.transcurrido, " _ bz _ ", this.tiempoTranscurrido);
-
 			this.restante = parseInt(this.total) - parseInt(this.tiempoTranscurridoServer);
-
-console.log("$$$$ ", Math.abs(this.restante), this.restante, this.tiempoTotalServer);
-
-			if(Math.abs(this.restante) < 1) {
-				console.log("se acabó la canción.");
-			}
 	
 			var currentTotal = this.tiempoTotalServer;
 			var currentTranscurrido = this.tiempoTranscurridoServer;
 
 			clearInterval(this.intervaloSegundos);
 
+			this.transcurrido += 1;
+			this.restante -= 1;
 
-				this.transcurrido += 1;
-				this.restante -= 1;
-
-				currentTranscurrido += 1;
+			currentTranscurrido += 1;
 	
-				if((currentTotal - currentTranscurrido) < 1) {
-					this.$store.dispatch('getPlayerVars');
-				}
-
+			if((currentTotal - currentTranscurrido) < 1) {
+				console.log("esto qué pedo?")
+				this.$store.dispatch('getPlayerVars');
+			}
 
 			var self = this;
 			this.intervaloSegundos = setInterval(function() {
@@ -178,7 +154,8 @@ console.log("$$$$ ", Math.abs(this.restante), this.restante, this.tiempoTotalSer
 
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@import '../sass/estilo';
 
 h4, h3, h2 {
 	margin-top:0;
@@ -210,7 +187,7 @@ h2 span {
 .loguito {
     float: right;
     width: 50px;
-    height: 49px;
+    height: 65px;
     position: relative;
     left: -20px;
     top: 0px;
@@ -218,17 +195,17 @@ h2 span {
     background-repeat: no-repeat;
     background-position: center;
     background-size: 75%;
+    display: inline-block;
 }
 
 .loguito img {
 	height:24px;
-
 }
 
 .consola {
 	text-align: center;
 	color: #fff;
-	background-color: #45A774;
+	background-color: $fondo_superior;
 	padding-bottom: 0;
 	position: fixed;
 	width:100%;
@@ -236,7 +213,6 @@ h2 span {
 	height:130px;
 	top:0;
 	z-index:100;
-	/*box-shadow: 0 0 15px #000;*/
 }
 
 .info {
@@ -246,11 +222,11 @@ h2 span {
 }
 
 .porcentaje {
-	background-color: #000;
-	background-color: #197A56;
+	background-color: $linea_base_reproduccion;
 	position:relative;
 	width:58%;
 	text-align: left;
+	vertical-align: middle;
 }
 
 .tiempo-total, .tiempo-transcurrido {
@@ -268,19 +244,9 @@ h2 span {
 	display: inline-block;
 }
 
-.tiempo-total span:nth-of-type(2) {
-	width:15%;
-	display: inline-block;
-	text-align: left;
-	vertical-align: middle;
-	font-size:16px;
-	color: orange;
-}
-
 .porcentaje-transcurrido {
-	background-color: #ff8533;
+	background-color: $naranja;
 	width:30%;
-	
 }
 
 .porcentaje, .porcentaje-transcurrido {
@@ -296,23 +262,44 @@ h2 span {
 
 .atras {
     text-decoration: none;
-    color: #197A56;
+    color: #468460;
     font-size: 40px;
     float: left;
     border: none !important;
+    background-image: url(../assets/static/img/REGRESAR.png);
+    background-size: 20px;
+    background-repeat: no-repeat;
+    width: 60px;
+    height: 60px;
+    background-position: center;
+    display: inline-blocK;
+
+	&:active {
+		color: #ff8533;
+    	background-image: url(../assets/static/img/REGRESAR_PRESS.png) !important;
+	}
+    
 }
 
-.atras:active {
-	color: #ff8533;
+.play {
+    background-image: url(../assets/static/img/PLAY.png);
+    background-size: 5px;
+    background-repeat: no-repeat;
+    height: 10px;
+    background-position: center;
+    display: inline-blocK;
+    vertical-align: middle;
+	width:10px;
+	display: inline-block;
+	color: $play;
+	position:relative;
 }
-
 
 .seccion {
 	margin-top:0;
 	font-weight: normal;
 	width:100%;
 	position:fixed;
-	background-color: #42A382;
 	top:127px;
 	padding-top:5px;
 	padding-bottom:5px;

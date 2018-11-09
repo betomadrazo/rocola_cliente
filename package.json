@@ -21,6 +21,8 @@
     "@vue/cli-plugin-babel": "^3.0.3",
     "@vue/cli-plugin-eslint": "^3.0.3",
     "@vue/cli-service": "^3.0.3",
+    "node-sass": "^4.10.0",
+    "sass-loader": "^7.1.0",
     "vue-router-back-button": "^1.1.1",
     "vue-template-compiler": "^2.5.17"
   },

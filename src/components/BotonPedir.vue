@@ -94,7 +94,9 @@ export default {
 
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+
+@import '../sass/estilo';
 
 .modal {
 	display:table !important;
@@ -109,24 +111,24 @@ export default {
 }
 
 .boton-grande {
-    background-color: #ff8533;
+    background-color: $boton;
     width: 300px;
     height: 50px;
     font-size: 20px;
     letter-spacing: -1px;
     line-height: 32px;
-    box-shadow: 2px 4px 0 #CB8222;
+    box-shadow: 2px 4px 0 $boton_sombra;
 	margin: auto;
 	display: block;
 }
 
 .boton_desactivado {
-    background-color: #ddd !important;
-    box-shadow: 2px 4px 0 #666;
+    background-color: $boton_gris !important;
+    box-shadow: 2px 4px 0 $boton_gris_sombra;
 }
 
 .boton-grande:active {
-    background-color: #ffcc63;
+    background-color: $boton_sombra;
     box-shadow: none;
 }
 
@@ -147,18 +149,18 @@ export default {
 }
 
 .alerta-cancion_pedida {
-	font-family: 'Roboto', sans-serif;
+	font-family: $knockout;
 	letter-spacing: 1px;
-	background-color: #ff8533;
+	background-color: $naranja;
 	width:280px;
 	height:80px;
     text-align: center;
 	border-radius: 10px;
 	padding:10px;
     margin: auto;
-    color: #fff;
+    color: $blanco;
     font-weight: bold;
-    display:table;
+    display: table;
     text-transform: uppercase;
 }
 

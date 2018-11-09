@@ -1,0 +1,33 @@
+
+$blanco: #fff;
+$flecha_regresar: #468460;
+$logo: #385936;
+$fondo_superior: #4e9268;
+$play: #ed6e26;
+$fondo_app: #52a37a;
+$cancion_alt: #49936e;
+$naranja: #ed6e26;
+$linea_base_reproduccion: #3f7757;
+$boton: #ff9e16;
+$boton_sombra: #cb8222;
+$boton_agregar: #7b5011;
+$boton_agregar_sombra: #533605;
+$boton_gris: #949494;
+$boton_gris_sombra: #4f504f;
+
+$font_path: '~@/assets/static/fonts/';
+
+
+@font-face {
+	font-family: 'Knockout Junior';
+	src: url($font_path + "knockout-htf-29-junior-liteweight-1361516762.ttf") format("ttf");
+}
+
+@font-face {
+	font-family: 'Knockout Feather';
+	src: url($font_path + "knockout-htf-48-featherweight-1361516727.ttf") format("ttf");
+}
+
+
+$knockout: 'Knockout-Junior', sans-serif;
+$knockout_feather: 'Knockout-Feather', sans-serif;

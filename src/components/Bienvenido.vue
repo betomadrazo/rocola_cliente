@@ -1,6 +1,8 @@
 <template>
 	<div>
-		<h1>{{ mensaje_bienvenida }}</h1>
+		<!-- <h1>{{ mensaje_bienvenida }}</h1> -->
+		<!-- <img src="../assets/static/img/titulo_app.png" /> -->
+		<div class="titulo_app"></div>
 	</div>
 </template>
 
@@ -74,7 +76,7 @@ export default {
 		// 		window.history.replaceState({}, document.title, "/");
 			var to = setTimeout(function() {
 				router.push('/cola');
-			}, 2000);
+			}, 20000);
 		// } else {
 		// 	this.mensaje_bienvenida = "Visítanos en nuestras sucursales"
 		// }
@@ -84,10 +86,22 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@import '../sass/estilo';
 
 h1 {
 	text-align: center;
+}
+
+.titulo_app {
+	width:100%;
+	min-height:500px;
+	background-image: url(../assets/static/img/titulo_app.png);
+	background-size: 100%;
+	background-position: center;
+	background-repeat: no-repeat;
+	display: block;
+
 }
 
 </style>
