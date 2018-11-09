@@ -58,7 +58,7 @@ export default {
 			
 			this.total = this.getTiempoFormateado(this.tiempoTotal);
 
-			// this.transcurrido = this.tiempoTranscurrido;
+			this.transcurrido = this.tiempoTranscurrido;
 
 console.log(this.transcurrido, " # vs # ", this.tiempoTranscurrido);
 
@@ -104,11 +104,11 @@ console.log("$$$$ ", Math.abs(this.restante), this.restante, this.tiempoTotal);
 					console.log("####################################");
 					// self.transcurrido = self.tiempoTranscurrido;
 
-self.tiempoRestante = 0;
-self.tiempoFaltante = 0;
-self.transcurrido = 0;
-self.restante = 0;
-self.total = 0;
+// self.tiempoRestante = 0;
+// self.tiempoFaltante = 0;
+// self.transcurrido = 0;
+// self.restante = 0;
+// self.total = 0;
 					clearInterval(this.intervaloSegundos);
 					self.$store.dispatch('getPlayerVars');
 					// getInfoDeCancionEnPlay();
@@ -148,6 +148,11 @@ self.total = 0;
 		},
 		printFaltante() {
 			var segundosFaltantesEnCancion = this.tiempoTotal - this.transcurrido;
+
+			if(segundosFaltantesEnCancion < 0) {
+				segundosFaltantesEnCancion = 0;
+			}
+
 			this.$store.dispatch('setSegundosFaltantesEnCancion', segundosFaltantesEnCancion);
 			return this.getTiempoFormateado(parseInt(segundosFaltantesEnCancion));
 		},
