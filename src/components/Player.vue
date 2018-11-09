@@ -13,7 +13,7 @@
 				<span>{{ artistaAhoraServer }}</span> - <span>{{ cancionAhoraServer }}</span>
 			</h2>
 			<div>
-				<span class="tiempo-total"><span>{{ printTranscurridoServer }}</span><span>&#8250;</span></span>
+				<span class="tiempo-total"><span>{{ printTranscurrido }}</span><span>&#8250;</span></span>
 				<span class="porcentaje">
 					<span class="porcentaje-transcurrido" :style="getPorcentaje"></span>
 				</span>
