@@ -62,6 +62,14 @@ export default {
 
 		// const ID_SUCURSAL = parseInt(new URLSearchParams(decrypedQueryString).get('sucursal_id'));
 
+		// var encryptedQueryString = window.location.search.substring(1);
+
+		// try {
+		// 	var decrypedQueryString = atob(encryptedQueryString);
+		// } catch(error) {}
+
+		// const ID_SUCURSAL = parseInt(new URLSearchParams(decrypedQueryString).get('sucursal_id'));
+
 		// if(ID_SUCURSAL) {
 		// 		window.history.replaceState({}, document.title, "/");
 			var to = setTimeout(function() {
