@@ -55,31 +55,31 @@ export default {
 
 		// Esta inicia cada 3 segundos
 		songStatus() {
-			console.log("moco");
-			console.log(this.currentSongTotal);
 
 			this.$store.dispatch('getPlayerVars');
 			
 			this.total = this.getTiempoFormateado(this.tiempoTotalServer);
 
-			this.transcurrido = this.tiempoTranscurrido;
+			this.transcurrido = this.tiempoTranscurridoServer;
+
+			console.log(this.artistaAhoraServer);
 
 // console.log(this.transcurrido, " # vs # ", this.tiempoTranscurrido);
 // console.log(this.total, " o_O ", this.tiempoTotal);
 
-			this.transcurrido = this.tiempoTranscurrido;
+			// this.transcurrido = this.tiempoTranscurrido;
 
-			console.log(this.tiempoTranscurrido, " __ ", this.tiempoTotalServer);
+			console.log(this.tiempoTranscurridoServer, " __ ", this.tiempoTotalServer);
 
-			if(this.tiempoTranscurrido >= this.tiempoTotalServer) {
-				console.log("se acabó la canción &&&&&&&&&&&&&&&&&&&&&");
-			}
+			// if(this.tiempoTranscurrido >= this.tiempoTotalServer) {
+			// 	console.log("se acabó la canción &&&&&&&&&&&&&&&&&&&&&");
+			// }
 
 			// this.transcurrido = (this.transcurrido >= this.tiempoTranscurrido) ? this.transcurrido : this.tiempoTranscurrido;
 
 // console.log(this.transcurrido, " _ bz _ ", this.tiempoTranscurrido);
 
-			this.restante = parseInt(this.total) - parseInt(this.tiempoTranscurrido);
+			this.restante = parseInt(this.total) - parseInt(this.tiempoTranscurridoServer);
 
 console.log("$$$$ ", Math.abs(this.restante), this.restante, this.tiempoTotalServer);
 
@@ -88,7 +88,7 @@ console.log("$$$$ ", Math.abs(this.restante), this.restante, this.tiempoTotalSer
 			}
 	
 			var currentTotal = this.tiempoTotalServer;
-			var currentTranscurrido = this.tiempoTranscurrido;
+			var currentTranscurrido = this.tiempoTranscurridoServer;
 
 			clearInterval(this.intervaloSegundos);
 
@@ -100,7 +100,6 @@ console.log("$$$$ ", Math.abs(this.restante), this.restante, this.tiempoTotalSer
 	
 				if((currentTotal - currentTranscurrido) < 1) {
 					this.$store.dispatch('getPlayerVars');
-					// getInfoDeCancionEnPlay();
 				}
 
 
@@ -114,16 +113,8 @@ console.log("$$$$ ", Math.abs(this.restante), this.restante, this.tiempoTotalSer
 	
 				if((currentTotal - currentTranscurrido) < 1) {
 					console.log("####################################");
-					// self.transcurrido = self.tiempoTranscurrido;
-
-// self.tiempoRestante = 0;
-// self.tiempoFaltante = 0;
-// self.transcurrido = 0;
-// self.restante = 0;
-// self.total = 0;
 					clearInterval(this.intervaloSegundos);
 					self.$store.dispatch('getPlayerVars');
-					// getInfoDeCancionEnPlay();
 				}
 			}, 1000);
 		},
@@ -157,10 +148,19 @@ console.log("$$$$ ", Math.abs(this.restante), this.restante, this.tiempoTotalSer
 		// ...mapGetters(['artistaAhora', 'cancionAhora', 'tiempoTotal', 'tiempoTranscurrido']),
 		...mapGetters(['artistaAhoraServer', 'cancionAhoraServer', 'tiempoTotalServer', 'tiempoTranscurridoServer']),
 		printTranscurrido() {
+			var transcurrido = this.transcurrido;
+			console.log("||||||||||> ", this.transcurrido);
+			console.log("==========> ", this.tiempoTotalServer);
+			if(this.transcurrido >= this.tiempoTotalServer) {
+				console.log("finiche");
+				transcurrido = 0;
+			}
 			return this.getTiempoFormateado(parseInt(this.transcurrido));
 		},
 		printFaltante() {
 			var segundosFaltantesEnCancion = this.tiempoTotalServer - this.transcurrido;
+
+			console.log(segundosFaltantesEnCancion);
 
 			if(segundosFaltantesEnCancion < 0) {
 				segundosFaltantesEnCancion = 0;

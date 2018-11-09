@@ -5,7 +5,7 @@ import { BASE_URL, ID_SUCURSAL } from '../../api/rocola';
 
 const state = {
 	// artistaAhoraServer: " ",
-	artistaAhoraServerServer: " ",
+	artistaAhoraServer: " ",
 	// cancionAhora: " ",
 	cancionAhoraServer: " ",
 	idCancionAhora: null,
@@ -104,7 +104,7 @@ const mutations = {
 		state.idCancionAhora = idCancion;
 	},
 	setTiempoTotalServer(state, tiempo) {
-		state.tiempoTotal = parseInt(tiempo);
+		state.tiempoTotalServer = parseInt(tiempo);
 	},
 	setTiempoTranscurridoServer(state, tiempo) {
 		state.tiempoTranscurridoServer = parseInt(tiempo);
