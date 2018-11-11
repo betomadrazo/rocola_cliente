@@ -13,16 +13,14 @@ export default {
 	name: 'ThumbArtista',
 	props: ['artista', 'id_artista'],
 	methods: {
-		// ...mapActions(['setArtista']),
 		getArtista() {
 			this.$store.dispatch('setArtista', this.id_artista);
 		}
 	},
 	computed: {
 		foto() {
-			return (this.artista.foto_path) ? 
-				this.artista.foto_path : 
-				'http://betomad.com/rocola/consola/album_artwork/placeholder.png';
+			var image = require.context('../assets/static/img/');
+			return (this.artista.foto_path) ? this.artista.foto_path : image('./placeholder.png');
 		}
 	}
 };
@@ -31,42 +29,31 @@ export default {
 
 <style lang="scss" scoped>
 @import '../sass/estilo';
-
-
-@font-face {
-	font-family: 'Knockout Junior';
-	src: url($font_path + "knockout-htf-29-junior-liteweight-1361516762.ttf") format("ttf");
-}
-
-@font-face {
-	font-family: 'Knockout Feather';
-	src: url($font_path + "knockout-htf-48-featherweight-1361516727.ttf") format("ttf");
-}
 	
 .contenedor-thumb {	
-	margin-top:4px;
-	margin-bottom:4px;
-	margin:10px;
-	width:90px;
-	height:110px;
+	margin-top: 0.4rem;
+	margin-bottom: 0.4rem;
+	margin:1rem;
+	width:9rem;
+	height:11rem;
 	text-align: center;
 	display: inline-block;
 	cursor: pointer;
 }
 
 .wrapper-imagen {
-	width:90px;
-	height:90px;
+	width: 9rem;
+	height: 9rem;
 	overflow:hidden;
 	position:relative;
-	border-radius:5px;
-	box-shadow: 0 0 7px #000;
+	border-radius: 0.5rem;
+	box-shadow: 0 0 0.7rem #000;
 }
 
 img {
-	max-width:170px;
-	max-height: 100px;
-	min-height: 60px;
+	max-width:17rem;
+	max-height: 10rem;
+	min-height: 6rem;
 	display: inline-block;
 	position:absolute;
 	left:0;
@@ -74,15 +61,14 @@ img {
 
 p {
 	margin: 0;
-	margin-top:5px;
+	margin-top:0.5rem;
 	color: #eee;
 	overflow: hidden;
 	text-overflow: ellipsis;
-	font-size: 12px;
+	font-size: 1.2rem;
 	white-space: pre-wrap;
-	height: 27px;
+	height: 4rem;
 	font-family: $knockout;
-	font-weight: bold;
 }
 
 </style>

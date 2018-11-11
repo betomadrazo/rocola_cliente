@@ -51,11 +51,8 @@ export default {
 	computed: {
 		...mapGetters(['canciones', 'artista']),
 		foto() {
-			console.log(this.artista.foto_path);
-			return (this.artista.foto_path) ? 
-				this.artista.foto_path : 
-				// 'http://betomad.com/rocola/consola/artist_photo/artist_placeholder.jpg';
-				`http://betomad.com/rocola/consola/album_artwork/placeholder.png`;
+			var image = require.context('../assets/static/img/');
+			return (this.artista.foto_path) ? this.artista.foto_path : image('./placeholder.png');
 		}
 	}
 };
@@ -72,41 +69,42 @@ ul {
 }
 
 .clipper-imagen {
-	width: 200px;
-	height: 190px;
+	width: 20rem;
+	height: 19rem;
 	overflow: hidden;
 	position: relative;
 }
 
 .contenedor-foto_artista {
+	font-family: $knockout;
 	position:relative;
-	height:240px;
+	height:24rem;
 	overflow: hidden;
-	width: 200px;
+	width: 20rem;
 	margin:auto;
 	background-color: $boton;
-	border-radius: 10px;
-	top: -15px;
+	border-radius: 1rem;
+	top: -1.5rem;
 }
 
 .contenedor-foto_artista h2 {
-	margin-top:10px;
-	margin-bottom: 10px;
+	margin-top:1rem;
+	margin-bottom: 1rem;
 	text-align: center;
 	text-transform: uppercase;
 	text-overflow: ellipsis;
 	overflow:hidden;
-	font-size: 18px;
+	font-size: 1.8rem;
 	margin:0;
-	margin-top:5px;
+	margin-top:0.5rem;
 	display:table-cell;
 	vertical-align: middle;
 }
 
 img {
-	height: 190px;
+	height: 19rem;
 	min-width: 100%;
-	max-width: 350px;
+	max-width: 35rem;
 	display: block;
 	position: absolute;
 }
@@ -114,25 +112,25 @@ img {
 .contenedor-catalogo_artista {
 	overflow: scroll;
 	overflow-x: hidden;
-	min-height:120px;
-	max-height:200px;
-	margin-top:10px;
+	min-height:12rem;
+	max-height:20rem;
+	margin-top:1rem;
 }
 
 
 .nomi {
-	height:50px;
+	height:5rem;
 	display:table;
 	width:100%;
 }
 
 
 .elementos-cancion {
-	padding-top: 8px;
-	padding-bottom: 4px;
-	padding-left:5px;
-	max-height: 50px;
-	padding-right:5px;
+	padding-top: 0.8rem;
+	padding-bottom: 0.4rem;
+	padding-left: 0.5rem;
+	max-height: 5rem;
+	padding-right: 0.5rem;
 	font-weight: bold;
 }
 
@@ -141,7 +139,7 @@ img {
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
-	font-size: 16px;
+	font-size: 1.6rem;
 }
 
 .titulo {
@@ -154,6 +152,38 @@ img {
 .duracion {
 	width: 10%;
 	text-align: center;
+}
+
+@media(min-width: 1024px) {
+
+	.contendor-song_detail {
+		padding: {
+			left: 2rem;
+		}
+	}
+
+	.contenedor-foto_artista {
+		height:24rem;
+		overflow: hidden;
+		width: 20rem;
+		margin:auto;
+		background-color: $boton;
+		border-radius: 1rem;
+		top: 0;
+		display: inline-block;
+	}
+
+	.contenedor-catalogo_artista {
+		overflow: scroll;
+		overflow-x: hidden;
+		min-height:12rem;
+		max-height:20rem;
+		margin-top:0;
+		display: inline-block;
+		vertical-align: top;
+		width:45rem;
+		float:right;
+	}
 }
 
 

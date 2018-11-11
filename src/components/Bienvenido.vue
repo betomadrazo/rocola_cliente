@@ -76,7 +76,7 @@ export default {
 		// 		window.history.replaceState({}, document.title, "/");
 			var to = setTimeout(function() {
 				router.push('/cola');
-			}, 20000);
+			}, 600);
 		// } else {
 		// 	this.mensaje_bienvenida = "Visítanos en nuestras sucursales"
 		// }

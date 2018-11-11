@@ -112,19 +112,18 @@ export default {
 
 .boton-grande {
     background-color: $boton;
-    width: 300px;
-    height: 50px;
-    font-size: 20px;
-    letter-spacing: -1px;
-    line-height: 32px;
-    box-shadow: 2px 4px 0 $boton_sombra;
+    width: 30rem;
+    height: 5rem;
+    font-size: 3rem;
+    line-height: 5rem;
+    box-shadow: 0.2rem 0.4rem 0 $boton_sombra;
 	margin: auto;
 	display: block;
 }
 
 .boton_desactivado {
     background-color: $boton_gris !important;
-    box-shadow: 2px 4px 0 $boton_gris_sombra;
+    box-shadow: 0.2rem 0.4rem 0 $boton_gris_sombra;
 }
 
 .boton-grande:active {
@@ -150,13 +149,12 @@ export default {
 
 .alerta-cancion_pedida {
 	font-family: $knockout;
-	letter-spacing: 1px;
 	background-color: $naranja;
-	width:280px;
-	height:80px;
+	width:28rem;
+	height:8rem;
     text-align: center;
-	border-radius: 10px;
-	padding:10px;
+	border-radius: 1rem;
+	padding:1rem;
     margin: auto;
     color: $blanco;
     font-weight: bold;
@@ -165,15 +163,15 @@ export default {
 }
 
 .alerta-cancion_pedida span {
-	height:80px;
+	height:8rem;
 	display: table-cell;
 }
 
 h4 {
 	margin: auto;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    width: 300px;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    width: 30rem;
 }
 
 </style>

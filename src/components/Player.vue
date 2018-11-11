@@ -1,23 +1,25 @@
 <template>
 	<div class="consola">
-		<div class="navegador">
-			<span v-if="$routerHistory.hasPrevious()">
-				<router-link  class="linko atras" :to="{ path: $routerHistory.previous().path }"></router-link>
-			</span>
-			<span class="loguito">
-			</span>
-		</div>
-		<div class="info">
-			<h4>Ahora se escucha</h4>
-			<h2>
-				<span>{{ artistaAhoraServer }}</span> - <span>{{ cancionAhoraServer }}</span>
-			</h2>
-			<div>
-				<span class="tiempo-total"><span>{{ printTranscurrido }}</span><span class="play"></span></span>
-				<span class="porcentaje">
-					<span class="porcentaje-transcurrido" :style="getPorcentaje"></span>
+		<div class="contenedor_consola">
+			<div class="navegador clearfix">
+				<span v-if="$routerHistory.hasPrevious()">
+					<router-link  class="linko atras" :to="{ path: $routerHistory.previous().path }"></router-link>
 				</span>
-				<span class="tiempo-transcurrido">{{ printFaltante }}</span>
+				<span class="loguito">
+				</span>
+			</div>
+			<div class="info">
+				<h4>Ahora se escucha</h4>
+				<h2>
+					<span>{{ artistaAhoraServer }}</span> - <span>{{ cancionAhoraServer }}</span>
+				</h2>
+				<div>
+					<span class="tiempo-total"><span>{{ printTranscurrido }}</span><span class="play"></span></span>
+					<span class="porcentaje">
+						<span class="porcentaje-transcurrido" :style="getPorcentaje"></span>
+					</span>
+					<span class="tiempo-transcurrido">{{ printFaltante }}</span>
+				</div>
 			</div>
 		</div>
 		<div v-if="displayContenido">
@@ -127,10 +129,10 @@ export default {
 			var transcurrido = this.transcurrido;
 			console.log("||||||||||> ", this.transcurrido);
 			console.log("==========> ", this.tiempoTotalServer);
-			if(this.transcurrido >= this.tiempoTotalServer) {
-				console.log("finiche");
-				transcurrido = 0;
-			}
+			// if(this.transcurrido >= this.tiempoTotalServer) {
+			// 	console.log("finiche");
+			// 	this.transcurrido = 0;
+			// }
 			return this.getTiempoFormateado(parseInt(this.transcurrido));
 		},
 		printFaltante() {
@@ -160,17 +162,18 @@ export default {
 h4, h3, h2 {
 	margin-top:0;
 	margin-bottom:0;
+	font-size: 2rem;
 }
 
 h2 span {
-	max-width: 140px;
+	max-width: 14rem;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
 	display: inline-block;
 	vertical-align: middle;
 	text-transform: uppercase;
-	font-size:18px;
+	font-size:3rem;
 }
 
 .clearfix::after {
@@ -180,16 +183,16 @@ h2 span {
 }
 
 .navegador {
-	height:50px;
 	width:100%;
+	padding-top:1rem
 }
 
 .loguito {
     float: right;
-    width: 50px;
-    height: 65px;
+    width: 5rem;
+    height: 5rem;
     position: relative;
-    left: -20px;
+    left: -2rem;
     top: 0px;
     background-image: url(../assets/static/img/loguito.png);
     background-repeat: no-repeat;
@@ -199,26 +202,32 @@ h2 span {
 }
 
 .loguito img {
-	height:24px;
+	height:2.4rem;
 }
 
 .consola {
 	text-align: center;
 	color: #fff;
-	background-color: $fondo_superior;
-	padding-bottom: 0;
+	font-family: $knockout_feather;
+	font-size: 1.5rem;
 	position: fixed;
 	width:100%;
 	left:0;
-	height:130px;
 	top:0;
 	z-index:100;
 }
 
+.contenedor_consola {
+	background-color: $fondo_superior;
+	padding-bottom: 0;
+	max-width: 102.4rem;
+	margin: auto;
+}
+
 .info {
-	padding:10px;
+	padding:1rem;
 	padding-top:0;
-	padding-bottom:10px;
+	padding-bottom:1rem;
 }
 
 .porcentaje {
@@ -233,6 +242,7 @@ h2 span {
 	font-weight: bold;
 	width:18%;
 	display:inline-block;
+	font-size:2rem;
 }
 
 .tiempo-total {
@@ -263,14 +273,13 @@ h2 span {
 .atras {
     text-decoration: none;
     color: #468460;
-    font-size: 40px;
     float: left;
     border: none !important;
     background-image: url(../assets/static/img/REGRESAR.png);
-    background-size: 20px;
+    background-size: 2rem;
     background-repeat: no-repeat;
-    width: 60px;
-    height: 60px;
+    width: 6rem;
+    height: 5rem;
     background-position: center;
     display: inline-blocK;
 
@@ -283,26 +292,42 @@ h2 span {
 
 .play {
     background-image: url(../assets/static/img/PLAY.png);
-    background-size: 5px;
+    background-size: 0.5rem;
     background-repeat: no-repeat;
     height: 10px;
     background-position: center;
     display: inline-blocK;
     vertical-align: middle;
-	width:10px;
+	width:1rem;
 	display: inline-block;
 	color: $play;
 	position:relative;
 }
 
 .seccion {
-	margin-top:0;
-	font-weight: normal;
-	width:100%;
-	position:fixed;
-	top:127px;
-	padding-top:5px;
-	padding-bottom:5px;
+	font-family: $knockout;
+	margin-top: 0;
+	font-size: 2.5rem;
+	width: 100%;
+	padding-top: 0.5rem;
+	font-size: 1.8rem;
+	padding-bottom: 0.5rem;
+	max-width: 1024px;
+	margin:auto;
+}
+
+@media(min-width: 1024px) {
+	h2 span {
+		max-width: 50rem;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		display: inline-block;
+		vertical-align: middle;
+		text-transform: uppercase;
+		font-size:3rem;
+	}
+
 }
 
 </style>

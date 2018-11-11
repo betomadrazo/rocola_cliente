@@ -4,6 +4,7 @@
 			<div class="contenedor-detail">
 				<div class="contenedor-imagen">
 					<img :src="getFotoPath" alt="">
+					<!-- <img src="@/assets/static/img/placeholder.png" alt=""> -->
 				</div>
 				<div class="info">
 					<h3>{{ artista.nombre_artista }}</h3>
@@ -40,7 +41,9 @@ export default {
 	computed: {
 		...mapGetters(['cancion', 'artista', 'cancionPedida']),
 		getFotoPath() {
-			return (this.cancion.foto_path) ? this.cancion.foto_path : '../assets/static/img/placeholder.png';
+			var image = require.context('../assets/static/img/');
+
+			return (this.cancion.foto_path) ? this.cancion.foto_path : image('./placeholder.png');
 		}
 	}
 };
@@ -68,10 +71,9 @@ export default {
 
 .contenedor-detail {
 	font-family: $knockout;
-	letter-spacing: 1px;
-    width: 300px;
+    width: 30rem;
     background-color: $boton;
-    height: 360px;
+    height: 36rem;
     text-align: center;
     margin: auto;
     border-radius: 15px;
@@ -79,32 +81,30 @@ export default {
 }
 
 .info {
-	padding:10px;
+	padding:1rem;
 	text-transform: uppercase;
 
 	& h1 {
-		font-size: 20px;
+		font-size: 2rem;
 		font-weight: bold;
 	}
 
 	& h3 {
-		font-size: 18px;
-		font-weight: 400;
+		font-size: 1.8rem;
 	}
 	
 	& h1, & h3 {
 		overflow: hidden;
 		text-overflow: ellipsis;
 		white-space: nowrap;
-		letter-spacing: 1px;
 	    margin: 0 auto;
 	}
 }
 
 .contenedor-imagen {
 	position:relative;
-	width: 300px;
-	height:232px;
+	width: 30rem;
+	height:23.2rem;
 	overflow: hidden;
 	border-radius: 15px 15px 0 0;
 }
@@ -116,28 +116,28 @@ img {
 }
 
 p:nth-of-type(1) {
-	font-size: 20px;
-    margin-top: 5px;
-    margin-bottom: 5px;
+	font-size: 2rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
 }
 
 button {
-    width: 110px;
-    border-radius: 20px;
+    width: 11rem;
+    border-radius: 2rem;
     background-color: $boton_agregar;
     color: $blanco;
-    font-size: 14px;
+    font-size: 1.6rem;
     text-align: center;
     font-weight: bold;
     border: none;
-    height: 32px;
+    height: 3.2rem;
     display: inline-block;
-    line-height: 16px;
+    line-height: 3.2rem;
     text-transform: uppercase;
 }
 
 button:first-of-type {
-	margin-right:20px;
+	margin-right:2rem;
     box-shadow: 1px 2px 0 $boton_agregar_sombra;
 
 	&:active {

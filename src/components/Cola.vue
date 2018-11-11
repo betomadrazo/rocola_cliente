@@ -1,22 +1,25 @@
 <template>
-	<div class="contenedor-cola">
+	<div>
 		<Player></Player>
-		<div v-if="cancionesEnCola.length">
-			<div style="min-height:90px; max-height:300px; margin-bottom:40px; overflow-x:scroll;">
-				<ul style="margin:0;">
-					<li>
-						<!-- {{ cancionesEnCola }} -->
-						<Cancion v-for="(cancion, index) in cancionesEnCola" :index="index" :cancion="cancion"></Cancion>
-					</li>
-				</ul>
+		<div class="contenedor-cola">
+			<div v-if="cancionesEnCola.length">
+				<div class="lacola">
+					<ul style="margin:0;">
+						<li>
+							<!-- {{ cancionesEnCola }} -->
+							<Cancion v-for="(cancion, index) in cancionesEnCola" :index="index" :cancion="cancion"></Cancion>
+						</li>
+					</ul>
+				</div>
+				
 			</div>
-			
+			<h2 class="mensaje-no_canciones" v-else>No hay canciones en cola, escoge una canci&oacute;n.</h2>
+			<div class="contenedor-megaboton">
+				<BotonPedir></BotonPedir>
+				<!-- <router-link class="boton-pedir boton-grande" to="/catalogo" tag="button">agrega una canci&oacute;n</router-link> -->
+			</div>
 		</div>
-		<h2 class="mensaje-no_canciones" v-else>No hay canciones en cola, escoge una canci&oacute;n.</h2>
-		<div class="contenedor-megaboton">
-			<BotonPedir></BotonPedir>
-			<!-- <router-link class="boton-pedir boton-grande" to="/catalogo" tag="button">agrega una canci&oacute;n</router-link> -->
-		</div>
+		
 	</div>
 </template>
 
@@ -57,6 +60,8 @@ export default {
 
 .contenedor-cola {
 	min-height: 300px;
+	font-family:  'Knockout Feather', sans-serif;
+	font-size: 1.6rem;
 }
 
 ul {
@@ -66,7 +71,7 @@ ul {
 
 .mensaje-no_canciones {
 	margin: 0;
-	font-size: 18px;
+	font-size: 1.8rem;
 	font-weight: 400;
 	margin-top: 300px;
 	text-align: center;
@@ -74,12 +79,20 @@ ul {
 
 .contenedor-megaboton {
     position: absolute;
+    left: 0;
     margin: auto;
     width: 100%;
     bottom: 0;
     margin-bottom: 40px;
     text-align: center;
     min-height: 90px;
+}
+
+.lacola {
+	min-height:90px; 
+	max-height:300px; 
+	margin-bottom:40px; 
+	overflow-y:scroll;
 }
 
 </style>

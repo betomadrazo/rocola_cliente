@@ -30,12 +30,12 @@ export default {
 </script>
 
 <style scoped>
-	
+
 .contenedor {
-	min-width:300px;
-	max-width: 1024px;
+	min-width:30rem;
+	max-width: 102.4rem;
 	margin:auto;
-	margin-top:157px;
+	margin-top:19rem;
 	font-family: sans-serif;
 	color: #fff;
 }

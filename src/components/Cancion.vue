@@ -48,13 +48,11 @@ export default {
 @import '../sass/estilo';	
 	
 .contenedor-cancion {
-	padding-top: 2px;
-	padding-bottom: 2px;
-	padding-left:25px;
-	padding-right:25px;
-	font-weight: bold;
-	height: 30px;
-	line-height: 30px;
+	padding-left:2rem;
+	padding-right:2rem;
+	height: 3.3rem;
+	line-height: 3.3rem;
+	font-family: $knockout;
 }
 
 .cancion_alt {
@@ -69,10 +67,10 @@ export default {
 
     background-image: url(../assets/static/img/CANCION.png);
 
-    background-size: 8px;
+    background-size: 0.8rem;
     background-repeat: no-repeat;
-    width: 10px;
-    height: 10px;
+    width: 1rem;
+    height: 1rem;
     background-position: center;
     display: inline-blocK;
 }
@@ -94,7 +92,7 @@ span {
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
-	font-size: 14px;
+	font-size: 1.5rem;
 }
 
 .titulo {
