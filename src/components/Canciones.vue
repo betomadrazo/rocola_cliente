@@ -73,6 +73,14 @@ ul {
 	height: 19rem;
 	overflow: hidden;
 	position: relative;
+
+	& img {
+		height: auto;
+		min-width: 100%;
+		// max-width: 35rem;
+		display: block;
+		position: absolute;
+	}
 }
 
 .contenedor-foto_artista {
@@ -99,14 +107,6 @@ ul {
 	margin-top:0.5rem;
 	display:table-cell;
 	vertical-align: middle;
-}
-
-img {
-	height: 19rem;
-	min-width: 100%;
-	max-width: 35rem;
-	display: block;
-	position: absolute;
 }
 
 .contenedor-catalogo_artista {
@@ -162,10 +162,24 @@ img {
 		}
 	}
 
-	.contenedor-foto_artista {
-		height:24rem;
+	.clipper-imagen {
+		width: 100%;
 		overflow: hidden;
-		width: 20rem;
+		position: relative;
+
+		& img {
+			display: block;
+			position: absolute;
+			min-width: 100%;
+			max-width: 150%;
+		}
+	}
+
+	.contenedor-foto_artista {
+		// height:24rem;
+		overflow: hidden;
+		// width: 20rem;
+		width: 35%;
 		margin:auto;
 		background-color: $boton;
 		border-radius: 1rem;
@@ -181,8 +195,10 @@ img {
 		margin-top:0;
 		display: inline-block;
 		vertical-align: top;
-		width:45rem;
+		// width:45rem;
+		width:64.5%;
 		float:right;
+		min-height: 25rem;
 	}
 }
 

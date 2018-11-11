@@ -3,6 +3,10 @@
 		<!-- <h1>{{ mensaje_bienvenida }}</h1> -->
 		<!-- <img src="../assets/static/img/titulo_app.png" /> -->
 		<div class="titulo_app"></div>
+		<div class="textura">
+			<div></div>
+			<div></div>
+		</div>
 	</div>
 </template>
 
@@ -74,9 +78,20 @@ export default {
 
 		// if(ID_SUCURSAL) {
 		// 		window.history.replaceState({}, document.title, "/");
+
+
+
+
+
 			var to = setTimeout(function() {
 				router.push('/cola');
-			}, 600);
+			}, 1000);
+
+
+
+
+
+
 		// } else {
 		// 	this.mensaje_bienvenida = "Visítanos en nuestras sucursales"
 		// }
@@ -94,14 +109,48 @@ h1 {
 }
 
 .titulo_app {
-	width:100%;
-	min-height:500px;
-	background-image: url(../assets/static/img/titulo_app.png);
-	background-size: 100%;
-	background-position: center;
-	background-repeat: no-repeat;
-	display: block;
+    width: 100%;
+    height: 100%;
+    background-image: url(/img/titulo_app.2e77a7d4.png);
+    background-size: 75%;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: block;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+}
 
+.textura {
+	width:100%;
+	height:100%;
+	position:absolute;
+	top:0;
+	left: 0;
+	
+	background-image: url(../assets/static/img/fondo_app.png);
+	background-position: center;
+
+	& div {
+		width:30%; 
+		height:100%; 
+		background-image: url(../assets/static/img/rayas_app.png);
+
+		&:nth-of-type(1) {
+			float:left; 
+		}
+		&:nth-of-type(2) {
+			float:right; 
+		}
+	}
+}
+
+@media(min-width:767px) {
+	.titulo_app {
+    	background-size: 50%;
+	}
 }
 
 </style>

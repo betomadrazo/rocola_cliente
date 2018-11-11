@@ -220,7 +220,6 @@ h2 span {
 .contenedor_consola {
 	background-color: $fondo_superior;
 	padding-bottom: 0;
-	max-width: 102.4rem;
 	margin: auto;
 }
 
@@ -312,7 +311,6 @@ h2 span {
 	padding-top: 0.5rem;
 	font-size: 1.8rem;
 	padding-bottom: 0.5rem;
-	max-width: 1024px;
 	margin:auto;
 }
 
