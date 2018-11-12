@@ -1,12 +1,11 @@
 <template>
 	<div>
-		<!-- <h1>{{ mensaje_bienvenida }}</h1> -->
-		<!-- <img src="../assets/static/img/titulo_app.png" /> -->
 		<div class="titulo_app"></div>
 		<div class="textura">
 			<div></div>
 			<div></div>
 		</div>
+		<div class="fondo_app"></div>
 	</div>
 </template>
 
@@ -86,16 +85,9 @@ export default {
 		// 		window.history.replaceState({}, document.title, "/");
 
 
-
-
-
 			var to = setTimeout(function() {
 				router.push('/cola');
-			}, 2000);
-
-
-
-
+			}, 200000);
 
 
 		// } else {
@@ -114,13 +106,9 @@ h1 {
 	text-align: center;
 }
 
-.titulo_app {
+.fondo_app, .titulo_app {
     width: 100%;
     height: 100%;
-    background-image: url(../assets/static/img/titulo_app.png);
-    background-size: 75%;
-    background-position: center;
-    background-repeat: no-repeat;
     display: block;
     top: 50%;
     left: 50%;
@@ -129,34 +117,49 @@ h1 {
     z-index: 1000;
 }
 
+.fondo_app {
+
+}
+
+.titulo_app {
+    background-image: url(../assets/static/img/titulo_app.png);
+    background-size: 75%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
 .textura {
 	width:100%;
 	height:100%;
 	position:absolute;
 	top:0;
 	left: 0;
-	
-	background-image: url(../assets/static/img/fondo_app.png);
+	background-image: radial-gradient(#9cca82, #06938E 70%);
 	background-position: center;
 	background-repeat: no-repeat;
 
 	& div {
 		width:30%; 
 		height:100%; 
-		background-image: url(../assets/static/img/rayas_app.png);
 
 		&:nth-of-type(1) {
-			float:left; 
+			background-image: url(../assets/static/img/rayas_app_a.png);
+			float:left;
+			background-repeat: repeat-y;
+    		background-position: left;
 		}
 		&:nth-of-type(2) {
 			float:right; 
+			background-image: url(../assets/static/img/rayas_app_b.png);
+			background-repeat: repeat-y;
+    		background-position: right;
 		}
 	}
 }
-
-@media(min-width:767px) {
+	
+@media(min-width:600px) {
 	.titulo_app {
-    	background-size: 50%;
+    	background-size: 35%;
 	}
 }
 

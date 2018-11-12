@@ -307,6 +307,7 @@ h2 span {
 }
 
 .seccion {
+	background-color: $fondo_app;
 	font-family: $knockout;
 	margin-top: 0;
 	font-size: 2.5rem;
@@ -314,7 +315,7 @@ h2 span {
 	padding-top: 0.5rem;
 	font-size: 1.8rem;
 	padding-bottom: 0.5rem;
-	margin:auto;
+	margin: auto;
 }
 
 @media(min-width: 1024px) {
