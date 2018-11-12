@@ -47,6 +47,8 @@ export default {
 	computed: {
 		...mapGetters(['cancionesEnCola', 'deviceId']),
 	},
+	created() {
+	},
 	mounted() {
 		this.actualizaCola();
 	}
@@ -57,7 +59,7 @@ export default {
 <style scoped>
 
 .contenedor-cola {
-	min-height: 300px;
+	min-height: 30rem;
 	font-family:  'Knockout Feather', sans-serif;
 	font-size: 1.6rem;
 }
@@ -71,7 +73,7 @@ ul {
 	margin: 0;
 	font-size: 1.8rem;
 	font-weight: 400;
-	margin-top: 300px;
+	margin-top: 30rem;
 	text-align: center;
 }
 
@@ -81,15 +83,15 @@ ul {
     margin: auto;
     width: 100%;
     bottom: 0;
-    margin-bottom: 40px;
+    margin-bottom: 3rem;
     text-align: center;
-    min-height: 90px;
+    min-height: 7rem;
 }
 
 .lacola {
-	min-height:90px; 
-	max-height:300px; 
-	margin-bottom:40px; 
+	min-height:9rem; 
+	max-height:30rem; 
+	margin-bottom:4rem; 
 	overflow-y:scroll;
 }
 

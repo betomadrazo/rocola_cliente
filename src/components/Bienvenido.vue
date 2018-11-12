@@ -37,6 +37,10 @@ export default {
 						var values = components.map(function(component) { return component.value; });
 						var murmur = Fingerprint2.x64hash128(values.join(''), 31);
 	
+						console.log(murmur);
+						
+						// self.$store.dispatch('getPlayerVars');
+
 						self.$store.dispatch('setDeviceId', murmur);
 						self.$store.dispatch('getCancionPedida');
 						self.$store.dispatch('getPuedePedir');
@@ -49,6 +53,8 @@ export default {
 						var murmur = Fingerprint2.x64hash128(values.join(''), 31);
 	
 						self.$store.dispatch('setDeviceId', murmur);
+
+						console.log(murmur);
 					})
 				}, 500);
 			}

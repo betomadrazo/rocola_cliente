@@ -2,7 +2,7 @@
 	<div class="consola">
 		<div class="contenedor_consola">
 			<div class="navegador clearfix">
-				<span v-if="$routerHistory.hasPrevious()">
+				<span v-if="$routerHistory.hasPrevious() && $router.history.current.path != '/cola'">
 					<router-link  class="linko atras" :to="{ path: $routerHistory.previous().path }"></router-link>
 				</span>
 				<span class="loguito">
@@ -48,6 +48,7 @@ export default {
 		};
 	},
 	created() {
+		console.log("fdskfjkrjfjglbrmtswokéasojgajgpfd");
 		this.getContenido();
 		this.songStatus();
 		var moco = setInterval(this.songStatus, 3000);
@@ -129,8 +130,8 @@ export default {
 		...mapGetters(['artistaAhoraServer', 'cancionAhoraServer', 'tiempoTotalServer', 'tiempoTranscurridoServer']),
 		printTranscurrido() {
 			var transcurrido = this.transcurrido;
-			console.log("||||||||||> ", this.transcurrido);
-			console.log("==========> ", this.tiempoTotalServer);
+			// console.log("||||||||||> ", this.transcurrido);
+			// console.log("==========> ", this.tiempoTotalServer);
 			// if(this.transcurrido >= this.tiempoTotalServer) {
 			// 	console.log("finiche");
 			// 	this.transcurrido = 0;
@@ -140,7 +141,7 @@ export default {
 		printFaltante() {
 			var segundosFaltantesEnCancion = this.tiempoTotalServer - this.transcurrido;
 
-			console.log(segundosFaltantesEnCancion);
+			// console.log(segundosFaltantesEnCancion);
 
 			if(segundosFaltantesEnCancion < 0) {
 				segundosFaltantesEnCancion = 0;
