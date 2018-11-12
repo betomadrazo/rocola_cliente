@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<div class="titulo_app"></div>
+		<div class="titulo_app" :style="getTitular"></div>
 		<div class="textura">
 			<div></div>
 			<div></div>
@@ -20,6 +20,7 @@ export default {
 	data: function() {
 		return {
 			mensaje_bienvenida: "Bienvenido a \nla rocola\ndel péndulo",
+			ID_SUCURSAL: null,
 		}
 	},
 	created() {
@@ -65,37 +66,42 @@ export default {
 
 */
 
-		// var encryptedQueryString = window.location.search.substring(1);
+		var encryptedQueryString = window.location.search.substring(1);
 
-		// try {
-		// 	var decrypedQueryString = atob(encryptedQueryString);
-		// } catch(error) {}
+		try {
+			var decrypedQueryString = atob(encryptedQueryString);
+		} catch(error) {}
+
+		this.ID_SUCURSAL = parseInt(new URLSearchParams(decrypedQueryString).get('sucursal_id'));
+
+		var encryptedQueryString = window.location.search.substring(1);
+
+		try {
+			var decrypedQueryString = atob(encryptedQueryString);
+		} catch(error) {}
 
 		// const ID_SUCURSAL = parseInt(new URLSearchParams(decrypedQueryString).get('sucursal_id'));
 
-		// var encryptedQueryString = window.location.search.substring(1);
-
-		// try {
-		// 	var decrypedQueryString = atob(encryptedQueryString);
-		// } catch(error) {}
-
-		// const ID_SUCURSAL = parseInt(new URLSearchParams(decrypedQueryString).get('sucursal_id'));
-
-		// if(ID_SUCURSAL) {
-		// 		window.history.replaceState({}, document.title, "/");
-
-
+		if(this.ID_SUCURSAL) {
+			window.history.replaceState({}, document.title, "/");
 			var to = setTimeout(function() {
 				router.push('/cola');
-			}, 200000);
-
-
-		// } else {
-		// 	this.mensaje_bienvenida = "Visítanos en nuestras sucursales"
-		// }
+			}, 5000);
+		}
 	},
-	methods: mapActions(['getCancionesEnCola', 'getPlayerVars', 'setDeviceId', 'getCancionPedida']),
-	computed: mapGetters(['deviceId']),
+	methods: {
+		...mapActions(['getCancionesEnCola', 'getPlayerVars', 'setDeviceId', 'getCancionPedida']),
+	},
+	computed: {
+		...mapGetters(['deviceId']),
+		getTitular() {
+			var image = require.context('../assets/static/img/');
+			console.log(image('./titulo_app.png'));
+
+			return (this.ID_SUCURSAL) ? `background-image: url(${image('./titulo_app.png')});`
+									  : `background-image: url(${image('./VISITANOS-APP.png')});`
+		}
+	}
 };
 </script>
 
@@ -122,7 +128,7 @@ h1 {
 }
 
 .titulo_app {
-    background-image: url(../assets/static/img/titulo_app.png);
+    // background-image: url(../assets/static/img/titulo_app.png);
     background-size: 75%;
     background-position: center;
     background-repeat: no-repeat;
