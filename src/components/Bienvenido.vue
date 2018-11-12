@@ -85,7 +85,7 @@ export default {
 
 			var to = setTimeout(function() {
 				router.push('/cola');
-			}, 1000);
+			}, 2000);
 
 
 
@@ -111,7 +111,7 @@ h1 {
 .titulo_app {
     width: 100%;
     height: 100%;
-    background-image: url(/img/titulo_app.2e77a7d4.png);
+    background-image: url(../assets/static/img/titulo_app.png);
     background-size: 75%;
     background-position: center;
     background-repeat: no-repeat;
@@ -132,6 +132,7 @@ h1 {
 	
 	background-image: url(../assets/static/img/fondo_app.png);
 	background-position: center;
+	background-repeat: no-repeat;
 
 	& div {
 		width:30%; 

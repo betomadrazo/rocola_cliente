@@ -3,6 +3,7 @@ import $ from 'jquery-ajax';
 import _ from 'lodash';
 import { BASE_URL, ID_SUCURSAL } from '../../api/rocola';
 
+
 const state = {
 	// artistaAhoraServer: " ",
 	artistaAhoraServer: " ",

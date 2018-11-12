@@ -1,9 +1,7 @@
 <template>
-	
 	<div>
 		<p>Escoge una canci&oacute;n de nuestro cat&aacute;logo</p>
 	</div>
-
 </template>
 <script>
 	

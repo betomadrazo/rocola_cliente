@@ -6,7 +6,6 @@
 				<div class="lacola">
 					<ul style="margin:0;">
 						<li>
-							<!-- {{ cancionesEnCola }} -->
 							<Cancion v-for="(cancion, index) in cancionesEnCola" :index="index" :cancion="cancion"></Cancion>
 						</li>
 					</ul>
@@ -16,7 +15,6 @@
 			<h2 class="mensaje-no_canciones" v-else>No hay canciones en cola, escoge una canci&oacute;n.</h2>
 			<div class="contenedor-megaboton">
 				<BotonPedir></BotonPedir>
-				<!-- <router-link class="boton-pedir boton-grande" to="/catalogo" tag="button">agrega una canci&oacute;n</router-link> -->
 			</div>
 		</div>
 		

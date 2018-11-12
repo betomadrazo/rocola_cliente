@@ -56,6 +56,8 @@ export default {
 		...mapActions(['getPlayerVars', 'setSegundosFaltantesEnCancion']),
 
 		// Esta inicia cada 3 segundos
+
+		// TODO: Cambiar esta función al store
 		songStatus() {
 
 			this.$store.dispatch('getPlayerVars');

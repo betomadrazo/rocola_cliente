@@ -4,7 +4,6 @@
 			<div class="contenedor-detail">
 				<div class="contenedor-imagen">
 					<img :src="getFotoPath" alt="">
-					<!-- <img src="@/assets/static/img/placeholder.png" alt=""> -->
 				</div>
 				<div class="info">
 					<h3>{{ artista.nombre_artista }}</h3>

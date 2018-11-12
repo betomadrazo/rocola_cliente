@@ -1,6 +1,4 @@
 <template>
-
-		<!-- @click="$emit('open')"  -->
 	<div 
 		:class="alte" 
 		class="contenedor-cancion"

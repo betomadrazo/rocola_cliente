@@ -4,7 +4,6 @@
 		<div class="contendor-song_detail">
 			<div class="contenedor-foto_artista">
 				<div class="clipper-imagen">
-					<!-- <img :src="artista.foto_path" alt=""> -->
 					<img :src="foto" alt="">
 				</div>
 				<div class="nomi">
