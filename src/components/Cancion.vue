@@ -48,8 +48,8 @@ export default {
 .contenedor-cancion {
 	padding-left:2rem;
 	padding-right:2rem;
-	height: 3.3rem;
-	line-height: 3.3rem;
+	height: 4rem;
+	line-height: 4rem;
 	font-family: $knockout;
 }
 
@@ -90,7 +90,7 @@ span {
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
-	font-size: 1.5rem;
+	font-size: 2rem;
 }
 
 .titulo {
