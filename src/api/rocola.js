@@ -14,9 +14,12 @@ var encryptedQueryString = window.location.search.substring(1);
 // 		});
 // console.log(decrypedQueryString);
 
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> bdf71acb82a8f133d479014f3e6033d58ae6d8e2
 try {
 	var decrypedQueryString = atob(encryptedQueryString);
 } catch(error) {}

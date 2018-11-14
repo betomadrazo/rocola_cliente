@@ -5,18 +5,21 @@ import { BASE_URL, ID_SUCURSAL } from '../../api/rocola';
 
 
 const state = {
-	// artistaAhoraServer: " ",
 	artistaAhoraServer: " ",
-	// cancionAhora: " ",
 	cancionAhoraServer: " ",
 	idCancionAhora: null,
-	// tiempoTotal: 0,
 	tiempoTotalServer: 0,
-	// tiempoTranscurrido: 0,
 	tiempoTranscurridoServer: 0,
 	porcentaje: 0,
 	mySongIsPlaying: false,
 	currentPlayingDispositivoId: null,
+
+	// tíos extraños
+	total: 0,
+	transcurrido: 0,
+	restante: 0,
+	intervaloSegundos: null,
+
 };
 
 
@@ -27,7 +30,19 @@ const getters = {
 	tiempoTotalServer: state => state.tiempoTotalServer,
 	tiempoTranscurridoServer: state => state.tiempoTranscurridoServer,
 	currentPlayingDispositivoId: state => state.currentPlayingDispositivoId,
-	mySongIsPlaying: state => state.mySongIsPlaying
+	mySongIsPlaying: state => state.mySongIsPlaying,
+
+
+
+
+	total: state => state.total,
+	transcurrido: state => state.transcurrido,
+	restante: state => state.restante,
+	intervaloSegundos: state => state.intervaloSegundos,
+
+
+
+
 };
 
 
@@ -90,7 +105,93 @@ const actions = {
 
 	setMySongIsPlaying({ commit }, value) {
 		commit('setMySongIsPlaying', value);
-	}
+	},
+
+
+
+
+
+	songStatus({commit, dispatch, getters, rootGetters}) {
+
+		dispatch('getPlayerVars');
+			
+
+		// this.total = getTiempoFormateado(this.tiempoTotalServer);
+		commit('setTotal', getTiempoFormateado(state.tiempoTotalServer));
+
+		// this.transcurrido = this.tiempoTranscurridoServer;
+		commit('setTranscurrido', state.tiempoTranscurridoServer);
+
+		// this.restante = parseInt(this.total) - parseInt(this.tiempoTranscurridoServer);
+		commit('setRestante', parseInt(state.total) - parseInt(state.tiempoTranscurridoServer));
+
+	
+		var currentTotal = state.tiempoTotalServer;
+		var currentTranscurrido = state.tiempoTranscurridoServer;
+
+
+		// clearInterval(this.intervaloSegundos);
+		clearInterval(this.intervaloSegundos);
+
+
+		// this.transcurrido += 1;
+		commit('setTranscurrido', state.transcurrido + 1);
+
+		// this.restante -= 1;
+		commit('setRestante', state.restante - 1);
+
+		currentTranscurrido += 1;
+	
+		if((currentTotal - currentTranscurrido) < 1) {
+			dispatch('getPlayerVars');
+		}
+
+
+
+		var self = this;
+		// this.intervaloSegundos = setInterval(function() {
+
+		// 	self.transcurrido += 1;
+		// 	self.restante -= 1;
+
+		// 	currentTranscurrido += 1;
+	
+		// 	if((currentTotal - currentTranscurrido) < 1) {
+		// 		clearInterval(this.intervaloSegundos);
+		// 		dispatch('getPlayerVars');
+		// 	}
+		// }, 1000);
+
+
+		commit('setIntervaloSegundos', setInterval(function() {
+
+			commit('setTranscurrido', state.transcurrido + 1);
+			commit('setRestante', state.restante - 1);
+
+			currentTranscurrido += 1;
+	
+			if((currentTotal - currentTranscurrido) < 1) {
+				clearInterval(state.intervaloSegundos);
+				dispatch('getPlayerVars');
+			}
+		}, 1000));
+
+
+
+
+
+
+
+	},
+
+
+
+
+
+
+
+
+
 };
 
 
@@ -116,8 +217,64 @@ const mutations = {
 
 	setMySongIsPlaying(state, value) {
 		state.mySongIsPlaying = value;
+	},
+
+
+
+
+
+
+
+
+
+	// New kids on the block
+
+	setTotal(state, val) {
+		state.total = val;
+	},
+
+	setTranscurrido(state, val) {
+		state.transcurrido = val;
+	},
+
+	setRestante(state, val) {
+		state.restante = val;
+	},
+
+	setIntervaloSegundos(state, val) {
+		state.intervaloSegundos = val;
 	}
+
+
+
 };
+
+
+
+
+
+
+
+
+
+function getTiempoFormateado(segundos) {
+	var tiempo = new Date(null);
+	tiempo.setSeconds(segundos);
+	return tiempo.toISOString().substr(14, 5);	
+};
+
+
+
+
+
+// var moco = setInterval(this.songStatus, 3000);
+var moco = setInterval(() => {
+	store.commit('songStatus');
+}, 5000);
+
+
+
+
 
 
 export default {
