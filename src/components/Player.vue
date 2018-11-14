@@ -40,18 +40,17 @@ export default {
 			displayContenido: true,
 			tiempoRestante: 0,
 			tiempoFaltante: 0,
-			transcurrido: 0,
-			restante: 0,
-			total: 0,
-			intervaloSegundos: null,
+			// transcurrido: 0,
+			// restante: 0,
+			// total: 0,
+			// intervaloSegundos: null,
 			currentTranscurrido: 0,
 		};
 	},
 	created() {
-		console.log("fdskfjkrjfjglbrmtswokéasojgajgpfd");
 		this.getContenido();
 		this.songStatus();
-		var moco = setInterval(this.songStatus, 3000);
+		// var moco = setInterval(this.songStatus, 3000);
 	},
 	methods: {
 		...mapActions(['getPlayerVars', 'setSegundosFaltantesEnCancion']),
@@ -127,7 +126,7 @@ export default {
 	},
 	computed: {
 		// ...mapGetters(['artistaAhora', 'cancionAhora', 'tiempoTotal', 'tiempoTranscurrido']),
-		...mapGetters(['artistaAhoraServer', 'cancionAhoraServer', 'tiempoTotalServer', 'tiempoTranscurridoServer']),
+		...mapGetters(['artistaAhoraServer', 'cancionAhoraServer', 'tiempoTotalServer', 'tiempoTranscurridoServer', 'total', 'transcurrido', 'restante', 'intervaloSegundos']),
 		printTranscurrido() {
 			var transcurrido = this.transcurrido;
 			// console.log("||||||||||> ", this.transcurrido);
