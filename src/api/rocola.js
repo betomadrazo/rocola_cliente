@@ -14,7 +14,6 @@ var encryptedQueryString = window.location.search.substring(1);
 // 		});
 // console.log(decrypedQueryString);
 
-
 try {
 	var decrypedQueryString = atob(encryptedQueryString);
 } catch(error) {}
