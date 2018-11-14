@@ -24,6 +24,16 @@ export default {
 		}
 	},
 	created() {
+
+
+		// var moco = setInterval(() => {
+		// 	// console.log("fefefefe", rootState);
+		// 	// actions.songStatus();
+		// }, 10000);
+
+			this.$store.dispatch('songStatus');
+
+		
 		var self = this;
 		this.$store.dispatch('getCancionesEnCola');
 
@@ -90,7 +100,7 @@ export default {
 		}
 	},
 	methods: {
-		...mapActions(['getCancionesEnCola', 'getPlayerVars', 'setDeviceId', 'getCancionPedida']),
+		...mapActions(['getCancionesEnCola', 'getPlayerVars', 'setDeviceId', 'getCancionPedida', 'songStatus']),
 	},
 	computed: {
 		...mapGetters(['deviceId']),

@@ -14,7 +14,9 @@
 					<span>{{ artistaAhoraServer }}</span> - <span>{{ cancionAhoraServer }}</span>
 				</h2>
 				<div>
-					<span class="tiempo-total"><span>{{ printTranscurrido }}</span><span class="play"></span></span>
+					<!-- <span class="tiempo-total"><span>{{ printTranscurrido }}</span><span class="play"></span></span> -->
+					<!-- <span class="tiempo-total"><span>{{ segunderoTranscurridoForma() }} {{ printTranscurrido }}</span><span class="play"></span></span> -->
+					<span class="tiempo-total"><span>{{ segunderoTranscurridoForma() }}</span><span class="play"></span></span>
 					<span class="porcentaje">
 						<span class="porcentaje-transcurrido" :style="getPorcentaje"></span>
 					</span>
@@ -40,63 +42,56 @@ export default {
 			displayContenido: true,
 			tiempoRestante: 0,
 			tiempoFaltante: 0,
-			// transcurrido: 0,
-			// restante: 0,
-			// total: 0,
-			// intervaloSegundos: null,
 			currentTranscurrido: 0,
+
+			segunderoTranscurrido: 0,
+			segunderoFaltante: 0,
 		};
 	},
 	created() {
 		this.getContenido();
-		this.songStatus();
-		// var moco = setInterval(this.songStatus, 3000);
+		this.segunderoTranscurridoForma();
+	},
+	mounted() {
+		setTimeout(() => {
+			this.cuentaSegsTranscurridos();
+
+		}, 1500);
 	},
 	methods: {
 		...mapActions(['getPlayerVars', 'setSegundosFaltantesEnCancion']),
 
-		// Esta inicia cada 3 segundos
+		cuentaSegsTranscurridos() {
+			var self = this;
+			setInterval(() => {
+				// console.log(self.segunderoTranscurrido);
+				self.segunderoTranscurrido += 1;
+			}, 1010);
+		},
 
-		// TODO: Cambiar esta función al store
-		songStatus() {
+		cuentaSegsFaltantes() {
+			var self = this;
+			setInterval(() => {
+				// console.log(self.segunderoFaltante);
+				self.segunderoFaltante -= 1;
+			}, 1010);
+		},
 
-			this.$store.dispatch('getPlayerVars');
-			
-			this.total = this.getTiempoFormateado(this.tiempoTotalServer);
+		segunderoTranscurridoForma() {
 
-			this.transcurrido = this.tiempoTranscurridoServer;
+			console.log("%%%%%% ", this.tiempoTotalServer, this.segunderoTranscurrido);			
 
-			this.restante = parseInt(this.total) - parseInt(this.tiempoTranscurridoServer);
-	
-			var currentTotal = this.tiempoTotalServer;
-			var currentTranscurrido = this.tiempoTranscurridoServer;
+			var segs = this.segunderoTranscurrido;
 
-			clearInterval(this.intervaloSegundos);
-
-			this.transcurrido += 1;
-			this.restante -= 1;
-
-			currentTranscurrido += 1;
-	
-			if((currentTotal - currentTranscurrido) < 1) {
-				console.log("esto qué pedo?")
-				this.$store.dispatch('getPlayerVars');
+			if(this.segunderoTranscurrido > this.tiempoTotalServer) {
+				segs = 0;
 			}
 
-			var self = this;
-			this.intervaloSegundos = setInterval(function() {
+			return this.getTiempoFormateado(parseInt(segs));
+		},
 
-				self.transcurrido += 1;
-				self.restante -= 1;
-
-				currentTranscurrido += 1;
-	
-				if((currentTotal - currentTranscurrido) < 1) {
-					console.log("####################################");
-					clearInterval(this.intervaloSegundos);
-					self.$store.dispatch('getPlayerVars');
-				}
-			}, 1000);
+		segunderoRestateForma() {
+			return this.getTiempoFormateado(parseInt(this.segunderoFaltante));
 		},
 
 		getTiempoFormateado(segundos) {
@@ -124,29 +119,38 @@ export default {
 		},
 
 	},
+	watch: {
+		printTranscurrido: function() {
+			// this.cuentaSegsTranscurridos();
+			// console.log("TRANSCURRIDO: ", this.segunderoTranscurrido);
+
+			this.segunderoTranscurrido = this.transcurrido;
+		},
+
+		// printFaltante: function() {
+		// 	this.segunderoFaltante = this.restante;
+		// }
+
+	},
 	computed: {
-		// ...mapGetters(['artistaAhora', 'cancionAhora', 'tiempoTotal', 'tiempoTranscurrido']),
 		...mapGetters(['artistaAhoraServer', 'cancionAhoraServer', 'tiempoTotalServer', 'tiempoTranscurridoServer', 'total', 'transcurrido', 'restante', 'intervaloSegundos']),
+
+
 		printTranscurrido() {
-			var transcurrido = this.transcurrido;
-			// console.log("||||||||||> ", this.transcurrido);
-			// console.log("==========> ", this.tiempoTotalServer);
-			// if(this.transcurrido >= this.tiempoTotalServer) {
-			// 	console.log("finiche");
-			// 	this.transcurrido = 0;
-			// }
+			console.log("%%%%%% ", this.tiempoTotalServer, this.transcurrido);
 			return this.getTiempoFormateado(parseInt(this.transcurrido));
 		},
 		printFaltante() {
-			var segundosFaltantesEnCancion = this.tiempoTotalServer - this.transcurrido;
 
-			// console.log(segundosFaltantesEnCancion);
+
+			var segundosFaltantesEnCancion = this.tiempoTotalServer - this.segunderoTranscurrido;
 
 			if(segundosFaltantesEnCancion < 0) {
 				segundosFaltantesEnCancion = 0;
 			}
 
 			this.$store.dispatch('setSegundosFaltantesEnCancion', segundosFaltantesEnCancion);
+			// return this.getTiempoFormateado(parseInt(this.restante));
 			return this.getTiempoFormateado(parseInt(segundosFaltantesEnCancion));
 		},
 		getPorcentaje() {

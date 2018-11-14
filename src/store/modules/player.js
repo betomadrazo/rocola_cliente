@@ -14,12 +14,12 @@ const state = {
 	mySongIsPlaying: false,
 	currentPlayingDispositivoId: null,
 
+
 	// tíos extraños
 	total: 0,
 	transcurrido: 0,
 	restante: 0,
 	intervaloSegundos: null,
-
 };
 
 
@@ -113,80 +113,42 @@ const actions = {
 
 	songStatus({commit, dispatch, getters, rootGetters}) {
 
-		dispatch('getPlayerVars');
-			
-
-		// this.total = getTiempoFormateado(this.tiempoTotalServer);
-		commit('setTotal', getTiempoFormateado(state.tiempoTotalServer));
-
-		// this.transcurrido = this.tiempoTranscurridoServer;
-		commit('setTranscurrido', state.tiempoTranscurridoServer);
-
-		// this.restante = parseInt(this.total) - parseInt(this.tiempoTranscurridoServer);
-		commit('setRestante', parseInt(state.total) - parseInt(state.tiempoTranscurridoServer));
-
-	
-		var currentTotal = state.tiempoTotalServer;
 		var currentTranscurrido = state.tiempoTranscurridoServer;
+		console.log("inicia transcurrido", currentTranscurrido);
 
+		setInterval(() => {
+			currentTranscurrido = state.tiempoTranscurridoServer;
 
-		// clearInterval(this.intervaloSegundos);
-		clearInterval(this.intervaloSegundos);
-
-
-		// this.transcurrido += 1;
-		commit('setTranscurrido', state.transcurrido + 1);
-
-		// this.restante -= 1;
-		commit('setRestante', state.restante - 1);
-
-		currentTranscurrido += 1;
-	
-		if((currentTotal - currentTranscurrido) < 1) {
 			dispatch('getPlayerVars');
-		}
+				
+			console.log(">>> ", state.tiempoTranscurridoServer);
 
-
-
-		var self = this;
-		// this.intervaloSegundos = setInterval(function() {
-
-		// 	self.transcurrido += 1;
-		// 	self.restante -= 1;
-
-		// 	currentTranscurrido += 1;
+			commit('setTotal', getTiempoFormateado(state.tiempoTotalServer));
 	
-		// 	if((currentTotal - currentTranscurrido) < 1) {
-		// 		clearInterval(this.intervaloSegundos);
-		// 		dispatch('getPlayerVars');
-		// 	}
-		// }, 1000);
 
-
-		commit('setIntervaloSegundos', setInterval(function() {
-
-			commit('setTranscurrido', state.transcurrido + 1);
-			commit('setRestante', state.restante - 1);
-
-			currentTranscurrido += 1;
+			commit('setTranscurrido', state.tiempoTranscurridoServer);
 	
+
+			commit('setRestante', parseInt(state.total) - parseInt(state.tiempoTranscurridoServer));
+	
+		
+			var currentTotal = state.tiempoTotalServer;
+
+			clearInterval(this.intervaloSegundos);
+
+			this.transcurrido += 1;
+		
 			if((currentTotal - currentTranscurrido) < 1) {
-				clearInterval(state.intervaloSegundos);
 				dispatch('getPlayerVars');
 			}
-		}, 1000));
 
+			console.log(currentTranscurrido);
 
+			currentTranscurrido += 1;
 
+		}, 1000);
 
-
-
-
-	},
-
-
-
-
+	}, // fin songStatus
 
 
 
@@ -268,9 +230,10 @@ function getTiempoFormateado(segundos) {
 
 
 // var moco = setInterval(this.songStatus, 3000);
-var moco = setInterval(() => {
-	store.commit('songStatus');
-}, 5000);
+// var moco = setInterval(() => {
+// 	console.log("fefefefe", rootState);
+// 	actions.songStatus();
+// }, 5000);
 
 
 
