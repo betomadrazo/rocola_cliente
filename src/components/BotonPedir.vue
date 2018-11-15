@@ -102,6 +102,7 @@ export default {
 	display:table !important;
 }
 
+
 .boton-pedir {
     border-radius: 16px;
     color: #fff;
@@ -112,7 +113,7 @@ export default {
 
 .boton-grande {
     background-color: $boton;
-    width: 30rem;
+    width: 90%;
     height: 5rem;
     font-size: 3rem;
     line-height: 5rem;

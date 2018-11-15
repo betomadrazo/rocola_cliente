@@ -62,6 +62,7 @@ export default {
 	min-height: 30rem;
 	font-family:  'Knockout Feather', sans-serif;
 	font-size: 1.6rem;
+	position: relative;
 }
 
 ul {
@@ -78,14 +79,17 @@ ul {
 }
 
 .contenedor-megaboton {
-    position: absolute;
+    position: fixed;
     left: 0;
     margin: auto;
+    padding-bottom: 2rem;
     width: 100%;
     bottom: 0;
-    margin-bottom: 3rem;
+    z-index: 500;
     text-align: center;
-    min-height: 7rem;
+    height: 8rem;
+    padding-top: 2rem;
+    background-color: #52a37a;
 }
 
 .lacola {

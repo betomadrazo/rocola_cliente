@@ -10,9 +10,9 @@
 			</div>
 			<div class="info">
 				<h4>Ahora se escucha</h4>
-				<h2>
-					<span>{{ artistaAhoraServer }}</span> - <span>{{ cancionAhoraServer }}</span>
-				</h2>
+				<div class="artsy">
+					<p>{{ artistaAhoraServer }}</p> - <p>{{ cancionAhoraServer }}</p>
+				</div>
 				<div>
 					<!-- <span class="tiempo-total"><span>{{ printTranscurrido }}</span><span class="play"></span></span> -->
 					<!-- <span class="tiempo-total"><span>{{ segunderoTranscurridoForma() }} {{ printTranscurrido }}</span><span class="play"></span></span> -->
@@ -171,15 +171,18 @@ h4, h3, h2 {
 	font-size: 2rem;
 }
 
-h2 span {
-	max-width: 14rem;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	display: inline-block;
-	vertical-align: middle;
-	text-transform: uppercase;
-	font-size:3rem;
+.artsy {
+	& p {
+		max-width: 14rem;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		display: inline-block;
+		vertical-align: middle;
+		text-transform: uppercase;
+		font-size:3rem;
+		margin:0;
+	}
 }
 
 .clearfix::after {

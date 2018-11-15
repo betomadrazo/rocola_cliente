@@ -39,6 +39,7 @@ export default {
 	text-align: center;
 	display: inline-block;
 	cursor: pointer;
+	vertical-align: top;
 }
 
 .wrapper-imagen {
@@ -65,6 +66,7 @@ p {
 	color: #eee;
 	overflow: hidden;
 	text-overflow: ellipsis;
+	white-space: nowrap;
 	font-size: 1.2rem;
 	white-space: pre-wrap;
 	height: 4rem;
