@@ -33,7 +33,7 @@ export default {
 .contenedor-thumb {	
 	margin-top: 0.4rem;
 	margin-bottom: 0.4rem;
-	margin:1rem;
+	margin:0.8rem;
 	width:9rem;
 	height:11rem;
 	text-align: center;

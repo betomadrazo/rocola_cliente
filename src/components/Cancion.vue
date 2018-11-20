@@ -16,10 +16,6 @@ import { mapGetters } from 'vuex';
 export default {
 	name: 'Cancion',
 	props: ['id_cancion', 'artista_album', 'cancion', 'album', 'duracion', 'index', 'isCola'],
-	created() {
-		// console.log("canción pedida ", this.cancionPedida, "id canción ", this.cancion.id_cancion);
-
-	},
 	methods: {
 		setCancion(){
 			console.log(this.id_cancion);
@@ -46,10 +42,10 @@ export default {
 @import '../sass/estilo';	
 	
 .contenedor-cancion {
-	padding-left:2rem;
-	padding-right:2rem;
-	height: 4rem;
-	line-height: 4rem;
+	padding-left:1.5rem;
+	padding-right:1.5rem;
+	height: 3rem;
+	line-height: 3rem;
 	font-family: $knockout;
 }
 
@@ -62,9 +58,7 @@ export default {
 	text-align: left;
 	margin-right:5px;
 	vertical-align: middle;
-
     background-image: url(../assets/static/img/CANCION.png);
-
     background-size: 0.8rem;
     background-repeat: no-repeat;
     width: 1rem;
@@ -80,9 +74,7 @@ export default {
 .tu_cancion .flechita {
 	color:  #42A382;
 	font-weight: bolder;
-
     background-image: url(../assets/static/img/CANCION_PEDIDA.png) !important;
-
 }
 
 span {
@@ -90,7 +82,7 @@ span {
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
-	font-size: 2rem;
+	font-size: 1.6rem;
 }
 
 .titulo {

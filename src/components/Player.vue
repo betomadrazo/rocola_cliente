@@ -168,7 +168,7 @@ export default {
 h4, h3, h2 {
 	margin-top:0;
 	margin-bottom:0;
-	font-size: 2rem;
+	font-size: 1.6rem;
 }
 
 .artsy {
@@ -180,38 +180,59 @@ h4, h3, h2 {
 		display: inline-block;
 		vertical-align: middle;
 		text-transform: uppercase;
-		font-size:3rem;
+		font-size:2rem;
 		margin:0;
 	}
 }
 
-.clearfix::after {
-    content: "";
-    clear: both;
-    display: table;
-}
+// .clearfix::after {
+//     content: "";
+//     clear: both;
+//     display: table;
+// }
 
 .navegador {
 	width:100%;
-	padding-top:1rem
+	padding-top:0.5rem
 }
 
 .loguito {
     float: right;
-    width: 5rem;
-    height: 5rem;
+    width: 3.5rem;
+    height: 3.5rem;
     position: relative;
-    left: -2rem;
+    left: -1rem;
     top: 0px;
     background-image: url(../assets/static/img/loguito.png);
     background-repeat: no-repeat;
     background-position: center;
-    background-size: 75%;
+    background-size: 90%;
     display: inline-block;
+
+	& img {
+		height:2.4rem;
+	}
 }
 
-.loguito img {
-	height:2.4rem;
+
+.atras {
+    text-decoration: none;
+    color: #468460;
+    float: left;
+    border: none !important;
+    background-image: url(../assets/static/img/REGRESAR.png);
+    background-size: 50%;
+    background-repeat: no-repeat;
+    width: 3.5rem;
+    height: 3.5rem;
+    background-position: center;
+    display: inline-blocK;
+
+	&:active {
+		color: #ff8533;
+    	background-image: url(../assets/static/img/REGRESAR_PRESS.png) !important;
+	}
+    
 }
 
 .consola {
@@ -233,9 +254,10 @@ h4, h3, h2 {
 }
 
 .info {
-	padding:1rem;
-	padding-top:0;
-	padding-bottom:1rem;
+	padding: 0 0.5rem 0.5rem 0.5rem;
+	// padding:0.5rem;
+	// padding-top:0;
+	// padding-bottom:0.5rem;
 }
 
 .porcentaje {
@@ -250,17 +272,18 @@ h4, h3, h2 {
 	font-weight: bold;
 	width:18%;
 	display:inline-block;
-	font-size:2rem;
+	font-size:1.4rem;
 }
 
 .tiempo-total {
 	width:22%;
+
+	& span:nth-of-type(1) {
+		width:80%;
+		display: inline-block;
+	}
 }
 
-.tiempo-total span:nth-of-type(1) {
-	width:85%;
-	display: inline-block;
-}
 
 .porcentaje-transcurrido {
 	background-color: $naranja;
@@ -278,35 +301,15 @@ h4, h3, h2 {
 	width:60%;
 }
 
-.atras {
-    text-decoration: none;
-    color: #468460;
-    float: left;
-    border: none !important;
-    background-image: url(../assets/static/img/REGRESAR.png);
-    background-size: 2rem;
-    background-repeat: no-repeat;
-    width: 6rem;
-    height: 5rem;
-    background-position: center;
-    display: inline-blocK;
-
-	&:active {
-		color: #ff8533;
-    	background-image: url(../assets/static/img/REGRESAR_PRESS.png) !important;
-	}
-    
-}
-
 .play {
     background-image: url(../assets/static/img/PLAY.png);
     background-size: 0.5rem;
     background-repeat: no-repeat;
     height: 1rem;
-    background-position: center;
+    background-position: left;
     display: inline-blocK;
     vertical-align: middle;
-	width: 15%;
+	width: 20%;
 	display: inline-block;
 	color: $play;
 	position:relative;

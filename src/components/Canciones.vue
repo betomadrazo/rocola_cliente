@@ -67,9 +67,62 @@ ul {
 	margin:0;
 }
 
+
+
+// .contenedor-foto_artista {
+// 	font-family: $knockout;
+// 	position:relative;
+// 	overflow: hidden;
+// 	// width: 20rem;
+// 	// height:24rem;
+// 	width: 80%;
+// 	height:24rem;	
+// 	margin:auto;
+// 	background-color: $boton;
+// 	border-radius: 1rem;
+// 	top: -1.5rem;
+
+// 	border:1px solid red;
+// }
+
+// .clipper-imagen {
+// 	// width: 20rem;
+// 	// height: 20rem;
+// 	width: 80%;
+// 	height: 80%;
+// 	overflow: hidden;
+// 	position: relative;
+
+// 	border: 1px solid green;
+
+// 	& img {
+// 		height: auto;
+// 		min-width: 100%;
+// 		// max-width: 35rem;
+// 		display: block;
+// 		position: absolute;
+// 	}
+// }
+
+
+
+.contenedor-foto_artista {
+	font-family: $knockout;
+	position:relative;
+	overflow: hidden;
+
+	width: 75%;
+	height:16rem;	
+	margin:auto;
+	background-color: $boton;
+	border-radius: 1rem;
+	top: -1.5rem;
+}
+
 .clipper-imagen {
-	width: 20rem;
-	height: 19rem;
+
+	width: 100%;
+	height: 12rem;
 	overflow: hidden;
 	position: relative;
 
@@ -82,18 +135,6 @@ ul {
 	}
 }
 
-.contenedor-foto_artista {
-	font-family: $knockout;
-	position:relative;
-	height:24rem;
-	overflow: hidden;
-	width: 20rem;
-	margin:auto;
-	background-color: $boton;
-	border-radius: 1rem;
-	top: -1.5rem;
-}
-
 .contenedor-foto_artista h2 {
 	margin-top:1rem;
 	margin-bottom: 1rem;
@@ -101,7 +142,7 @@ ul {
 	text-transform: uppercase;
 	text-overflow: ellipsis;
 	overflow:hidden;
-	font-size: 1.8rem;
+	font-size: 1.5rem;
 	margin:0;
 	margin-top:0.5rem;
 	display:table-cell;
@@ -118,7 +159,7 @@ ul {
 
 
 .nomi {
-	height:5rem;
+	height:4rem;
 	display:table;
 	width:100%;
 }
@@ -199,6 +240,10 @@ ul {
 		float:right;
 		min-height: 25rem;
 	}
+}
+
+@media only screen and (max-width: 460px) {
+
 }
 
 

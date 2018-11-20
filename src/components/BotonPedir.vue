@@ -15,7 +15,7 @@
 		<div v-if="cancionPedida || !puedePedir">
 			<h4>{{ getMsgCanciones }}</h4>
 		</div>
-		<button :class="botonDesactivado" @click="podraPedir" class="boton-pedir boton-grande">agrega una canci&oacute;n</button>
+		<button :class="botonDesactivado" @click="podraPedir" class="boton-pedir boton-grande">ver cat&aacute;logo</button>
 	</div>
 
 </template>
@@ -148,10 +148,25 @@ export default {
 	vertical-align: middle;
 }
 
+// .alerta-cancion_pedida {
+// 	font-family: $knockout;
+// 	background-color: $naranja;
+// 	width:28rem;
+// 	height:8rem;
+//     text-align: center;
+// 	border-radius: 1rem;
+// 	padding:1rem;
+//     margin: auto;
+//     color: $blanco;
+//     font-weight: bold;
+//     display: table;
+//     text-transform: uppercase;
+// }
+
 .alerta-cancion_pedida {
 	font-family: $knockout;
 	background-color: $naranja;
-	width:28rem;
+	width: 80%;
 	height:8rem;
     text-align: center;
 	border-radius: 1rem;

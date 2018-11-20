@@ -5,7 +5,7 @@
 				<div class="contenedor-imagen">
 					<img :src="getFotoPath" alt="">
 				</div>
-				<div class="info">
+				<div class="info clearfix">
 					<h3>{{ artista.nombre_artista }}</h3>
 					<h1>{{ cancion.titulo_cancion }}</h1>
 					<p>{{ cancion.duracion }}</p>
@@ -70,9 +70,9 @@ export default {
 
 .contenedor-detail {
 	font-family: $knockout;
-	width: 75%;
+	width: 80%;
     background-color: $boton;
-    height: 75%;
+    // height: 75%;
     text-align: center;
     margin: auto;
     border-radius: 15px;
@@ -84,12 +84,11 @@ export default {
 	text-transform: uppercase;
 
 	& h1 {
-		font-size: 2rem;
-		font-weight: bold;
+		font-size: 1.8rem;
 	}
 
 	& h3 {
-		font-size: 1.8rem;
+		font-size: 1.5rem;
 	}
 	
 	& h1, & h3 {
@@ -100,10 +99,18 @@ export default {
 	}
 }
 
+// .contenedor-imagen {
+// 	position:relative;
+// 	width: 100%;
+// 	height:70%;
+// 	overflow: hidden;
+// 	border-radius: 15px 15px 0 0;
+// }
+
 .contenedor-imagen {
 	position:relative;
 	width: 100%;
-	height:70%;
+	height:15rem;
 	overflow: hidden;
 	border-radius: 15px 15px 0 0;
 }
@@ -119,28 +126,46 @@ img {
 
 p:nth-of-type(1) {
 	font-size: 2rem;
-    margin-top: 0.5rem;
+    margin-top: 0;
     margin-bottom: 0.5rem;
 }
 
+// button {
+//     width: 11rem;
+//     border-radius: 2rem;
+//     background-color: $boton_agregar;
+//     color: $blanco;
+//     font-size: 1.6rem;
+//     text-align: center;
+//     font-weight: bold;
+//     border: none;
+//     height: 3.2rem;
+//     display: inline-block;
+//     line-height: 3.2rem;
+//     text-transform: uppercase;
+// }
+
 button {
-    width: 11rem;
+    // width: 6rem;
+    width: 45%;
     border-radius: 2rem;
     background-color: $boton_agregar;
     color: $blanco;
-    font-size: 1.6rem;
+    font-size: 1.5rem;
     text-align: center;
     font-weight: bold;
     border: none;
-    height: 3.2rem;
+    height: 2.5rem;
     display: inline-block;
-    line-height: 3.2rem;
+    line-height: 2.5rem;
     text-transform: uppercase;
 }
 
 button:first-of-type {
-	margin-right:2rem;
+	float: left;
+	// margin-right:2rem;
     box-shadow: 1px 2px 0 $boton_agregar_sombra;
+    width:50%;
 
 	&:active {
 		background-color: 1px 2px 0 $boton_agregar_sombra;
@@ -148,6 +173,8 @@ button:first-of-type {
 }
 
 button:last-of-type {
+	width:40%;
+	float: right;
 	background-color: $boton_gris;
 	text-transform: capitalize;
 	box-shadow: 1px 2px 0 $boton_gris_sombra;
