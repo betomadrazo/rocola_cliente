@@ -32,8 +32,8 @@ export default {
 <style scoped>
 
 .contenedor {
-	min-width:30rem;
-	max-width: 102.4rem;
+	/* min-width:30rem; */
+	/* max-width: 102.4rem; */
 	margin:auto;
 	margin-top:19rem;
 	font-family: sans-serif;

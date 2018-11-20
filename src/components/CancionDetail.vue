@@ -70,9 +70,9 @@ export default {
 
 .contenedor-detail {
 	font-family: $knockout;
-    width: 30rem;
+	width: 75%;
     background-color: $boton;
-    height: 36rem;
+    height: 75%;
     text-align: center;
     margin: auto;
     border-radius: 15px;
@@ -102,15 +102,18 @@ export default {
 
 .contenedor-imagen {
 	position:relative;
-	width: 30rem;
-	height:23.2rem;
+	width: 100%;
+	height:70%;
 	overflow: hidden;
 	border-radius: 15px 15px 0 0;
 }
 
 img {
-	min-width:100%;
+	width:100%;
 	position:absolute;
+	// left: 50%;
+	// -webkit-transform: translateX(-50%);
+	// transform: translateX(-50%);
 	display: block;
 }
 

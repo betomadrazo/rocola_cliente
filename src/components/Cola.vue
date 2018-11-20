@@ -87,7 +87,7 @@ ul {
     bottom: 0;
     z-index: 500;
     text-align: center;
-    height: 8rem;
+    height: 5.5rem;
     padding-top: 2rem;
     background-color: #52a37a;
 }

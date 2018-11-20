@@ -114,9 +114,9 @@ export default {
 .boton-grande {
     background-color: $boton;
     width: 90%;
-    height: 5rem;
-    font-size: 3rem;
-    line-height: 5rem;
+    height: 4rem;
+    font-size: 2.5rem;
+    line-height: 4rem;
     box-shadow: 0.2rem 0.4rem 0 $boton_sombra;
 	margin: auto;
 	display: block;

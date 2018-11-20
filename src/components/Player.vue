@@ -173,7 +173,7 @@ h4, h3, h2 {
 
 .artsy {
 	& p {
-		max-width: 14rem;
+		max-width: 40%;
 		overflow: hidden;
 		text-overflow: ellipsis;
 		white-space: nowrap;
@@ -302,11 +302,11 @@ h4, h3, h2 {
     background-image: url(../assets/static/img/PLAY.png);
     background-size: 0.5rem;
     background-repeat: no-repeat;
-    height: 10px;
+    height: 1rem;
     background-position: center;
     display: inline-blocK;
     vertical-align: middle;
-	width:1rem;
+	width: 15%;
 	display: inline-block;
 	color: $play;
 	position:relative;
