@@ -1,7 +1,13 @@
 <template>
+	
 	<div class="detail-mask">
 		<div class="detail-wrapper">
 			<div class="contenedor-detail">
+				<div class="alerta-cancion_pedida" :class="{modal: modalVisible}">
+					<span>
+						<p>podr&aacute;s agregar otra canci&oacute;n cuando la que elegiste haya finalizado</p>
+					</span>
+				</div>
 				<div class="contenedor-imagen">
 					<img :src="getFotoPath" alt="">
 				</div>
@@ -9,25 +15,45 @@
 					<h3>{{ artista.nombre_artista }}</h3>
 					<h1>{{ cancion.titulo_cancion }}</h1>
 					<p>{{ cancion.duracion }}</p>
-					<button @click="pedirCancion">agregar</button>
+					<button :class="botonDesactivado" @click="pedirCancion">
+						agregar
+					</button>
 					<button  @click="$emit('close')">cancelar</button>
 				</div>
 			</div>
 		</div>
 	</div>
+		
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 import { router } from '../main';
 
 export default { 
 	name: 'CancionDetail',
+	data() {
+		return {
+			modalVisible: false,
+		};
+	},
+	created() {
+		this.$store.dispatch('getPuedePedir');
+		console.log("puede pedir = ", this.puedePedir);
+	},
 	methods: {
+		...mapActions(['getPuedePedir']),
 		pedirCancion() {
+			// si tiene canción pedida
 			if(this.cancionPedida) {
-				;
-			} else {
+				// mostrar el modal durante 3 segundos
+				this.modalVisible = true;
+				window.setTimeout(() => {
+					this.modalVisible = false;
+				}, 3000);
+			} else if(this.puedePedir){
+				this.$router.push('/catalogo');
+
 				this.$store.dispatch('pedirCancion', this.cancion.id_cancion);
 				var self = this;
 				window.setTimeout(function() {
@@ -35,10 +61,41 @@ export default {
 					router.push('/cola');
 				}, 500);
 			}
-		}
+		},
+		// pedirCancion() {
+		// 	if(this.cancionPedida) {
+		// 		;
+		// 	} else {
+		// 		this.$store.dispatch('pedirCancion', this.cancion.id_cancion);
+		// 		var self = this;
+		// 		window.setTimeout(function() {
+		// 			self.$emit('close');
+		// 			router.push('/cola');
+		// 		}, 500);
+		// 	}
+		// }
 	},
 	computed: {
-		...mapGetters(['cancion', 'artista', 'cancionPedida']),
+		...mapGetters([
+			'cancion', 
+			'artista', 
+			'cancionPedida',
+			'puedePedir',
+			'limiteCanciones',
+		]),
+		botonDesactivado: function() {
+			console.log("canción pedida: ", this.cancionPedida, " vs ", "puede pedir: ", this.puedePedir)
+			return {
+				boton_desactivado: this.cancionPedida || !this.puedePedir
+			};	
+		},
+		getMsgCanciones: function() {
+			if(!this.puedePedir) {
+				return `Has alcanzado el límite de ${this.limiteCanciones} canciones al día.`;
+			}
+			
+			return '';
+		},
 		getFotoPath() {
 			var image = require.context('../assets/static/img/');
 
@@ -51,6 +108,45 @@ export default {
 
 <style lang="scss" scoped>
 @import '../sass/estilo';	
+
+.modal {
+	display: table !important;
+}
+
+
+.alerta-cancion_pedida {
+	font-family: $knockout;
+	background-color: $naranja;
+	width: 90%;
+	height:13rem;
+    text-align: center;
+	border-radius: 1rem;
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
+	padding:1rem;
+    margin: auto;
+    color: $blanco;
+    font-weight: bold;
+    text-transform: uppercase;
+    position: absolute;
+    display: none;
+    z-index: 2;
+}
+
+.alerta-cancion_pedida span {
+	height:8rem;
+	display: table-cell;
+	vertical-align: middle;
+}
+
+
+
+.boton_desactivado {
+    background-color: $boton_gris !important;
+    box-shadow: 0.2rem 0.4rem 0 $boton_gris_sombra;
+}
+
+
 
 .detail-mask {
 	position: fixed;
@@ -77,6 +173,7 @@ export default {
     margin: auto;
     border-radius: 15px;
     color: $blanco;
+	position: relative;
 }
 
 .info {

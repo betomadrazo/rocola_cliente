@@ -121,7 +121,7 @@ const actions = {
 
 			dispatch('getPlayerVars');
 				
-			console.log(">>> ", state.tiempoTranscurridoServer);
+			// console.log(">>> ", state.tiempoTranscurridoServer);
 
 			commit('setTotal', getTiempoFormateado(state.tiempoTotalServer));
 	
@@ -142,7 +142,7 @@ const actions = {
 				dispatch('getPlayerVars');
 			}
 
-			console.log(currentTranscurrido);
+			// console.log(currentTranscurrido);
 
 			currentTranscurrido += 1;
 

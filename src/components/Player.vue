@@ -79,7 +79,7 @@ export default {
 
 		segunderoTranscurridoForma() {
 
-			console.log("%%%%%% ", this.tiempoTotalServer, this.segunderoTranscurrido);			
+			// console.log("%%%%%% ", this.tiempoTotalServer, this.segunderoTranscurrido);			
 
 			var segs = this.segunderoTranscurrido;
 
@@ -137,12 +137,10 @@ export default {
 
 
 		printTranscurrido() {
-			console.log("%%%%%% ", this.tiempoTotalServer, this.transcurrido);
+			// console.log("%%%%%% ", this.tiempoTotalServer, this.transcurrido);
 			return this.getTiempoFormateado(parseInt(this.transcurrido));
 		},
 		printFaltante() {
-
-
 			var segundosFaltantesEnCancion = this.tiempoTotalServer - this.segunderoTranscurrido;
 
 			if(segundosFaltantesEnCancion < 0) {

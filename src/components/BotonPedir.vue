@@ -1,5 +1,4 @@
 <template>
-
 	<div class="contenedor-pedir">
 
 		<div class="detail-mask" :class="{modal: modalVisible}">
@@ -15,7 +14,8 @@
 		<div v-if="cancionPedida || !puedePedir">
 			<h4>{{ getMsgCanciones }}</h4>
 		</div>
-		<button :class="botonDesactivado" @click="podraPedir" class="boton-pedir boton-grande">ver cat&aacute;logo</button>
+		<!-- <button :class="botonDesactivado" @click="podraPedir" class="boton-pedir boton-grande">ver cat&aacute;logo</button> -->
+		<button @click="podraPedir" class="boton-pedir boton-grande">ver cat&aacute;logo</button>
 	</div>
 
 </template>
@@ -39,16 +39,19 @@ export default {
 		...mapActions(['getPuedePedir']),
 		// al dar click al botón
 		podraPedir() {
+			console.log("MIERDA!!!!");
+			this.$router.push('/catalogo');
+
 			// si tiene canción pedida
-			if(this.cancionPedida) {
-				// mostrar el modal durante 3 segundos
-				this.modalVisible = true;
-				window.setTimeout(() => {
-					this.modalVisible = false;
-				}, 3000);
-			} else if(this.puedePedir){
-				this.$router.push('/catalogo');
-			}
+			// if(this.cancionPedida) {
+			// 	// mostrar el modal durante 3 segundos
+			// 	this.modalVisible = true;
+			// 	window.setTimeout(() => {
+			// 		this.modalVisible = false;
+			// 	}, 3000);
+			// } else if(this.puedePedir){
+			// 	this.$router.push('/catalogo');
+			// }
 		},
 		// cambia de número de segundos a minutos:segundos
 		getTiempoFormateado(segundos) {
@@ -99,7 +102,7 @@ export default {
 @import '../sass/estilo';
 
 .modal {
-	display:table !important;
+	display: table !important;
 }
 
 
@@ -189,6 +192,7 @@ h4 {
     margin-bottom: 0.5rem;
     width: 30rem;
     font-family: $knockout;
+    width: 100%;
 }
 
 </style>
