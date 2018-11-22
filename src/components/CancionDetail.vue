@@ -13,7 +13,7 @@
 				</div>
 				<div class="info clearfix">
 					<h3>{{ artista.nombre_artista }}</h3>
-					<h1>{{ cancion.titulo_cancion }}</h1>
+					<h1 class="titi">{{ cancion.titulo_cancion }}</h1>
 					<p>{{ cancion.duracion }}</p>
 					<button :class="botonDesactivado" @click="pedirCancion">
 						agregar
@@ -117,7 +117,6 @@ export default {
 .alerta-cancion_pedida {
 	font-family: $knockout;
 	background-color: $naranja;
-	width: 90%;
 	height:13rem;
     text-align: center;
 	border-radius: 1rem;
@@ -131,13 +130,14 @@ export default {
     position: absolute;
     display: none;
     z-index: 2;
+
+	& span {
+		height:8rem;
+		display: table-cell;
+		vertical-align: middle;
+	}
 }
 
-.alerta-cancion_pedida span {
-	height:8rem;
-	display: table-cell;
-	vertical-align: middle;
-}
 
 
 
@@ -188,12 +188,21 @@ export default {
 		font-size: 1.5rem;
 	}
 	
-	& h1, & h3 {
+	& h3 {
 		overflow: hidden;
 		text-overflow: ellipsis;
 		white-space: nowrap;
 	    margin: 0 auto;
 	}
+}
+
+.titi {
+	// border: 1px solid red;
+	// width:100%;
+		// overflow: hidden;
+		// text-overflow: ellipsis;
+		// white-space: nowrap;
+	    margin: 0 auto;
 }
 
 // .contenedor-imagen {

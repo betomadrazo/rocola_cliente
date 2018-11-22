@@ -14,8 +14,6 @@
 					<p>{{ artistaAhoraServer }}</p> - <p>{{ cancionAhoraServer }}</p>
 				</div>
 				<div>
-					<!-- <span class="tiempo-total"><span>{{ printTranscurrido }}</span><span class="play"></span></span> -->
-					<!-- <span class="tiempo-total"><span>{{ segunderoTranscurridoForma() }} {{ printTranscurrido }}</span><span class="play"></span></span> -->
 					<span class="tiempo-total"><span>{{ segunderoTranscurridoForma() }}</span><span class="play"></span></span>
 					<span class="porcentaje">
 						<span class="porcentaje-transcurrido" :style="getPorcentaje"></span>
@@ -191,13 +189,13 @@ h4, h3, h2 {
 
 .navegador {
 	width:100%;
-	padding-top:0.5rem
+	padding-top:1rem;
 }
 
 .loguito {
     float: right;
-    width: 3.5rem;
-    height: 3.5rem;
+    width: 3rem;
+    height: 3rem;
     position: relative;
     left: -1rem;
     top: 0px;
@@ -221,8 +219,8 @@ h4, h3, h2 {
     background-image: url(../assets/static/img/REGRESAR.png);
     background-size: 50%;
     background-repeat: no-repeat;
-    width: 3.5rem;
-    height: 3.5rem;
+    width: 3rem;
+    height: 3rem;
     background-position: center;
     display: inline-blocK;
 

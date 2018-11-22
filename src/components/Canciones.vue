@@ -112,7 +112,7 @@ ul {
 	overflow: hidden;
 
 	width: 75%;
-	height:16rem;	
+	height:17rem;	
 	margin:auto;
 	background-color: $boton;
 	border-radius: 1rem;
@@ -122,13 +122,13 @@ ul {
 .clipper-imagen {
 
 	width: 100%;
-	height: 12rem;
+	height: 13rem;
 	overflow: hidden;
 	position: relative;
 
 	& img {
 		height: auto;
-		min-width: 100%;
+		width: 100%;
 		// max-width: 35rem;
 		display: block;
 		position: absolute;

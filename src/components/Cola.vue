@@ -59,7 +59,7 @@ export default {
 <style scoped>
 
 .contenedor-cola {
-	min-height: 20rem;
+	/* min-height: 12rem; */
 	font-family:  'Knockout Feather', sans-serif;
 	font-size: 1.6rem;
 	position: relative;
@@ -74,7 +74,7 @@ ul {
 	margin: 0;
 	font-size: 1.8rem;
 	font-weight: 400;
-	margin-top: 24rem;
+	margin-top: 15rem;
 	text-align: center;
 }
 

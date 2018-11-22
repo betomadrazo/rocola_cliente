@@ -35,7 +35,7 @@ export default {
 	/* min-width:30rem; */
 	/* max-width: 102.4rem; */
 	margin:auto;
-	margin-top:13.3rem;
+	margin-top:12.5rem;
 	font-family: sans-serif;
 	color: #fff;
 }
