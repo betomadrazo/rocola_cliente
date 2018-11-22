@@ -194,7 +194,7 @@ ul {
 	text-align: center;
 }
 
-@media(min-width: 1024px) {
+@media screen and(min-width: 767px), screen and (orientation:landscape) {
 
 	.contendor-song_detail {
 		padding: {

@@ -323,7 +323,7 @@ h4, h3, h2 {
 	margin: auto;
 }
 
-@media(min-width: 1024px) {
+@media screen and (min-width: 1024px) {
 	h2 span {
 		max-width: 50rem;
 		overflow: hidden;
@@ -335,6 +335,12 @@ h4, h3, h2 {
 		font-size:3rem;
 	}
 
+}
+
+@media screen and (orientation: landscape) {
+	.info h4 {
+		display: none;
+	}
 }
 
 </style>

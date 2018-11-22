@@ -17,7 +17,7 @@ export default {
 	},
 	created() {
 		var self = this;
-		let proxeneta = new Promise(function(resolve, reject) {
+		let prom = new Promise(function(resolve, reject) {
 			self.$store.dispatch('getArtistas');
 		});
 
@@ -38,6 +38,18 @@ export default {
 	margin-top:12.5rem;
 	font-family: sans-serif;
 	color: #fff;
+}
+
+@media screen and (orientation: landscape) {
+	.contenedor {
+		margin-top:10rem;
+	}
+}
+
+@media screen and (max-width: 767px) and (orientation: landscape), screen and (max-height: 767px) {
+	.contenedor {
+		margin-top:11rem;
+	}
 }
 
 </style>

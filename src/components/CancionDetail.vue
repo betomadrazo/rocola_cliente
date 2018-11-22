@@ -290,6 +290,18 @@ button:last-of-type {
 	}
 }
 
+@media screen and (max-width: 767px) and (orientation: landscape), screen and (max-height: 767px) {
+	.contenedor-imagen {
+		display: none;
+	}
+}
+
+@media screen and (min-width: 1024px), screen and (min-height: 767px) {
+	.contenedor-detail {
+		width: 50%;
+	}
+}
+
 
 
 </style>

@@ -71,7 +71,6 @@ export default {
 			'limiteCanciones',
 		]),
 		botonDesactivado: function() {
-			console.log("canción pedida: ", this.cancionPedida, " vs ", "puede pedir: ", this.puedePedir)
 			return {
 				boton_desactivado: this.cancionPedida || !this.puedePedir
 			};	
@@ -81,7 +80,8 @@ export default {
 		},
 		getMsgCanciones: function() {
 			if(this.cancionPedida && !this.mySongIsPlaying) {
-				return `Tu canción sonará en ${this.countDownCancion} minutos.`;
+				let tiempoFaltante = ((this.segundosFaltantesEnCola + this.segundosFaltantesEnCancion) >= 60) ? 'minutos' : 'segundos';
+				return `Tu canción sonará en ${this.countDownCancion} ${tiempoFaltante}.`;
 			} else if(this.cancionPedida && this.mySongIsPlaying) {
 				return "tu canción está sonando!";
 			}

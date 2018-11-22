@@ -12,7 +12,9 @@
 				</div>
 				
 			</div>
-			<h2 class="mensaje-no_canciones" v-else>No hay canciones en cola, escoge una canci&oacute;n.</h2>
+			<div v-else>
+				<h2 class="mensaje-no_canciones" v-if="!mySongIsPlaying">No hay canciones en cola, escoge una canci&oacute;n.</h2>
+			</div>
 			<div class="contenedor-megaboton">
 				<BotonPedir></BotonPedir>
 			</div>
@@ -45,7 +47,7 @@ export default {
 		}
 	},
 	computed: {
-		...mapGetters(['cancionesEnCola', 'deviceId']),
+		...mapGetters(['cancionesEnCola', 'deviceId', 'mySongIsPlaying']),
 	},
 	created() {
 	},
@@ -97,6 +99,18 @@ ul {
 	max-height:30rem; 
 	margin-bottom:4rem; 
 	overflow-y:scroll;
+}
+
+@media screen and (max-width: 767px) and (orientation: landscape), screen and (max-height: 767px) {
+	.contenedor-megaboton {
+		padding: 0.5rem 0 1rem 0;
+	}
+}
+
+@media screen and (orientation: landscape) {
+	.mensaje-no_canciones {
+		margin-top:12rem;
+	}
 }
 
 </style>

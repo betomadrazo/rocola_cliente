@@ -21,7 +21,10 @@ export const router = new VueRouter({
 		{path:'/cola', 			component: Cola},
 		{path:'/catalogo',  component: CatalogoArtistas},
 		{path:'/canciones', component: Canciones},
-	]
+	],
+	scrollBehavior(to, from, savedPosition) {
+		return {x: 0, y: 0};
+	}
 });
 
 // router.replace('/');
