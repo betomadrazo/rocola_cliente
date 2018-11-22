@@ -134,9 +134,11 @@ const actions = {
 	},
 
 	pedirCancion({ commit, dispatch }, idCancion) {
-		// var fecha = Date.now();
-		var fecha = new Date().toISOString().slice(0, 19).replace('T', ' ');
+		var offset = (new Date()).getTimezoneOffset() * 60000;
+		var fecha = new Date(Date.now() - offset).toISOString().slice(0, 19).replace('T', ' ');
+
 		console.log("++ FECHA ++", fecha);
+		
 		$.ajax({
 			url: BASE_URL,
 			type: 'POST',
