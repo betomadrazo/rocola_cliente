@@ -17,6 +17,7 @@ export default {
 	},
 	created() {
 		var self = this;
+		self.$store.dispatch('getCancionPedida');
 		let prom = new Promise(function(resolve, reject) {
 			self.$store.dispatch('getArtistas');
 		});
@@ -24,7 +25,7 @@ export default {
 		// window.onbeforeunload = function() { return "¿Deseas salir de la rocola?"; };
 
 	},
-	methods: mapActions(['getArtistas']),
+	methods: mapActions(['getArtistas', 'getCancionPedida']),
 };
 
 </script>
@@ -35,7 +36,7 @@ export default {
 	/* min-width:30rem; */
 	/* max-width: 102.4rem; */
 	margin:auto;
-	margin-top:12rem;
+	margin-top:12.5rem;
 	font-family: sans-serif;
 	color: #fff;
 }

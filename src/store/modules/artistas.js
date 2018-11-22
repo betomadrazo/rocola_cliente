@@ -23,6 +23,8 @@ const state = {
 	limiteCanciones: 5,
 
 	deviceId: null,
+
+	msgForbidden: '',
 };
 
 // Estos dan la información del state
@@ -44,6 +46,8 @@ const getters = {
 	puedePedir: state => state.puedePedir,
 
 	limiteCanciones: state => state.limiteCanciones,
+
+	msgForbidden: state => state.msgForbidden,
 };
 
 // Estas realizan funciones y llaman a mutations
@@ -125,11 +129,12 @@ const actions = {
 				dispositivo_id: state.deviceId,
 			}
 		}).then(response => {
-			console.log("##---## ", response.data.puede_pedir);
 			commit('setPuedePedir', response.data.puede_pedir);
-			
-			// if(!response.data.puede_pedir) {
-			// }
+			if(!response.data.puede_pedir) {
+				commit('setMsgForbidden', `Has alcanzado el límite de ${state.limiteCanciones} canciones al día, CULERO.`);
+			} else {
+				commit('setMsgForbidden', `podrás agregar otra canción cuando la que elegiste haya finalizado`);
+			}
 		});
 	},
 
@@ -137,8 +142,6 @@ const actions = {
 		var offset = (new Date()).getTimezoneOffset() * 60000;
 		var fecha = new Date(Date.now() - offset).toISOString().slice(0, 19).replace('T', ' ');
 
-		console.log("++ FECHA ++", fecha);
-		
 		$.ajax({
 			url: BASE_URL,
 			type: 'POST',
@@ -152,10 +155,18 @@ const actions = {
 				added_at: fecha
 			},
 			success: function(response) {
+					commit('setMsgForbidden', `podrás agregar otra canción cuando la que elegiste haya finalizado`);
 				if(response.puede_pedir) {
 					commit('setCancionPedida', idCancion);
 					commit('setHoraCancionPedida', fecha);
 					dispatch('getCancionesEnCola');
+
+					// borra todo lo que tenga que ver con el artista
+					commit('setCanciones', null);
+					commit('setArtista', null);
+				} else {
+					console.log("   CACA DE MONO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+					// commit('setMsgForbidden', `Has alcanzado el límite de ${state.limiteCanciones} canciones al día.`);
 				}
 			},
 			error: function(response, err) {
@@ -184,20 +195,20 @@ const actions = {
 				dispositivo_id: state.deviceId,
 			}
 		}).then(response => {
-			console.log("CANCION PARA MI SOL: ", response.data);
-			console.log("$", rootState);
-
 			if(response.data.cancion_pedida) {
-			console.log("/////////////// ", response.data);
-				console.log(`----------canción pedida: ${response.data.cancion_pedida}, hora de pedido: ${response.data.added_at}`);
 				commit('setCancionPedida', response.data.cancion_pedida);
 				commit('setHoraCancionPedida', response.data.added_at);
+				commit('setMsgForbidden', `podrás agregar otra canción cuando la que elegiste haya finalizado`);
 
 				if(parseInt(rootState.idCancionAhora) === response.data.cancionPedida) {
 					commit('setMySongIsPlaying', true, {root: true});
 				}
 			}
 		});
+	},
+
+	getMsgForbidden({ commit }, msg) {
+		commit('setMsgForbidden', msg);
 	}
 };
 
@@ -246,6 +257,10 @@ const mutations = {
 
 	setPuedePedir(state, value) {
 		state.puedePedir = value;
+	},
+
+	setMsgForbidden(state, msg) {
+		state.msgForbidden = msg;
 	}
 }
 

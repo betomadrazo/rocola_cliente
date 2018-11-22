@@ -39,7 +39,6 @@ export default {
 		...mapActions(['getPuedePedir']),
 		// al dar click al botón
 		podraPedir() {
-			console.log("MIERDA!!!!");
 			this.$router.push('/catalogo');
 
 			// si tiene canción pedida

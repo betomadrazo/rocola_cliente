@@ -42,8 +42,8 @@ export default {
 @import '../sass/estilo';	
 	
 .contenedor-cancion {
-	padding-left:1.5rem;
-	padding-right:1.5rem;
+	padding-left:1rem;
+	padding-right:1rem;
 	height: 3rem;
 	line-height: 3rem;
 	font-family: $knockout;
@@ -82,18 +82,18 @@ span {
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
-	font-size: 1.6rem;
+	font-size: 1.4rem;
 }
 
 .titulo {
-	width: 48%;
+	width: 47%;
 }
 
 .album-o-artista {
-	width: 42%;
+	width: 40%;
 }
 .duracion {
-	width: 10%;
+	width: 13%;
 	text-align: center;
 }
 

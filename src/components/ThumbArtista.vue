@@ -52,8 +52,9 @@ export default {
 }
 
 img {
-	max-width:17rem;
-	max-height: 10rem;
+	// max-width:17rem;
+	// max-height: 10rem;
+	max-height: 100%;
 	min-height: 6rem;
 	display: inline-block;
 	position:absolute;
@@ -72,5 +73,6 @@ p {
 	height: 4rem;
 	font-family: $knockout;
 }
+
 
 </style>

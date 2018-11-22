@@ -5,7 +5,8 @@
 			<div class="contenedor-detail">
 				<div class="alerta-cancion_pedida" :class="{modal: modalVisible}">
 					<span>
-						<p>podr&aacute;s agregar otra canci&oacute;n cuando la que elegiste haya finalizado</p>
+						<!-- <p>podr&aacute;s agregar otra canci&oacute;n cuando la que elegiste haya finalizado</p> -->
+						<p>{{ msgForbidden }}</p>
 					</span>
 				</div>
 				<div class="contenedor-imagen">
@@ -45,11 +46,12 @@ export default {
 		...mapActions(['getPuedePedir']),
 		pedirCancion() {
 			// si tiene canción pedida
-			if(this.cancionPedida) {
+			if(this.cancionPedida || !this.puedePedir) {
 				// mostrar el modal durante 3 segundos
 				this.modalVisible = true;
 				window.setTimeout(() => {
 					this.modalVisible = false;
+					this.$emit('close');
 				}, 3000);
 			} else if(this.puedePedir){
 				this.$router.push('/catalogo');
@@ -62,18 +64,6 @@ export default {
 				}, 500);
 			}
 		},
-		// pedirCancion() {
-		// 	if(this.cancionPedida) {
-		// 		;
-		// 	} else {
-		// 		this.$store.dispatch('pedirCancion', this.cancion.id_cancion);
-		// 		var self = this;
-		// 		window.setTimeout(function() {
-		// 			self.$emit('close');
-		// 			router.push('/cola');
-		// 		}, 500);
-		// 	}
-		// }
 	},
 	computed: {
 		...mapGetters([
@@ -82,6 +72,7 @@ export default {
 			'cancionPedida',
 			'puedePedir',
 			'limiteCanciones',
+			'msgForbidden',
 		]),
 		botonDesactivado: function() {
 			console.log("canción pedida: ", this.cancionPedida, " vs ", "puede pedir: ", this.puedePedir)
@@ -91,14 +82,13 @@ export default {
 		},
 		getMsgCanciones: function() {
 			if(!this.puedePedir) {
-				return `Has alcanzado el límite de ${this.limiteCanciones} canciones al día.`;
+				return this.msgForbidden;
 			}
 			
 			return '';
 		},
 		getFotoPath() {
 			var image = require.context('../assets/static/img/');
-
 			return (this.cancion.foto_path) ? this.cancion.foto_path : image('./placeholder.png');
 		}
 	}
@@ -113,15 +103,12 @@ export default {
 	display: table !important;
 }
 
-
 .alerta-cancion_pedida {
 	font-family: $knockout;
 	background-color: $naranja;
 	height:13rem;
     text-align: center;
-	border-radius: 1rem;
-	border-bottom-left-radius: 0;
-	border-bottom-right-radius: 0;
+	border-radius: 0;
 	padding:1rem;
     margin: auto;
     color: $blanco;
@@ -138,15 +125,10 @@ export default {
 	}
 }
 
-
-
-
 .boton_desactivado {
     background-color: $boton_gris !important;
     box-shadow: 0.2rem 0.4rem 0 $boton_gris_sombra;
 }
-
-
 
 .detail-mask {
 	position: fixed;
@@ -168,7 +150,6 @@ export default {
 	font-family: $knockout;
 	width: 80%;
     background-color: $boton;
-    // height: 75%;
     text-align: center;
     margin: auto;
     border-radius: 15px;
@@ -197,21 +178,8 @@ export default {
 }
 
 .titi {
-	// border: 1px solid red;
-	// width:100%;
-		// overflow: hidden;
-		// text-overflow: ellipsis;
-		// white-space: nowrap;
-	    margin: 0 auto;
+	margin: 0 auto;
 }
-
-// .contenedor-imagen {
-// 	position:relative;
-// 	width: 100%;
-// 	height:70%;
-// 	overflow: hidden;
-// 	border-radius: 15px 15px 0 0;
-// }
 
 .contenedor-imagen {
 	position:relative;
@@ -224,9 +192,6 @@ export default {
 img {
 	width:100%;
 	position:absolute;
-	// left: 50%;
-	// -webkit-transform: translateX(-50%);
-	// transform: translateX(-50%);
 	display: block;
 }
 
@@ -236,23 +201,7 @@ p:nth-of-type(1) {
     margin-bottom: 0.5rem;
 }
 
-// button {
-//     width: 11rem;
-//     border-radius: 2rem;
-//     background-color: $boton_agregar;
-//     color: $blanco;
-//     font-size: 1.6rem;
-//     text-align: center;
-//     font-weight: bold;
-//     border: none;
-//     height: 3.2rem;
-//     display: inline-block;
-//     line-height: 3.2rem;
-//     text-transform: uppercase;
-// }
-
 button {
-    // width: 6rem;
     width: 45%;
     border-radius: 2rem;
     background-color: $boton_agregar;
@@ -269,7 +218,6 @@ button {
 
 button:first-of-type {
 	float: left;
-	// margin-right:2rem;
     box-shadow: 1px 2px 0 $boton_agregar_sombra;
     width:50%;
 
@@ -290,7 +238,13 @@ button:last-of-type {
 	}
 }
 
-@media screen and (max-width: 767px) and (orientation: landscape), screen and (max-height: 767px) {
+// @media screen and (max-width: 767px) and (orientation: landscape), screen and (max-height: 767px) {
+// 	.contenedor-imagen {
+// 		display: none;
+// 	}
+// }
+
+@media screen and (max-width: 767px) and (orientation: landscape) {
 	.contenedor-imagen {
 		display: none;
 	}
@@ -301,7 +255,6 @@ button:last-of-type {
 		width: 50%;
 	}
 }
-
 
 
 </style>
