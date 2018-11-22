@@ -67,45 +67,6 @@ ul {
 	margin:0;
 }
 
-
-
-// .contenedor-foto_artista {
-// 	font-family: $knockout;
-// 	position:relative;
-// 	overflow: hidden;
-// 	// width: 20rem;
-// 	// height:24rem;
-// 	width: 80%;
-// 	height:24rem;	
-// 	margin:auto;
-// 	background-color: $boton;
-// 	border-radius: 1rem;
-// 	top: -1.5rem;
-
-// 	border:1px solid red;
-// }
-
-// .clipper-imagen {
-// 	// width: 20rem;
-// 	// height: 20rem;
-// 	width: 80%;
-// 	height: 80%;
-// 	overflow: hidden;
-// 	position: relative;
-
-// 	border: 1px solid green;
-
-// 	& img {
-// 		height: auto;
-// 		min-width: 100%;
-// 		// max-width: 35rem;
-// 		display: block;
-// 		position: absolute;
-// 	}
-// }
-
-
-
 .contenedor-foto_artista {
 	font-family: $knockout;
 	position:relative;
@@ -223,7 +184,7 @@ ul {
 		margin:auto;
 		background-color: $boton;
 		border-radius: 1rem;
-		top: 0;
+		// top: 0;
 		display: inline-block;
 	}
 

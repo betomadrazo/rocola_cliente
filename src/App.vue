@@ -35,21 +35,22 @@ export default {
 	/* min-width:30rem; */
 	/* max-width: 102.4rem; */
 	margin:auto;
-	margin-top:12.5rem;
+	margin-top:12rem;
 	font-family: sans-serif;
 	color: #fff;
 }
 
-@media screen and (orientation: landscape) {
-	.contenedor {
-		margin-top:10rem;
-	}
-}
 
-@media screen and (max-width: 767px) and (orientation: landscape), screen and (max-height: 767px) {
+/* @media screen and (max-width: 767px) and (orientation: landscape), screen and (max-height: 767px) {
 	.contenedor {
 		margin-top:11rem;
 	}
 }
-
+ */
+/* @media screen and (orientation: landscape) {
+	.contenedor {
+		margin-top:10rem;
+	}
+}
+ */
 </style>

@@ -315,10 +315,9 @@ h4, h3, h2 {
 	background-color: $fondo_app;
 	font-family: $knockout;
 	margin-top: 0;
-	font-size: 2.5rem;
 	width: 100%;
 	padding-top: 0.5rem;
-	font-size: 1.8rem;
+	font-size: 1.4rem;
 	padding-bottom: 0.5rem;
 	margin: auto;
 }
