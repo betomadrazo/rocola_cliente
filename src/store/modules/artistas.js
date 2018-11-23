@@ -131,7 +131,7 @@ const actions = {
 		}).then(response => {
 			commit('setPuedePedir', response.data.puede_pedir);
 			if(!response.data.puede_pedir) {
-				commit('setMsgForbidden', `Has alcanzado el límite de ${state.limiteCanciones} canciones al día, CULERO.`);
+				commit('setMsgForbidden', `Has alcanzado el límite de ${state.limiteCanciones} canciones al día.`);
 			} else {
 				commit('setMsgForbidden', `podrás agregar otra canción cuando la que elegiste haya finalizado`);
 			}
