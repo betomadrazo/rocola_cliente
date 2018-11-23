@@ -71,7 +71,6 @@ ul {
 	font-family: $knockout;
 	position:relative;
 	overflow: hidden;
-
 	width: 75%;
 	height:17rem;	
 	margin:auto;
@@ -81,7 +80,6 @@ ul {
 }
 
 .clipper-imagen {
-
 	width: 100%;
 	height: 13rem;
 	overflow: hidden;
@@ -90,7 +88,6 @@ ul {
 	& img {
 		height: auto;
 		width: 100%;
-		// max-width: 35rem;
 		display: block;
 		position: absolute;
 	}
@@ -177,26 +174,23 @@ ul {
 	}
 
 	.contenedor-foto_artista {
-		// height:24rem;
 		overflow: hidden;
-		// width: 20rem;
 		width: 35%;
 		margin:auto;
 		background-color: $boton;
 		border-radius: 1rem;
-		// top: 0;
+		top: 0;
 		display: inline-block;
 	}
 
 	.contenedor-catalogo_artista {
-		overflow: scroll;
-		overflow-x: hidden;
+		overflow: auto;
+		border:1px solid red;
 		min-height:12rem;
 		max-height:20rem;
 		margin-top:0;
 		display: inline-block;
 		vertical-align: top;
-		// width:45rem;
 		width:64.5%;
 		float:right;
 		min-height: 25rem;

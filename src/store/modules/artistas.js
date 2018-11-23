@@ -164,9 +164,6 @@ const actions = {
 					// borra todo lo que tenga que ver con el artista
 					commit('setCanciones', null);
 					commit('setArtista', null);
-				} else {
-					console.log("   CACA DE MONO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-					// commit('setMsgForbidden', `Has alcanzado el límite de ${state.limiteCanciones} canciones al día.`);
 				}
 			},
 			error: function(response, err) {

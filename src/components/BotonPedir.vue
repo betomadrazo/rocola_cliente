@@ -12,9 +12,8 @@
 		</div>
 
 		<div v-if="cancionPedida || !puedePedir">
-			<h4>{{ getMsgCanciones }}</h4>
+			<h4 class="mensaje-canciones">{{ getMsgCanciones }}</h4>
 		</div>
-		<!-- <button :class="botonDesactivado" @click="podraPedir" class="boton-pedir boton-grande">ver cat&aacute;logo</button> -->
 		<button @click="podraPedir" class="boton-pedir boton-grande">ver cat&aacute;logo</button>
 	</div>
 
@@ -40,19 +39,8 @@ export default {
 		// al dar click al botón
 		podraPedir() {
 			this.$router.push('/catalogo');
-
-			// si tiene canción pedida
-			// if(this.cancionPedida) {
-			// 	// mostrar el modal durante 3 segundos
-			// 	this.modalVisible = true;
-			// 	window.setTimeout(() => {
-			// 		this.modalVisible = false;
-			// 	}, 3000);
-			// } else if(this.puedePedir){
-			// 	this.$router.push('/catalogo');
-			// }
 		},
-		// cambia de número de segundos a minutos:segundos
+		// cambia de número de segundos a mm:ss
 		getTiempoFormateado(segundos) {
 			var tiempo = new Date(null);
 			tiempo.setSeconds(segundos);
@@ -83,9 +71,7 @@ export default {
 				return `Tu canción sonará en ${this.countDownCancion} ${tiempoFaltante}.`;
 			} else if(this.cancionPedida && this.mySongIsPlaying) {
 				return "tu canción está sonando!";
-			}
-
-			if(!this.puedePedir) {
+			} else if(!this.puedePedir) {
 				return `Has alcanzado el límite de ${this.limiteCanciones} canciones al día.`;
 			}
 			
@@ -118,7 +104,7 @@ export default {
     width: 90%;
     height: 4rem;
     font-size: 2.5rem;
-    line-height: 4rem;
+    line-height: 4.3rem;
     box-shadow: 0.2rem 0.4rem 0 $boton_sombra;
 	margin: auto;
 	display: block;
@@ -150,21 +136,6 @@ export default {
 	vertical-align: middle;
 }
 
-// .alerta-cancion_pedida {
-// 	font-family: $knockout;
-// 	background-color: $naranja;
-// 	width:28rem;
-// 	height:8rem;
-//     text-align: center;
-// 	border-radius: 1rem;
-// 	padding:1rem;
-//     margin: auto;
-//     color: $blanco;
-//     font-weight: bold;
-//     display: table;
-//     text-transform: uppercase;
-// }
-
 .alerta-cancion_pedida {
 	font-family: $knockout;
 	background-color: $naranja;
@@ -185,7 +156,7 @@ export default {
 	display: table-cell;
 }
 
-h4 {
+.mensaje-canciones {
 	margin: auto;
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;

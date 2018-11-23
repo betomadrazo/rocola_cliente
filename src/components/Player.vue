@@ -57,7 +57,7 @@ export default {
 		}, 1500);
 	},
 	methods: {
-		...mapActions(['getPlayerVars', 'setSegundosFaltantesEnCancion']),
+		...mapActions(['setSegundosFaltantesEnCancion']),
 
 		cuentaSegsTranscurridos() {
 			var self = this;

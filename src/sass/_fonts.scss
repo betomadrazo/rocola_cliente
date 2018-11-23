@@ -1,11 +1,17 @@
 @font-face {
 	font-family: 'Knockout Junior';
-	src: url("../assets/static/fonts/knockout-htf-29-junior-liteweight-1361516762.ttf") format("truetype");
-	src: url("../assets/static/fonts/Knockout HTF29JuniorLiteweight Regular.otf") format("opentype");
+
+	src: url($font_path + "knockout_junior.woff2") format("woff2");
+	src: url($font_path + "knockout_junior.woff") format("woff");
+	src: url($font_path + "knockout_junior.otf") format("opentype");
+	src: url($font_path + "knockout_junior.ttf") format("truetype");
 }
 
 @font-face {
 	font-family: 'Knockout Feather';
-	src: url("../assets/static/fonts/knockout-htf-48-featherweight-1361516727.ttf") format("truetype");
-	src: url("../assets/static/fonts/Knockout HTF48Featherweight Regular.otf") format("opentype");
+
+	src: url($font_path + "knockout_feather.woff2") format("woff2");
+	src: url($font_path + "knockout_feather.woff") format("woff");
+	src: url($font_path + "knockout_feather.otf") format("opentype");
+	src: url($font_path + "knockout_feather.ttf") format("truetype");
 }

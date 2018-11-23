@@ -25,20 +25,16 @@ export default {
 	},
 	created() {
 
-
-		// var moco = setInterval(() => {
-		// 	// console.log("fefefefe", rootState);
-		// 	// actions.songStatus();
-		// }, 10000);
-
-			this.$store.dispatch('songStatus');
+		this.$store.dispatch('songStatus');
 
 		
 		var self = this;
 		this.$store.dispatch('getCancionesEnCola');
 
 		// pide las variables del player al servidor
-		this.$store.dispatch('getPlayerVars');
+		// this.$store.dispatch('getPlayerVars').then(
+
+		// );
 
 		if(!this.deviceId) {
 			if(window.requestIdleCallback) {
@@ -48,8 +44,6 @@ export default {
 						var murmur = Fingerprint2.x64hash128(values.join(''), 31);
 	
 						console.log(murmur);
-						
-						// self.$store.dispatch('getPlayerVars');
 
 						self.$store.dispatch('setDeviceId', murmur);
 						self.$store.dispatch('getCancionPedida');
@@ -70,12 +64,6 @@ export default {
 			}
 		}
 
-/*
-
-?c3VjdXJzYWxfaWQ9MSZub21icmVfc3VjdXJzYWw9Y29uZGVzYQ==
-
-*/
-
 		var encryptedQueryString = window.location.search.substring(1);
 
 		try {
@@ -92,18 +80,24 @@ export default {
 
 		// const ID_SUCURSAL = parseInt(new URLSearchParams(decrypedQueryString).get('sucursal_id'));
 
-		if(this.ID_SUCURSAL) {
-			window.history.replaceState({}, document.title, "/");
-			var to = setTimeout(function() {
-				router.push('/cola');
-			}, 5000);
+		// Esta no es una solución satisfactoria, hay que explorar los promises y los async await.
+		setTimeout(() => {
+			this.$store.dispatch('getPlayerVars').then(() => {
+				console.log(this.artistaAhoraServer, " <");
+				if(this.ID_SUCURSAL && this.artistaAhoraServer) {
+					window.history.replaceState({}, document.title, "/");
+					router.push('/cola');
+				}
+			});
 		}
+		, 5000);
+
 	},
 	methods: {
 		...mapActions(['getCancionesEnCola', 'getPlayerVars', 'setDeviceId', 'getCancionPedida', 'songStatus']),
 	},
 	computed: {
-		...mapGetters(['deviceId']),
+		...mapGetters(['deviceId', 'artistaAhoraServer']),
 		getTitular() {
 			var image = require.context('../assets/static/img/');
 			console.log(image('./titulo_app.png'));

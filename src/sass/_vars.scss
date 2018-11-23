@@ -19,17 +19,5 @@ $boton_gris_sombra: #4f504f;
 
 $font_path: '~@/assets/static/fonts/';
 
-
-@font-face {
-	font-family: 'Knockout Junior';
-	src: url($font_path + "knockout-htf-29-junior-liteweight-1361516762.ttf") format("ttf");
-}
-
-@font-face {
-	font-family: 'Knockout Feather';
-	src: url($font_path + "knockout-htf-48-featherweight-1361516727.ttf") format("ttf");
-}
-
-
 $knockout: 'Knockout Junior', sans-serif;
 $knockout_feather: 'Knockout Feather', sans-serif;
