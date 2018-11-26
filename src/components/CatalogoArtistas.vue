@@ -36,8 +36,12 @@ export default {
 	min-height: 400px;
 	padding: 10px;
 	text-align: center;
-	overflow: scroll;
-	overflow-x: hidden;
+	overflow-y: auto;
+	-webkit-overflow-scrolling: touch;
+	scroll-behavior: smooth;
+	overflow-scrolling: touch;
+	border: 1px solid green;
+	z-index: 15;
 }
 
 </style>

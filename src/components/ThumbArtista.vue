@@ -70,7 +70,6 @@ p {
 	white-space: nowrap;
 	font-size: 1.2rem;
 	white-space: pre-wrap;
-	height: 4rem;
 	font-family: $knockout;
 }
 

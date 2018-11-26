@@ -98,7 +98,9 @@ ul {
 	min-height:9rem; 
 	max-height:30rem; 
 	margin-bottom:4rem; 
-	overflow-y:scroll;
+	overflow-y: auto;
+	-webkit-overflow-scrolling: touch;
+	overflow-scrolling: touch;
 }
 
 @media screen and (max-width: 767px) and (orientation: landscape), screen and (max-height: 767px) {

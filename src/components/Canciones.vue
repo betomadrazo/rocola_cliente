@@ -108,8 +108,9 @@ ul {
 }
 
 .contenedor-catalogo_artista {
-	overflow: scroll;
-	overflow-x: hidden;
+	overflow-y: auto;
+	-webkit-overflow-scrolling: touch;
+	overflow-scrolling: touch;
 	min-height:12rem;
 	max-height:20rem;
 	margin-top:1rem;
