@@ -70,6 +70,7 @@ const actions = {
 			params: {
 				accion: 'get_canciones_de_artista_activo',
 				id_artista: idArtista,
+				id_sucursal: ID_SUCURSAL,
 			}
 		}).then(response => {
 			console.log("canciones: ", response.data);
