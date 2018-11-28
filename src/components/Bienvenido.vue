@@ -27,7 +27,6 @@ export default {
 
 		this.$store.dispatch('songStatus');
 
-		
 		var self = this;
 		this.$store.dispatch('getCancionesEnCola');
 
@@ -83,7 +82,6 @@ export default {
 		// Esta no es una solución satisfactoria, hay que explorar los promises y los async await.
 		setTimeout(() => {
 			this.$store.dispatch('getPlayerVars').then(() => {
-				console.log(this.artistaAhoraServer, " <");
 				if(this.ID_SUCURSAL && this.artistaAhoraServer) {
 					window.history.replaceState({}, document.title, "/");
 					router.push('/cola');

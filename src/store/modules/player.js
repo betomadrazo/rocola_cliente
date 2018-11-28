@@ -49,7 +49,6 @@ const getters = {
 const actions = {
 
 	getPlayerVars({ commit, dispatch, getters, rootGetters }) {
-		
 		$.ajax({
 			url: BASE_URL,
 			type: 'GET',
