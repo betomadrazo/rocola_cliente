@@ -125,12 +125,7 @@ h1 {
     z-index: 1000;
 }
 
-.fondo_app {
-
-}
-
 .titulo_app {
-    // background-image: url(../assets/static/img/titulo_app.png);
     background-size: 75%;
     background-position: center;
     background-repeat: no-repeat;

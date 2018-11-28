@@ -14,7 +14,7 @@ Vue.use(VueRouter);
 Vue.use(routerHistory);
 
 export const router = new VueRouter({
-	base: '/rocolandia/',
+	// base: '/rocolandia/',
 	// mode: 'abstract',
 	routes: [
 		{path:'/', 					component: Bienvenido},
