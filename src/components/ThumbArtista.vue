@@ -3,7 +3,8 @@
 		<div class="wrapper-imagen">
 			<img :src="foto" alt="">
 		</div>
-		<p>{{ artista.nombre_artista }}</p>
+		<!-- <p>{{ artista.nombre_artista }}</p> -->
+		<span v-html="artista.nombre_artista"></span>
 	</div>
 </template>
 <script>
@@ -33,7 +34,8 @@ export default {
 .contenedor-thumb {	
 	margin-top: 0.4rem;
 	margin-bottom: 0.4rem;
-	margin:0.7rem;
+	// margin:0.8rem;
+	margin:0.6rem;
 	width:9rem;
 	height:11rem;
 	text-align: center;
@@ -61,7 +63,7 @@ img {
 	left:0;
 }
 
-p {
+span {
 	margin: 0;
 	margin-top:0.5rem;
 	color: #eee;

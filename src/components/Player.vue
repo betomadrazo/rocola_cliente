@@ -11,7 +11,8 @@
 			<div class="info">
 				<h4>Ahora se escucha</h4>
 				<div class="artsy">
-					<p>{{ artistaAhoraServer }}</p> - <p>{{ cancionAhoraServer }}</p>
+					<!-- <p>{{ artistaAhoraServer }}</p> - <p>{{ cancionAhoraServer }}</p> -->
+					<p><span v-html="artistaAhoraServer"></span></p> - <p><span v-html="cancionAhoraServer"></span></p>
 				</div>
 				<div>
 					<span class="tiempo-total"><span>{{ segunderoTranscurridoForma() }}</span><span class="play"></span></span>

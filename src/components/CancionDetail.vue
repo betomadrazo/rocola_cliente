@@ -13,7 +13,9 @@
 					<img :src="getFotoPath" alt="">
 				</div>
 				<div class="info clearfix">
-					<h3>{{ artista.nombre_artista }}</h3>
+					<!-- <h3>{{ artista.nombre_artista }}</h3> -->
+					<span v-html="artista.nombre_artista"></span>
+					<!-- <h3>{{ artista.nombre_artista }}</h3> -->
 					<h1 class="titi">{{ cancion.titulo_cancion }}</h1>
 					<p>{{ cancion.duracion }}</p>
 					<button :class="botonDesactivado" @click="pedirCancion">
@@ -164,12 +166,9 @@ export default {
 	& h1 {
 		font-size: 1.8rem;
 	}
-
-	& h3 {
-		font-size: 1.5rem;
-	}
 	
-	& h3 {
+	& span {
+		font-size: 1.5rem;
 		overflow: hidden;
 		text-overflow: ellipsis;
 		white-space: nowrap;

@@ -7,7 +7,8 @@
 					<img :src="foto" alt="">
 				</div>
 				<div class="nomi">
-					<h2>{{ artista.nombre_artista }}</h2>	
+					<span v-html="artista.nombre_artista"></span>
+					<!-- <h2>{{ artista.nombre_artista }}</h2>	 -->
 				</div>
 			</div>
 			<div class="contenedor-catalogo_artista">
@@ -93,7 +94,7 @@ ul {
 	}
 }
 
-.contenedor-foto_artista h2 {
+.contenedor-foto_artista span {
 	margin-top:1rem;
 	margin-bottom: 1rem;
 	text-align: center;

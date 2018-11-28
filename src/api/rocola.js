@@ -4,8 +4,6 @@ const DEBUG_DOMAIN = (DEBUGGING) ? 'http://localhost' : 'http://www.betomad.com'
 
 const BASE_URL = `${DEBUG_DOMAIN}/rocola/consola/controllers/controller_musica.php`;
 
-alert(BASE_URL);
-
 var encryptedQueryString = window.location.search.substring(1);
 
 // console.log(encryptedQueryString);

@@ -97,7 +97,6 @@ const actions = {
 			if(response.data.length) {
 				for(var c of response.data) {
 					if(c.hasOwnProperty('duracion')) {
-						console.log(c.duracion);
 						var tiempo = c.duracion.split(':');
 	
 						if(tiempo.length === 2) {
