@@ -4,7 +4,8 @@
 		class="contenedor-cancion"
 		@click="setCancion"
 	>
-		<span class="titulo"><span class="flechita"></span>{{ cancion.titulo_cancion }}</span><span class="album-o-artista">{{ artistaOAlbum }}</span><span class="duracion">{{ cancion.duracion }}</span>
+		<!-- <span class="titulo"><span class="flechita"></span>{{ cancion.titulo_cancion }}</span><span class="album-o-artista">{{ artistaOAlbum }}</span><span class="duracion">{{ cancion.duracion }}</span> -->
+		<span class="titulo"><span class="flechita"></span>{{ cancion.titulo_cancion }}</span><span class="duracion">{{ cancion.duracion }}</span>
 	</div>
 
 </template>
@@ -61,8 +62,8 @@ export default {
     background-image: url(../assets/static/img/CANCION.png);
     background-size: 0.8rem;
     background-repeat: no-repeat;
-    width: 1rem;
-    height: 1rem;
+    width: 1.6rem;
+    height: 1.6rem;
     background-position: center;
     display: inline-blocK;
 }
@@ -82,18 +83,18 @@ span {
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
-	font-size: 1.4rem;
+	font-size: 1.6rem;
 }
 
 .titulo {
-	width: 47%;
+	width: 80%;
 }
 
 .album-o-artista {
 	width: 40%;
 }
 .duracion {
-	width: 13%;
+	width: 20%;
 	text-align: center;
 }
 
