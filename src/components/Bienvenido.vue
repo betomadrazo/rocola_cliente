@@ -90,6 +90,21 @@ export default {
 		}
 		, 5000);
 
+
+		var init = setInterval(() => {
+			this.$store.dispatch('getPlayerVars').then(() => {
+				var a = this.ID_SUCURSAL;
+				var b = this.artistaAhoraServer;
+				if(this.ID_SUCURSAL && this.artistaAhoraServer) {
+					window.history.replaceState({}, document.title, "/");
+					clearInterval(init);
+					router.push('/cola');
+				}
+				 // else alert(`${a}, ${b}`);
+			});
+		}
+		, 5000);
+
 	},
 	methods: {
 		...mapActions(['getCancionesEnCola', 'getPlayerVars', 'setDeviceId', 'getCancionPedida', 'songStatus']),

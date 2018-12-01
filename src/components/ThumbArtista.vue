@@ -64,6 +64,7 @@ img {
 }
 
 span {
+	display: block;
 	margin: 0;
 	margin-top:0.5rem;
 	color: #eee;
@@ -71,7 +72,7 @@ span {
 	text-overflow: ellipsis;
 	white-space: nowrap;
 	font-size: 1.2rem;
-	white-space: pre-wrap;
+	// white-space: pre-wrap;
 	font-family: $knockout;
 }
 

@@ -58,8 +58,8 @@ const actions = {
 				sucursal_id: ID_SUCURSAL,
 			},
 			success: function(info) {
-				console.log(decodeURIComponent(escape(">>"+info.artista)));
-				console.log(decodeURIComponent(escape(">>"+info.titulo_cancion)));
+				// console.log(decodeURIComponent(escape(">>"+info.artista)));
+				// console.log(decodeURIComponent(escape(">>"+info.titulo_cancion)));
 
 				commit('setArtistaAhoraServer', info.artista);
 				commit('setCancionAhoraServer', info.titulo_cancion);

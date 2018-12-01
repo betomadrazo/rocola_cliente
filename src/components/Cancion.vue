@@ -4,15 +4,15 @@
 		class="contenedor-cancion"
 		@click="setCancion"
 	>
-		<!-- <span class="titulo"><span class="flechita"></span>{{ cancion.titulo_cancion }}</span><span class="album-o-artista">{{ artistaOAlbum }}</span><span class="duracion">{{ cancion.duracion }}</span> -->
-		<span class="titulo"><span class="flechita"></span>{{ cancion.titulo_cancion }}</span><span class="duracion">{{ cancion.duracion }}</span>
+		<span class="titulo"><span class="flechita"></span>{{ cancion.titulo_cancion }}</span><span :class="album_o_artista">{{ artistaOAlbum }}</span><span class="duracion">{{ cancion.duracion }}</span>
+		<!-- <span class="titulo"><span class="flechita"></span>{{ cancion.titulo_cancion }}</span><span class="duracion">{{ cancion.duracion }}</span> -->
 	</div>
 
 </template>
 
 <script>
+import router from '../main';
 import { mapGetters } from 'vuex';
-
 
 export default {
 	name: 'Cancion',
@@ -31,8 +31,13 @@ export default {
 				tu_cancion: this.cancionPedida === this.cancion.id_cancion
 			};	
 		},
+		// album_o_artista() {
+		// 	return {
+		// 		(this.$router.currentRoute.path)
+		// 	};
+		// }
 		artistaOAlbum: function() {
-			return (this.cancion.cola) ? this.cancion.artista : this.cancion.album;
+			return (this.cancion.cola) ? this.cancion.artista : '';
 		}
 	}
 };
@@ -87,7 +92,7 @@ span {
 }
 
 .titulo {
-	width: 80%;
+	width: 40%;
 }
 
 .album-o-artista {

@@ -8,7 +8,6 @@
 				</div>
 				<div class="nomi">
 					<span v-html="artista.nombre_artista"></span>
-					<!-- <h2>{{ artista.nombre_artista }}</h2>	 -->
 				</div>
 			</div>
 			<div class="contenedor-catalogo_artista">
