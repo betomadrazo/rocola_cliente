@@ -15,6 +15,7 @@ try {
 
 // const ID_SUCURSAL = parseInt(new URLSearchParams(encryptedQueryString).get('sucursal_id'));
 const ID_SUCURSAL = parseInt(new URLSearchParams(decrypedQueryString).get('sucursal_id'));
+const TIPO_SUCURSAL = parseInt(new URLSearchParams(decrypedQueryString).get('tipo_sucursal'));
 
 console.log(ID_SUCURSAL);
 // window.history.replaceState({}, document.title, "/");

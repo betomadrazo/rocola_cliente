@@ -2,7 +2,7 @@ import Vue from 'vue';
 import axios from 'axios';
 import $ from 'jquery-ajax';
 import _ from 'lodash';
-import {BASE_URL, ID_SUCURSAL} from '../../api/rocola';
+import {BASE_URL, ID_SUCURSAL, TIPO_SUCURSAL} from '../../api/rocola';
 
 
 // Este guarda las variables
@@ -56,6 +56,7 @@ const actions = {
 		axios.get(BASE_URL, {
 			params: {
 				accion: 'get_artistas_activos',
+				tipo_sucursal: TIPO_SUCURSAL,
 			}
 		}).then(response => {
 			commit('setArtistas', response.data);
