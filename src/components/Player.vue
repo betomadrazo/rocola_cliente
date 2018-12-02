@@ -39,9 +39,9 @@ export default {
 		return {
 			contenido: '',
 			displayContenido: true,
-			tiempoRestante: 0,
-			tiempoFaltante: 0,
-			currentTranscurrido: 0,
+			// tiempoRestante: 0,
+			// tiempoFaltante: 0,
+			// currentTranscurrido: 0,
 
 			segunderoTranscurrido: 0,
 			segunderoFaltante: 0,
