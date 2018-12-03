@@ -4,7 +4,7 @@
 			<img :src="foto" alt="">
 		</div>
 		<!-- <p>{{ artista.nombre_artista }}</p> -->
-		<span v-html="artista.nombre_artista"></span>
+		<span v-html="scanTexto(artista.nombre_artista)"></span>
 	</div>
 </template>
 <script>
@@ -16,6 +16,33 @@ export default {
 	methods: {
 		getArtista() {
 			this.$store.dispatch('setArtista', this.id_artista);
+		},
+		scanTexto(texto) {
+
+			texto = this.decodeHtml(texto);
+
+			var nuevoTexto = "";
+			for(var i=0; i<texto.length; i++) {
+				if(texto[i] == "í") {
+					nuevoTexto = texto.substr(0, i) + '<span style="font-family:Arial, sans-serif;">í</span>'+ texto.substr(i + 1);
+				}
+
+				if(texto[i] == "Í") {
+					nuevoTexto = texto.substr(0, i) + '<span style="font-family:Arial, sans-serif;">Í</span>'+ texto.substr(i + 1);
+				}
+			}
+
+			if(nuevoTexto) {
+				return nuevoTexto;
+			}
+
+			return texto;
+		},
+
+		decodeHtml(html) {
+		    var txt = document.createElement("textarea");
+		    txt.innerHTML = html;
+		    return txt.value;
 		}
 	},
 	computed: {

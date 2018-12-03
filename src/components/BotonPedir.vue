@@ -72,7 +72,7 @@ export default {
 			} else if(this.cancionPedida && this.mySongIsPlaying) {
 				return "¡Tu canción está sonando!";
 			} else if(!this.puedePedir) {
-				return `Has alcanzado el límite de ${this.limiteCanciones} canciones al día.`;
+				return `Has alcanzado el límite de ${this.limiteCanciones} canciones al d<span style="font-family:Arial, sans-serif;">í</span>a.`;
 			}
 			
 			return '';

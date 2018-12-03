@@ -37,10 +37,7 @@ export default {
 	padding: 10px;
 	text-align: center;
 	overflow-y: auto;
-	-webkit-overflow-scrolling: touch;
 	scroll-behavior: smooth;
-	overflow-scrolling: touch;
-	border: 1px solid green;
 	z-index: 15;
 }
 

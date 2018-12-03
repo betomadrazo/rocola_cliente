@@ -53,30 +53,78 @@ const getters = {
 // Estas realizan funciones y llaman a mutations
 const actions = {
 	getArtistas({ commit }) {
-		axios.get(BASE_URL, {
-			params: {
+		// axios.get(BASE_URL, {
+		// 	params: {
+		// 		accion: 'get_artistas_activos',
+		// 		tipo_sucursal: TIPO_SUCURSAL
+		// 	}
+		// }).then(response => {
+		// 	commit('setArtistas', response.data);
+		// });
+
+
+		console.log(" === TIPO SUCURSAL: ", TIPO_SUCURSAL);
+
+		$.ajax({
+			url: BASE_URL,
+			type: 'GET',
+			dataType: 'json',
+			data: {
 				accion: 'get_artistas_activos',
 				tipo_sucursal: TIPO_SUCURSAL,
+			},
+			success: function(response) {
+				commit('setArtistas', response);
+				// console.log("canciones: ", response);
+				// commit('setCanciones', response);
+			},
+			error: function(response, err) {
+				console.log(response, err);
 			}
-		}).then(response => {
-			commit('setArtistas', response.data);
 		});
+
+
 	},
 
 	setArtista({ commit }, idArtista) {
 		var artistilla = _.keyBy(state.artistas, 'id_artista')[idArtista];
 		commit('setArtista', artistilla);
 
-		axios.get(BASE_URL, {
-			params: {
+		// axios.get(BASE_URL, {
+
+		// 	params: {
+		// 		accion: 'get_canciones_de_artista_activo',
+		// 		id_artista: idArtista,
+		// 		id_sucursal: ID_SUCURSAL,
+		// 		tipo_sucursal: TIPO_SUCURSAL,
+		// 	}
+		// }).then(response => {
+		// 	console.log("canciones: ", response.data);
+		// 	commit('setCanciones', response.data);
+		// });
+
+		console.log("========> ", idArtista);
+
+
+		$.ajax({
+			url: BASE_URL,
+			type: 'GET',
+			dataType: 'json',
+			data: {
 				accion: 'get_canciones_de_artista_activo',
 				id_artista: idArtista,
 				id_sucursal: ID_SUCURSAL,
+				tipo_sucursal: TIPO_SUCURSAL,
+			},
+			success: function(response) {
+				console.log("canciones: ", response);
+				commit('setCanciones', response);
+			},
+			error: function(response, err) {
+				console.log(response, err);
 			}
-		}).then(response => {
-			console.log("canciones: ", response.data);
-			commit('setCanciones', response.data);
 		});
+
 	},
 
 	setCancion({ commit }, idCancion) {

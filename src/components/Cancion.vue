@@ -4,8 +4,7 @@
 		class="contenedor-cancion"
 		@click="setCancion"
 	>
-		<span class="titulo" :class="cancion_larga"><span class="flechita"></span>{{ cancion.titulo_cancion }}</span><span class="album-o-artista" :class="album_o_artista">{{ artistaOAlbum }}</span><span class="duracion">{{ cancion.duracion }}</span>
-		<!-- <span class="titulo"><span class="flechita"></span>{{ cancion.titulo_cancion }}</span><span class="duracion">{{ cancion.duracion }}</span> -->
+		<span class="flechita"></span><span class="titulo" :class="cancion_larga"><span v-html="scanTexto(cancion.titulo_cancion)"></span></span><span class="album-o-artista" :class="album_o_artista" v-html="scanTexto(artistaOAlbum)"></span><span class="duracion">{{ cancion.duracion }}</span>
 	</div>
 
 </template>
@@ -22,6 +21,33 @@ export default {
 			console.log(this.id_cancion);
 			this.$store.dispatch('setCancion', this.id_cancion);
 		},
+
+		scanTexto(texto) {
+			texto = this.decodeHtml(texto);
+
+			var nuevoTexto = "";
+			for(var i=0; i<texto.length; i++) {
+				if(texto[i] == "í") {
+					nuevoTexto = texto.substr(0, i) + '<span style="font-family:Arial, sans-serif;">í</span>'+ texto.substr(i + 1);
+				}
+
+				if(texto[i] == "Í") {
+					nuevoTexto = texto.substr(0, i) + '<span style="font-family:Arial, sans-serif;">Í</span>'+ texto.substr(i + 1);
+				}
+			}
+
+			if(nuevoTexto) {
+				return nuevoTexto;
+			}
+
+			return texto;
+		},
+
+		decodeHtml(html) {
+		    var txt = document.createElement("textarea");
+		    txt.innerHTML = html;
+		    return txt.value;
+		}
 	},
 	computed: {
 		...mapGetters(['cancionPedida']),
@@ -42,7 +68,7 @@ export default {
 			};
 		},
 		artistaOAlbum: function() {
-			return (this.cancion.cola) ? this.cancion.artista : '';
+			return (this.cancion.cola) ? this.decodeHtml(this.cancion.artista) : '';
 		}
 	}
 };
@@ -68,21 +94,23 @@ export default {
 }
 
 .cancion_larga {
-	width: 90% !important;
+	width: 70% !important;
 }
 
 .flechita {
 	color: #FF9E16;
 	text-align: left;
-	margin-right:5px;
+	// margin-right:5px;
 	vertical-align: middle;
+	box-sizing: border-box;
     background-image: url(../assets/static/img/CANCION.png);
     background-size: 0.8rem;
     background-repeat: no-repeat;
     width: 1.6rem;
-    height: 1.6rem;
+    height: 3rem;
     background-position: center;
     display: inline-blocK;
+    width:10%;
 }
 
 .tu_cancion {
@@ -105,17 +133,18 @@ span {
 	padding-right: 0.5rem;
 	height: 3rem;
 	line-height: 3rem;
+	vertical-align: middle;
 }
 
 .titulo {
-	width: 50%;
+	width: 35%;
 }
 
 .album-o-artista {
-	width: 40%;
+	width: 35%;
 }
 .duracion {
-	width: 10%;
+	width: 20%;
 	text-align: right;
 }
 

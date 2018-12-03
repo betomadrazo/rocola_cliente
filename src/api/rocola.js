@@ -9,13 +9,17 @@ const BASE_URL = `${DEBUG_DOMAIN}/rocola/consola/controllers/controller_musica.p
 var encryptedQueryString = window.location.search.substring(1);
 
 try {
-	var decrypedQueryString = atob(encryptedQueryString);
+	var decryptedQueryString = atob(encryptedQueryString);
+	console.log(decryptedQueryString);
 } catch(error) {}
 
 
 // const ID_SUCURSAL = parseInt(new URLSearchParams(encryptedQueryString).get('sucursal_id'));
-const ID_SUCURSAL = parseInt(new URLSearchParams(decrypedQueryString).get('sucursal_id'));
-const TIPO_SUCURSAL = parseInt(new URLSearchParams(decrypedQueryString).get('tipo_sucursal'));
+const ID_SUCURSAL = parseInt(new URLSearchParams(decryptedQueryString).get('sucursal_id'));
+const TIPO_SUCURSAL = new URLSearchParams(decryptedQueryString).get('tipo_sucursal');
+
+console.log(TIPO_SUCURSAL);
+
 
 console.log(ID_SUCURSAL);
 // window.history.replaceState({}, document.title, "/");
@@ -23,4 +27,5 @@ console.log(ID_SUCURSAL);
 export {
 	BASE_URL,
 	ID_SUCURSAL,
+	TIPO_SUCURSAL
 };
