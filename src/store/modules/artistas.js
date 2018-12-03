@@ -103,8 +103,6 @@ const actions = {
 		// 	commit('setCanciones', response.data);
 		// });
 
-		console.log("========> ", idArtista);
-
 
 		$.ajax({
 			url: BASE_URL,
