@@ -11,7 +11,6 @@
 			<div class="info">
 				<h4>Ahora se escucha</h4>
 				<div class="artsy">
-					<!-- <p>{{ artistaAhoraServer }}</p> - <p>{{ cancionAhoraServer }}</p> -->
 					<p><span v-html="artistaAhoraServer"></span></p> - <p><span v-html="cancionAhoraServer"></span></p>
 				</div>
 				<div>
@@ -39,9 +38,6 @@ export default {
 		return {
 			contenido: '',
 			displayContenido: true,
-			// tiempoRestante: 0,
-			// tiempoFaltante: 0,
-			// currentTranscurrido: 0,
 
 			segunderoTranscurrido: 0,
 			segunderoFaltante: 0,
@@ -120,23 +116,13 @@ export default {
 	},
 	watch: {
 		printTranscurrido: function() {
-			// this.cuentaSegsTranscurridos();
-			// console.log("TRANSCURRIDO: ", this.segunderoTranscurrido);
-
 			this.segunderoTranscurrido = this.transcurrido;
 		},
-
-		// printFaltante: function() {
-		// 	this.segunderoFaltante = this.restante;
-		// }
-
 	},
 	computed: {
 		...mapGetters(['artistaAhoraServer', 'cancionAhoraServer', 'tiempoTotalServer', 'tiempoTranscurridoServer', 'total', 'transcurrido', 'restante', 'intervaloSegundos']),
 
-
 		printTranscurrido() {
-			// console.log("%%%%%% ", this.tiempoTotalServer, this.transcurrido);
 			return this.getTiempoFormateado(parseInt(this.transcurrido));
 		},
 		printFaltante() {
@@ -147,7 +133,6 @@ export default {
 			}
 
 			this.$store.dispatch('setSegundosFaltantesEnCancion', segundosFaltantesEnCancion);
-			// return this.getTiempoFormateado(parseInt(this.restante));
 			return this.getTiempoFormateado(parseInt(segundosFaltantesEnCancion));
 		},
 		getPorcentaje() {
@@ -182,12 +167,6 @@ h4, h3, h2 {
 	}
 }
 
-// .clearfix::after {
-//     content: "";
-//     clear: both;
-//     display: table;
-// }
-
 .navegador {
 	width:100%;
 	padding-top:1rem;
@@ -211,7 +190,6 @@ h4, h3, h2 {
 	}
 }
 
-
 .atras {
     text-decoration: none;
     color: #468460;
@@ -229,7 +207,6 @@ h4, h3, h2 {
 		color: #ff8533;
     	background-image: url(../assets/static/img/REGRESAR_PRESS.png) !important;
 	}
-    
 }
 
 .consola {
@@ -252,9 +229,6 @@ h4, h3, h2 {
 
 .info {
 	padding: 0 0.5rem 0.5rem 0.5rem;
-	// padding:0.5rem;
-	// padding-top:0;
-	// padding-bottom:0.5rem;
 }
 
 .porcentaje {

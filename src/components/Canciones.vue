@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<Player></Player>
+		<!-- <Player></Player> -->
 		<div class="contendor-song_detail">
 			<div class="contenedor-foto_artista">
 				<div class="clipper-imagen">

@@ -14,7 +14,6 @@ const state = {
 	mySongIsPlaying: false,
 	currentPlayingDispositivoId: null,
 
-
 	// tíos extraños
 	total: 0,
 	transcurrido: 0,
@@ -32,17 +31,10 @@ const getters = {
 	currentPlayingDispositivoId: state => state.currentPlayingDispositivoId,
 	mySongIsPlaying: state => state.mySongIsPlaying,
 
-
-
-
 	total: state => state.total,
 	transcurrido: state => state.transcurrido,
 	restante: state => state.restante,
 	intervaloSegundos: state => state.intervaloSegundos,
-
-
-
-
 };
 
 
@@ -58,9 +50,6 @@ const actions = {
 				sucursal_id: ID_SUCURSAL,
 			},
 			success: function(info) {
-				// console.log(decodeURIComponent(escape(">>"+info.artista)));
-				// console.log(decodeURIComponent(escape(">>"+info.titulo_cancion)));
-
 				commit('setArtistaAhoraServer', info.artista);
 				commit('setCancionAhoraServer', info.titulo_cancion);
 				commit('setIdCancionAhora', info.cancion_id);
@@ -123,8 +112,6 @@ const actions = {
 
 			dispatch('getPlayerVars');
 				
-			// console.log(">>> ", state.tiempoTranscurridoServer);
-
 			commit('setTotal', getTiempoFormateado(state.tiempoTotalServer));
 	
 
@@ -144,17 +131,11 @@ const actions = {
 				dispatch('getPlayerVars');
 			}
 
-			// console.log(currentTranscurrido);
-
 			currentTranscurrido += 1;
 
 		}, 1000);
 
 	}, // fin songStatus
-
-
-
-
 
 };
 
@@ -183,16 +164,7 @@ const mutations = {
 		state.mySongIsPlaying = value;
 	},
 
-
-
-
-
-
-
-
-
 	// New kids on the block
-
 	setTotal(state, val) {
 		state.total = val;
 	},
@@ -209,16 +181,7 @@ const mutations = {
 		state.intervaloSegundos = val;
 	}
 
-
-
 };
-
-
-
-
-
-
-
 
 
 function getTiempoFormateado(segundos) {
@@ -228,23 +191,9 @@ function getTiempoFormateado(segundos) {
 };
 
 
-
-
-
-// var moco = setInterval(this.songStatus, 3000);
-// var moco = setInterval(() => {
-// 	console.log("fefefefe", rootState);
-// 	actions.songStatus();
-// }, 5000);
-
-
-
-
-
-
 export default {
 	state,
 	getters,
 	actions,
 	mutations,
-}
+};

@@ -1,5 +1,8 @@
 <template>
 	<div class="contenedor">
+		<span v-if="$routerHistory.hasPrevious() && $router.history.current.path != '/'">
+			<Player></Player>
+		</span>
 		<router-view></router-view>
 	</div>
 </template>
@@ -7,13 +10,17 @@
 <script>
 import axios from 'axios';
 import Bienvenido from './components/Bienvenido';
+import Player from './components/Player';
 
 import { mapActions } from 'vuex';
+
+import router from './main';
 
 export default {
 	name: 'App',
 	components: {
 		Bienvenido,
+		Player,
 	},
 	created() {
 		var self = this;
@@ -21,9 +28,6 @@ export default {
 		let prom = new Promise(function(resolve, reject) {
 			self.$store.dispatch('getArtistas');
 		});
-
-		// window.onbeforeunload = function() { return "¿Deseas salir de la rocola?"; };
-
 	},
 	methods: mapActions(['getArtistas', 'getCancionPedida']),
 };

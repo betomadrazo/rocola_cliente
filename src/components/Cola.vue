@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<Player></Player>
+		<!-- <Player></Player> -->
 		<div class="contenedor-cola">
 			<div v-if="cancionesEnCola.length">
 				<div class="lacola">
