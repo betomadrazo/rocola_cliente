@@ -90,20 +90,6 @@ const actions = {
 		var artistilla = _.keyBy(state.artistas, 'id_artista')[idArtista];
 		commit('setArtista', artistilla);
 
-		// axios.get(BASE_URL, {
-
-		// 	params: {
-		// 		accion: 'get_canciones_de_artista_activo',
-		// 		id_artista: idArtista,
-		// 		id_sucursal: ID_SUCURSAL,
-		// 		tipo_sucursal: TIPO_SUCURSAL,
-		// 	}
-		// }).then(response => {
-		// 	console.log("canciones: ", response.data);
-		// 	commit('setCanciones', response.data);
-		// });
-
-
 		$.ajax({
 			url: BASE_URL,
 			type: 'GET',

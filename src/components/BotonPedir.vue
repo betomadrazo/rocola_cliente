@@ -12,7 +12,7 @@
 		</div>
 
 		<div v-if="cancionPedida || !puedePedir">
-			<h4 class="mensaje-canciones">{{ getMsgCanciones }}</h4>
+			<h4 class="mensaje-canciones" v-html="getMsgCanciones"></h4>
 		</div>
 		<button @click="podraPedir" class="boton-pedir boton-grande">{{ msgBoton }}</button>
 	</div>
@@ -72,14 +72,15 @@ export default {
 			} else if(this.cancionPedida && this.mySongIsPlaying) {
 				return "¡Tu canción está sonando!";
 			} else if(!this.puedePedir) {
-				return `Has alcanzado el límite de ${this.limiteCanciones} canciones al d<span style="font-family:Arial, sans-serif;">í</span>a.`;
+				return `Has alcanzado el l<span style="font-family:Arial, sans-serif;">í</span>mite de ${this.limiteCanciones} canciones al d<span style="font-family:Arial, sans-serif;">í</span>a.`;
 			}
 			
 			return '';
 		},
 		msgBoton() {
 			return (this.cancionPedida || !this.puedePedir) ? "ver catálogo" : "agregar canción";
-		}
+		},
+
 	},
 };
 

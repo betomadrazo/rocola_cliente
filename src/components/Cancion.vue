@@ -4,7 +4,7 @@
 		class="contenedor-cancion"
 		@click="setCancion"
 	>
-		<span class="flechita"></span><span class="titulo" :class="cancion_larga"><span v-html="scanTexto(cancion.titulo_cancion)"></span></span><span class="album-o-artista" :class="album_o_artista" v-html="scanTexto(artistaOAlbum)"></span><span class="duracion">{{ cancion.duracion }}</span>
+		<span class="flechita"></span><span class="titulo" :class="cancion_larga" v-html="scanTexto(cancion.titulo_cancion)"></span><span class="album-o-artista" :class="album_o_artista" v-html="scanTexto(artistaOAlbum)"></span><span class="duracion">{{ cancion.duracion }}</span>
 	</div>
 
 </template>

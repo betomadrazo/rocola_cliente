@@ -1,8 +1,7 @@
-const DEBUGGING = true;
+const DEBUGGING = false;
 
 const DEBUG_DOMAIN = (DEBUGGING) ? 'http://localhost' 
-																 : 'http://rockola.pendulo.com.mx';
-																 // : 'http://www.betomad.com';
+																 : 'http://rocola.pendulo.com.mx';
 
 const BASE_URL = `${DEBUG_DOMAIN}/rocola/consola/controllers/controller_musica.php`;
 

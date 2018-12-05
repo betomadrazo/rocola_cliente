@@ -10,7 +10,7 @@
 					<span v-html="artista.nombre_artista"></span>
 				</div>
 			</div>
-			<div class="contenedor-catalogo_artista">
+			<div class="contenedor-catalogo_artista" v-if="canciones.length > 0">
 				<ul>
 					<Cancion 
 						@click.native="showModal=true" 
@@ -20,6 +20,9 @@
 						:index="index"
 					></Cancion>
 				</ul>
+			</div>
+			<div class="contenedor-catalogo_artista" v-else>
+				<h2 style="text-align: center;">Por el momento no hay canciones disponibles.</h2>
 			</div>
 		</div>
 		<CancionDetail v-if="showModal" @close="showModal=false"></CancionDetail>
