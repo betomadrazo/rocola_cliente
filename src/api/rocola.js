@@ -12,16 +12,10 @@ try {
 	console.log(decryptedQueryString);
 } catch(error) {}
 
-
 // const ID_SUCURSAL = parseInt(new URLSearchParams(encryptedQueryString).get('sucursal_id'));
 const ID_SUCURSAL = parseInt(new URLSearchParams(decryptedQueryString).get('sucursal_id'));
-const TIPO_SUCURSAL = new URLSearchParams(decryptedQueryString).get('tipo_sucursal');
-
-console.log(TIPO_SUCURSAL);
-
 
 console.log(ID_SUCURSAL);
-// window.history.replaceState({}, document.title, "/");
 
 export {
 	BASE_URL,

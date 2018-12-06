@@ -2,7 +2,7 @@ import Vue from 'vue';
 import axios from 'axios';
 import $ from 'jquery-ajax';
 import _ from 'lodash';
-import {BASE_URL, ID_SUCURSAL, TIPO_SUCURSAL} from '../../api/rocola';
+import {BASE_URL, ID_SUCURSAL} from '../../api/rocola';
 
 
 // Este guarda las variables
@@ -53,25 +53,12 @@ const getters = {
 // Estas realizan funciones y llaman a mutations
 const actions = {
 	getArtistas({ commit }) {
-		// axios.get(BASE_URL, {
-		// 	params: {
-		// 		accion: 'get_artistas_activos',
-		// 		tipo_sucursal: TIPO_SUCURSAL
-		// 	}
-		// }).then(response => {
-		// 	commit('setArtistas', response.data);
-		// });
-
-
-		console.log(" === TIPO SUCURSAL: ", TIPO_SUCURSAL);
-
 		$.ajax({
 			url: BASE_URL,
 			type: 'GET',
 			dataType: 'json',
 			data: {
-				accion: 'get_artistas_activos',
-				tipo_sucursal: TIPO_SUCURSAL,
+				accion: 'get_artistas_activos'
 			},
 			success: function(response) {
 				commit('setArtistas', response);
@@ -97,8 +84,7 @@ const actions = {
 			data: {
 				accion: 'get_canciones_de_artista_activo',
 				id_artista: idArtista,
-				id_sucursal: ID_SUCURSAL,
-				tipo_sucursal: TIPO_SUCURSAL,
+				id_sucursal: ID_SUCURSAL
 			},
 			success: function(response) {
 				console.log("canciones: ", response);
