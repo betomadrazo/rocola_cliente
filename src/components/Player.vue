@@ -23,7 +23,7 @@
 			</div>
 		</div>
 		<div v-if="displayContenido">
-			<h3 class="seccion">{{ contenido }}</h3>
+			<h3 class="seccion">{{ getSeccion }}</h3>
 		</div>
 	</div>
 </template>
@@ -36,7 +36,6 @@ export default {
 	name: 'Player',
 	data: () => {
 		return {
-			contenido: '',
 			displayContenido: true,
 
 			segunderoTranscurrido: 0,
@@ -44,7 +43,6 @@ export default {
 		};
 	},
 	created() {
-		this.getContenido();
 		this.segunderoTranscurridoForma();
 	},
 	mounted() {
@@ -59,7 +57,6 @@ export default {
 		cuentaSegsTranscurridos() {
 			var self = this;
 			setInterval(() => {
-				// console.log(self.segunderoTranscurrido);
 				self.segunderoTranscurrido += 1;
 			}, 1010);
 		},
@@ -67,15 +64,11 @@ export default {
 		cuentaSegsFaltantes() {
 			var self = this;
 			setInterval(() => {
-				// console.log(self.segunderoFaltante);
 				self.segunderoFaltante -= 1;
 			}, 1010);
 		},
 
 		segunderoTranscurridoForma() {
-
-			// console.log("%%%%%% ", this.tiempoTotalServer, this.segunderoTranscurrido);			
-
 			var segs = this.segunderoTranscurrido;
 
 			if(this.segunderoTranscurrido > this.tiempoTotalServer) {
@@ -94,33 +87,20 @@ export default {
 			tiempo.setSeconds(segundos);
 			return tiempo.toISOString().substr(14, 5);	
 		},
-
-		getContenido() {
-			switch(this.$router.currentRoute.path) {
-				case '/cola':
-				this.displayContenido = true;
-				this.contenido = 'Canciones en cola...';
-				break;
-				case '/catalogo':
-				this.displayContenido = true;
-				this.contenido = 'Artistas';
-				break;
-				case '/canciones':
-				this.displayContenido = false;
-				break;
-				default:
-				this.displayContenido = false;
-			}
-		},
-
 	},
 	watch: {
 		printTranscurrido: function() {
 			this.segunderoTranscurrido = this.transcurrido;
 		},
+		getSeccion: function() {
+			// Por qué funciona esto???
+		}
 	},
 	computed: {
-		...mapGetters(['artistaAhoraServer', 'cancionAhoraServer', 'tiempoTotalServer', 'tiempoTranscurridoServer', 'total', 'transcurrido', 'restante', 'intervaloSegundos']),
+		...mapGetters(['artistaAhoraServer', 'cancionAhoraServer', 'tiempoTotalServer', 
+						'tiempoTranscurridoServer', 'total', 'transcurrido', 
+						'restante', 'intervaloSegundos', 'seccion'
+					]),
 
 		printTranscurrido() {
 			return this.getTiempoFormateado(parseInt(this.transcurrido));
@@ -138,7 +118,24 @@ export default {
 		getPorcentaje() {
 			var porcentaje = this.transcurrido * 100 / this.tiempoTotalServer;
 			return `width:${(porcentaje <= 100) ? porcentaje : 0}%;`;
-		}
+		},
+		getSeccion() {
+			switch(this.seccion) {
+				case '/cola':
+				this.displayContenido = true;
+				return 'Canciones en cola...';
+				break;
+				case '/catalogo':
+				this.displayContenido = true;
+				return 'Artistas';
+				break;
+				case '/canciones':
+				this.displayContenido = false;
+				break;
+				default:
+				this.displayContenido = false;
+			}
+		},
 	},
 }
 

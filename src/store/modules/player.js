@@ -19,6 +19,8 @@ const state = {
 	transcurrido: 0,
 	restante: 0,
 	intervaloSegundos: null,
+
+	seccion: '/cola',
 };
 
 
@@ -35,6 +37,8 @@ const getters = {
 	transcurrido: state => state.transcurrido,
 	restante: state => state.restante,
 	intervaloSegundos: state => state.intervaloSegundos,
+
+	seccion: state => state.seccion
 };
 
 
@@ -98,10 +102,6 @@ const actions = {
 		commit('setMySongIsPlaying', value);
 	},
 
-
-
-
-
 	songStatus({commit, dispatch, getters, rootGetters}) {
 
 		var currentTranscurrido = state.tiempoTranscurridoServer;
@@ -136,6 +136,10 @@ const actions = {
 		}, 1000);
 
 	}, // fin songStatus
+
+	getSeccion({ commit }, ruta) {
+		commit('setSeccion', ruta);
+	}
 
 };
 
@@ -179,6 +183,10 @@ const mutations = {
 
 	setIntervaloSegundos(state, val) {
 		state.intervaloSegundos = val;
+	},
+
+	setSeccion(state, ruta) {
+		state.seccion = ruta;
 	}
 
 };

@@ -2,7 +2,7 @@
 	<div>
 		<!-- <Player></Player> -->
 		<div class="contenedor-catalogo">
-			<router-link to="Canciones">
+			<router-link to="canciones">
 				<ThumbArtista v-for="artista in artistas" :artista="artista" :id_artista="artista.id_artista"></ThumbArtista>
 			</router-link>
 		</div>
@@ -11,10 +11,11 @@
 
 
 <script>
+import router from '../main';
 
 import Player from './Player';
 import ThumbArtista from './ThumbArtista';
-import { mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 
 export default {
 	name: 'CatalogoArtistas',
@@ -22,7 +23,14 @@ export default {
 		Player,
 		ThumbArtista
 	},
+	created() {
+	},
+	mounted() {
+		var ruta = this.$router.currentRoute.path;
+		this.$store.dispatch('getSeccion', ruta);
+	},
 	methods: {
+		...mapActions(['getSeccion'])
 	},
 	computed: mapGetters(['artistas']),
 };

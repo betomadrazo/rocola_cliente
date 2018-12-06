@@ -1,4 +1,4 @@
-const DEBUGGING = false;
+const DEBUGGING = true;
 
 const DEBUG_DOMAIN = (DEBUGGING) ? 'http://localhost' 
 																 : 'http://rocola.pendulo.com.mx';

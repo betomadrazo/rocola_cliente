@@ -24,6 +24,8 @@
 </template>
 
 <script>
+import router from '../main';
+
 import { mapActions, mapGetters } from 'vuex';
 
 import Player from './Player';
@@ -38,7 +40,7 @@ export default {
 		BotonPedir,
 	},
 	methods: {
-		...mapActions(['getCancionesEnCola']),
+		...mapActions(['getCancionesEnCola', 'getSeccion']),
 		actualizaCola() {
 			var self = this;
 			window.setInterval(function() {
@@ -52,7 +54,8 @@ export default {
 	created() {
 	},
 	mounted() {
-		this.actualizaCola();
+		var ruta = this.$router.currentRoute.path;
+		this.$store.dispatch('getSeccion', ruta);
 	}
 };
 

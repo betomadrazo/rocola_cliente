@@ -10,7 +10,7 @@
 					<span v-html="artista.nombre_artista"></span>
 				</div>
 			</div>
-			<div class="contenedor-catalogo_artista" v-if="canciones.length > 0">
+			<div class="contenedor-catalogo_artista" v-if="canciones && canciones.length > 0">
 				<ul>
 					<Cancion 
 						@click.native="showModal=true" 
@@ -31,12 +31,13 @@
 </template>
 
 <script>
+import router from '../main';
 
 import Player from './Player';
 import Cancion from './Cancion';
 import CancionDetail from './CancionDetail';
 
-import { mapGetters } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 
 export default {
 	name: 'Canciones',
@@ -45,13 +46,19 @@ export default {
 		Cancion,
 		CancionDetail
 	},
+	created() {
+	},
+	mounted() {
+		var ruta = this.$router.currentRoute.path;
+		this.$store.dispatch('getSeccion', ruta);
+	},
 	data: function() {
 		return {
 			showModal: false,
 		}
 	},
 	computed: {
-		...mapGetters(['canciones', 'artista']),
+		...mapGetters(['canciones', 'artista', 'seccion']),
 		foto() {
 			var image = require.context('../assets/static/img/');
 			return (this.artista.foto_path) ? this.artista.foto_path : image('./placeholder.png');
