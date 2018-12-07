@@ -44,16 +44,23 @@ export default {
 	components: {
 		Player,
 		Cancion,
-		CancionDetail
+		CancionDetail,
 	},
 	created() {
+		this.getCancionesDeArtista = setInterval(() => {
+			this.$store.dispatch('setArtista', this.artista.id_artista);
+		}, 1000);
 	},
 	mounted() {
 		var ruta = this.$router.currentRoute.path;
 		this.$store.dispatch('getSeccion', ruta);
 	},
+	destroyed() {
+		clearInterval(this.getCancionesDeArtista);
+	},
 	data: function() {
 		return {
+			getCancionesDeArtista: null,
 			showModal: false,
 		}
 	},

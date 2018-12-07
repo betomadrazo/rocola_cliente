@@ -45,13 +45,14 @@ export default {
 			var self = this;
 			window.setInterval(function() {
 				self.$store.dispatch('getCancionesEnCola');
-			}, 5000);
+			}, 3000);
 		}
 	},
 	computed: {
 		...mapGetters(['cancionesEnCola', 'deviceId', 'mySongIsPlaying']),
 	},
 	created() {
+		this.actualizaCola();
 	},
 	mounted() {
 		var ruta = this.$router.currentRoute.path;

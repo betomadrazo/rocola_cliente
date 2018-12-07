@@ -42,7 +42,6 @@ export default {
 	},
 	created() {
 		this.$store.dispatch('getPuedePedir');
-		console.log("puede pedir = ", this.puedePedir);
 	},
 	methods: {
 		...mapActions(['getPuedePedir']),
