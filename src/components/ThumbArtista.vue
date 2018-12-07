@@ -3,7 +3,6 @@
 		<div class="wrapper-imagen">
 			<img :src="foto" alt="">
 		</div>
-		<!-- <p>{{ artista.nombre_artista }}</p> -->
 		<span v-html="scanTexto(artista.nombre_artista)"></span>
 	</div>
 </template>

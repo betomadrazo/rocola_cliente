@@ -87,7 +87,6 @@ const actions = {
 				id_sucursal: ID_SUCURSAL
 			},
 			success: function(response) {
-				console.log("canciones: ", response);
 				commit('setCanciones', response);
 			},
 			error: function(response, err) {
@@ -99,7 +98,6 @@ const actions = {
 
 	setCancion({ commit }, idCancion) {
 		var cancioncilla = _.keyBy(state.canciones, 'id_cancion')[idCancion];
-		console.log(cancioncilla);
 		commit('setCancion', cancioncilla);
 	},
 

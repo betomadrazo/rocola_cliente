@@ -1,6 +1,5 @@
 <template>
 	<div>
-		<!-- <Player></Player> -->
 		<div class="contendor-song_detail">
 			<div class="contenedor-foto_artista">
 				<div class="clipper-imagen">
@@ -18,6 +17,7 @@
 						:cancion="cancion"
 						:id_cancion="cancion.id_cancion"
 						:index="index"
+						v-if="cancion.id_cancion != cancionPedida || cancion.id_cancion != idCancionAhora"
 					></Cancion>
 				</ul>
 			</div>
@@ -65,7 +65,7 @@ export default {
 		}
 	},
 	computed: {
-		...mapGetters(['canciones', 'artista', 'seccion']),
+		...mapGetters(['canciones', 'artista', 'seccion', 'cancionPedida', 'idCancionAhora']),
 		foto() {
 			var image = require.context('../assets/static/img/');
 			return (this.artista.foto_path) ? this.artista.foto_path : image('./placeholder.png');

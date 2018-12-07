@@ -5,17 +5,14 @@
 			<div class="contenedor-detail">
 				<div class="alerta-cancion_pedida" :class="{modal: modalVisible}">
 					<span>
-						<!-- <p>podr&aacute;s agregar otra canci&oacute;n cuando la que elegiste haya finalizado</p> -->
 						<p>{{ msgForbidden }}</p>
 					</span>
 				</div>
-				<div class="contenedor-imagen">
+		<!-- 		<div class="contenedor-imagen">
 					<img :src="getFotoPath" alt="">
-				</div>
+				</div> -->
 				<div class="info clearfix">
-					<!-- <h3>{{ artista.nombre_artista }}</h3> -->
 					<span v-html="artista.nombre_artista"></span>
-					<!-- <h3>{{ artista.nombre_artista }}</h3> -->
 					<h1 class="titi">{{ cancion.titulo_cancion }}</h1>
 					<p>{{ cancion.duracion }}</p>
 					<button :class="botonDesactivado" @click="pedirCancion">
@@ -248,11 +245,11 @@ button:last-of-type {
 	}
 }
 
-@media screen and (min-width: 1024px), screen and (min-height: 767px) {
-	.contenedor-detail {
-		width: 50%;
-	}
-}
+// @media screen and (min-width: 1024px), screen and (min-height: 767px) {
+// 	.contenedor-detail {
+// 		width: 50%;
+// 	}
+// }
 
 
 </style>

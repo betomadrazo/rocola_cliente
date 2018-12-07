@@ -1,6 +1,5 @@
 <template>
 	<div>
-		<!-- <Player></Player> -->
 		<div class="contenedor-catalogo">
 			<router-link to="canciones">
 				<ThumbArtista v-for="artista in artistas" :artista="artista" :id_artista="artista.id_artista"></ThumbArtista>
