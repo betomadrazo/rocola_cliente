@@ -78,7 +78,7 @@ export default {
 			return '';
 		},
 		msgBoton() {
-			return (this.cancionPedida || !this.puedePedir) ? "ver catálogo" : "agregar canción";
+			return (this.cancionPedida || !this.puedePedir) ? "ver catálogo" : "elige una canción";
 		},
 
 	},

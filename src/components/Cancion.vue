@@ -17,6 +17,9 @@ export default {
 	name: 'Cancion',
 	props: ['id_cancion', 'artista_album', 'cancion', 'album', 'duracion', 'index', 'isCola'],
 	methods: {
+		created(){
+			console.log("=========> ", this.cancion);
+		},
 		setCancion(){
 			console.log(this.id_cancion);
 			this.$store.dispatch('setCancion', this.id_cancion);
@@ -50,11 +53,11 @@ export default {
 		}
 	},
 	computed: {
-		...mapGetters(['cancionPedida']),
+		...mapGetters(['cancionPedida', 'mySongIsPlaying']),
 		alte: function() {
 			return {
 				cancion_alt: parseInt(this.index) % 2 === 0,
-				tu_cancion: this.cancionPedida === this.cancion.id_cancion
+				tu_cancion: this.cancionPedida === this.cancion.id_cancion || (this.mySongIsPlaying && this.cancion.cola)
 			};	
 		},
 		album_o_artista: function() {
@@ -68,6 +71,7 @@ export default {
 			};
 		},
 		artistaOAlbum: function() {
+			console.log("###", this.cancion);
 			return (this.cancion.cola) ? this.decodeHtml(this.cancion.artista) : '';
 		}
 	}

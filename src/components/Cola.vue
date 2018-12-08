@@ -2,19 +2,20 @@
 	<div>
 		<!-- <Player></Player> -->
 		<div class="contenedor-cola">
-			<div v-if="cancionesEnCola.length">
+			<!-- <div v-if="cancionesEnCola.length"> -->
 				<div class="lacola">
 					<ul style="margin:0;">
 						<li>
-							<Cancion v-for="(cancion, index) in cancionesEnCola" :index="index" :cancion="cancion"></Cancion>
+							<Cancion :index="0" :cancion="cancionTocando"></Cancion>
+							<Cancion v-for="(cancion, index) in cancionesEnCola" :index="index+1" :cancion="cancion"></Cancion>
 						</li>
 					</ul>
 				</div>
 				
-			</div>
-			<div v-else>
+			<!-- </div> -->
+<!-- 			<div v-else>
 				<h2 class="mensaje-no_canciones" v-if="!mySongIsPlaying">No hay canciones en cola, escoge una canci&oacute;n.</h2>
-			</div>
+			</div> -->
 			<div class="contenedor-megaboton">
 				<BotonPedir></BotonPedir>
 			</div>
@@ -46,10 +47,22 @@ export default {
 			window.setInterval(function() {
 				self.$store.dispatch('getCancionesEnCola');
 			}, 3000);
-		}
+		},
+		getTiempoFormateado(segundos) {
+			var tiempo = new Date(null);
+			tiempo.setSeconds(segundos);
+			var tiempoEnString = tiempo.toISOString().substr(14, 5);
+			if(tiempoEnString.charAt(0) == '0') tiempoEnString = tiempoEnString.substr(1);
+			return tiempoEnString;	
+		},
 	},
 	computed: {
-		...mapGetters(['cancionesEnCola', 'deviceId', 'mySongIsPlaying']),
+		...mapGetters(['cancionesEnCola', 'deviceId', 'mySongIsPlaying', 'cancionAhoraServer', 'artistaAhoraServer', 'tiempoTotalServer', 'idCancionAhora']),
+		cancionTocando() {
+			var cancion = {titulo_cancion: this.cancionAhoraServer, artista: this.artistaAhoraServer, duracion: this.getTiempoFormateado(this.tiempoTotalServer), cola: true};
+			console.log(cancion)
+			return cancion;
+		}
 	},
 	created() {
 		this.actualizaCola();
