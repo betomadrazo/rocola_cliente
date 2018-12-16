@@ -57,7 +57,7 @@ export default {
 		alte: function() {
 			return {
 				cancion_alt: parseInt(this.index) % 2 === 0,
-				tu_cancion: this.cancionPedida === this.cancion.id_cancion || (this.mySongIsPlaying && this.cancion.cola)
+				tu_cancion: this.cancionPedida === this.cancion.id_cancion
 			};	
 		},
 		album_o_artista: function() {

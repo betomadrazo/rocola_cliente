@@ -111,9 +111,8 @@ const actions = {
 			currentTranscurrido = state.tiempoTranscurridoServer;
 
 			dispatch('getPlayerVars');
-				
+
 			commit('setTotal', getTiempoFormateado(state.tiempoTotalServer));
-	
 
 			commit('setTranscurrido', state.tiempoTranscurridoServer);
 	
@@ -155,7 +154,7 @@ const mutations = {
 		state.idCancionAhora = idCancion;
 	},
 	setTiempoTotalServer(state, tiempo) {
-		state.tiempoTotalServer = parseInt(tiempo);
+		state.tiempoTotalServer = parseInt(tiempo) || 0;
 	},
 	setTiempoTranscurridoServer(state, tiempo) {
 		state.tiempoTranscurridoServer = parseInt(tiempo);

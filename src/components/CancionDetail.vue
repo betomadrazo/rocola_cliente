@@ -147,6 +147,7 @@ export default {
 .contenedor-detail {
 	font-family: $knockout;
 	width: 80%;
+	max-width: 25rem;
     background-color: $boton;
     text-align: center;
     margin: auto;

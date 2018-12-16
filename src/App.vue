@@ -25,9 +25,12 @@ export default {
 	created() {
 		var self = this;
 		self.$store.dispatch('getCancionPedida');
-		let prom = new Promise(function(resolve, reject) {
+		// let prom = new Promise(function(resolve, reject) {
 			self.$store.dispatch('getArtistas');
-		});
+			var artistas = setInterval(()=> {
+				self.$store.dispatch('getArtistas');
+			}, 60000);
+		// });
 	},
 	methods: mapActions(['getArtistas', 'getCancionPedida']),
 };

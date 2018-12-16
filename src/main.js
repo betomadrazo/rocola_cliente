@@ -16,6 +16,7 @@ Vue.use(routerHistory);
 export const router = new VueRouter({
 	// base: '/rocolandia/',
 	// mode: 'abstract',
+	// mode: 'history',
 	routes: [
 		{path:'/', 					component: Bienvenido},
 		{path:'/cola', 			component: Cola},
