@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+// import axios from 'axios';
 import Bienvenido from './components/Bienvenido';
 import Player from './components/Player';
 
@@ -29,7 +29,7 @@ export default {
 			self.$store.dispatch('getArtistas');
 			var artistas = setInterval(()=> {
 				self.$store.dispatch('getArtistas');
-			}, 60000);
+			}, 120000);
 		// });
 	},
 	methods: mapActions(['getArtistas', 'getCancionPedida']),

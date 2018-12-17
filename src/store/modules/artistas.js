@@ -1,7 +1,8 @@
 import Vue from 'vue';
-import axios from 'axios';
+// import axios from 'axios';
 import $ from 'jquery-ajax';
-import _ from 'lodash';
+// import _ from 'lodash';
+import keyBy from 'lodash.keyby';
 import {BASE_URL, ID_SUCURSAL} from '../../api/rocola';
 
 
@@ -74,7 +75,8 @@ const actions = {
 	},
 
 	setArtista({ commit }, idArtista) {
-		var artistilla = _.keyBy(state.artistas, 'id_artista')[idArtista];
+		// var artistilla = _.keyBy(state.artistas, 'id_artista')[idArtista];
+		var artistilla = keyBy(state.artistas, 'id_artista')[idArtista];
 		commit('setArtista', artistilla);
 
 		$.ajax({
@@ -97,62 +99,165 @@ const actions = {
 	},
 
 	setCancion({ commit }, idCancion) {
-		var cancioncilla = _.keyBy(state.canciones, 'id_cancion')[idCancion];
+		// var cancioncilla = _.keyBy(state.canciones, 'id_cancion')[idCancion];
+		var cancioncilla = keyBy(state.canciones, 'id_cancion')[idCancion];
 		commit('setCancion', cancioncilla);
 	},
 
+	// getCancionesEnCola({ commit }) {
+	// 	axios.get(BASE_URL, {
+	// 		params: {
+	// 			accion: 'get_queue_from_server2',
+	// 			sucursal_id: ID_SUCURSAL,
+	// 		}
+	// 	}).then(response => {
+	// 		var horas, minutos, segundos;
+	// 		var segundosFaltantesEnCola = 0;
+
+	// 		if(response.data.length) {
+	// 			for(var c of response.data) {
+	// 				if(c.hasOwnProperty('duracion')) {
+	// 					var tiempo = c.duracion.split(':');
+	
+	// 					if(tiempo.length === 2) {
+	// 						if(c.id_cancion !== state.cancionPedida) {
+	// 							var segs = (parseInt(tiempo[0], 10) * 60) + (parseInt(tiempo[1], 10));
+	// 							segundosFaltantesEnCola += segs;
+	// 						}
+	// 					}
+	// 				}
+	// 			}
+	
+	// 			commit('setSegundosFaltantesEnCola', segundosFaltantesEnCola);
+	// 		}
+
+	// 		commit('setCancionesEnCola', response.data);
+	// 	});
+	// },
+
 	getCancionesEnCola({ commit }) {
-		axios.get(BASE_URL, {
-			params: {
+		$.ajax({
+			url: BASE_URL,
+			data: {
 				accion: 'get_queue_from_server2',
 				sucursal_id: ID_SUCURSAL,
-			}
-		}).then(response => {
-			var horas, minutos, segundos;
-			var segundosFaltantesEnCola = 0;
+			},
+			success: function(response) {
 
-			if(response.data.length) {
-				for(var c of response.data) {
-					if(c.hasOwnProperty('duracion')) {
-						var tiempo = c.duracion.split(':');
+				var horas, minutos, segundos;
+				var segundosFaltantesEnCola = 0;
 	
-						if(tiempo.length === 2) {
-							if(c.id_cancion !== state.cancionPedida) {
-								var segs = (parseInt(tiempo[0], 10) * 60) + (parseInt(tiempo[1], 10));
-								segundosFaltantesEnCola += segs;
+				if(response.length) {
+					for(var c of response) {
+						if(c.hasOwnProperty('duracion')) {
+							var tiempo = c.duracion.split(':');
+		
+							if(tiempo.length === 2) {
+								if(c.id_cancion !== state.cancionPedida) {
+									var segs = (parseInt(tiempo[0], 10) * 60) + (parseInt(tiempo[1], 10));
+									segundosFaltantesEnCola += segs;
+								}
 							}
 						}
 					}
+		
+					commit('setSegundosFaltantesEnCola', segundosFaltantesEnCola);
 				}
 	
-				commit('setSegundosFaltantesEnCola', segundosFaltantesEnCola);
+				commit('setCancionesEnCola', response);
+	
 			}
-
-			commit('setCancionesEnCola', response.data);
 		});
+
+
+		// axios.get(BASE_URL, {
+		// 	params: {
+		// 		accion: 'get_queue_from_server2',
+		// 		sucursal_id: ID_SUCURSAL,
+		// 	}
+		// }).then(response => {
+		// 	var horas, minutos, segundos;
+		// 	var segundosFaltantesEnCola = 0;
+
+		// 	if(response.data.length) {
+		// 		for(var c of response.data) {
+		// 			if(c.hasOwnProperty('duracion')) {
+		// 				var tiempo = c.duracion.split(':');
+	
+		// 				if(tiempo.length === 2) {
+		// 					if(c.id_cancion !== state.cancionPedida) {
+		// 						var segs = (parseInt(tiempo[0], 10) * 60) + (parseInt(tiempo[1], 10));
+		// 						segundosFaltantesEnCola += segs;
+		// 					}
+		// 				}
+		// 			}
+		// 		}
+	
+		// 		commit('setSegundosFaltantesEnCola', segundosFaltantesEnCola);
+		// 	}
+
+		// 	commit('setCancionesEnCola', response.data);
+		// });
 	},
 
 	getHoraCancionPedida({ commit }, hora) {
 		commit('setHoraCancionPedida', hora);
 	},
 
+	// getPuedePedir({ commit }) {
+
+	// 	axios.get(BASE_URL, {
+	// 		params: {
+	// 			accion: 'get_pedir_cancion',
+	// 			sucursal_id: ID_SUCURSAL,
+	// 			limite_canciones: state.limiteCanciones, 
+	// 			dispositivo_id: state.deviceId,
+	// 		}
+	// 	}).then(response => {
+	// 		commit('setPuedePedir', response.data.puede_pedir);
+	// 		if(!response.data.puede_pedir) {
+	// 			commit('setMsgForbidden', `Has alcanzado el límite de ${state.limiteCanciones} canciones al día.`);
+	// 		} else {
+	// 			commit('setMsgForbidden', `podrás agregar otra canción cuando la que elegiste haya finalizado`);
+	// 		}
+	// 	});
+	// },
+
 	getPuedePedir({ commit }) {
 
-		axios.get(BASE_URL, {
-			params: {
+		$.ajax({
+			url: BASE_URL,
+			data: {
 				accion: 'get_pedir_cancion',
 				sucursal_id: ID_SUCURSAL,
 				limite_canciones: state.limiteCanciones, 
 				dispositivo_id: state.deviceId,
-			}
-		}).then(response => {
-			commit('setPuedePedir', response.data.puede_pedir);
-			if(!response.data.puede_pedir) {
-				commit('setMsgForbidden', `Has alcanzado el límite de ${state.limiteCanciones} canciones al día.`);
-			} else {
-				commit('setMsgForbidden', `podrás agregar otra canción cuando la que elegiste haya finalizado`);
+			},
+			success: function(response) {
+				commit('setPuedePedir', response.puede_pedir);
+				if(!response.puede_pedir) {
+					commit('setMsgForbidden', `Has alcanzado el límite de ${state.limiteCanciones} canciones al día.`);
+				} else {
+					commit('setMsgForbidden', `podrás agregar otra canción cuando la que elegiste haya finalizado`);
+				}
 			}
 		});
+
+		// axios.get(BASE_URL, {
+		// 	params: {
+		// 		accion: 'get_pedir_cancion',
+		// 		sucursal_id: ID_SUCURSAL,
+		// 		limite_canciones: state.limiteCanciones, 
+		// 		dispositivo_id: state.deviceId,
+		// 	}
+		// }).then(response => {
+		// 	commit('setPuedePedir', response.data.puede_pedir);
+		// 	if(!response.data.puede_pedir) {
+		// 		commit('setMsgForbidden', `Has alcanzado el límite de ${state.limiteCanciones} canciones al día.`);
+		// 	} else {
+		// 		commit('setMsgForbidden', `podrás agregar otra canción cuando la que elegiste haya finalizado`);
+		// 	}
+		// });
 	},
 
 	pedirCancion({ commit, dispatch }, idCancion) {
@@ -201,24 +306,67 @@ const actions = {
 		commit('setDeviceId', hash);
 	},
 
+	setCanciones({ commit }, canciones) {
+		commit('setCanciones', canciones);
+	},
+
+	// getCancionPedida({ commit, rootState }) {
+	// 	axios.get(BASE_URL, {
+	// 		params: {
+	// 			accion: 'get_cancion_pedida',
+	// 			sucursal_id: ID_SUCURSAL,
+	// 			dispositivo_id: state.deviceId,
+	// 		}
+	// 	}).then(response => {
+	// 		if(response.data.cancion_pedida) {
+	// 			commit('setCancionPedida', response.data.cancion_pedida);
+	// 			commit('setHoraCancionPedida', response.data.added_at);
+	// 			commit('setMsgForbidden', `podrás agregar otra canción cuando la que elegiste haya finalizado`);
+
+	// 			if(parseInt(rootState.idCancionAhora) === response.data.cancionPedida) {
+	// 				commit('setMySongIsPlaying', true, {root: true});
+	// 			}
+	// 		}
+	// 	});
+	// },
+
 	getCancionPedida({ commit, rootState }) {
-		axios.get(BASE_URL, {
-			params: {
+		$.ajax({
+			url: BASE_URL,
+			data: {
 				accion: 'get_cancion_pedida',
 				sucursal_id: ID_SUCURSAL,
 				dispositivo_id: state.deviceId,
-			}
-		}).then(response => {
-			if(response.data.cancion_pedida) {
-				commit('setCancionPedida', response.data.cancion_pedida);
-				commit('setHoraCancionPedida', response.data.added_at);
-				commit('setMsgForbidden', `podrás agregar otra canción cuando la que elegiste haya finalizado`);
-
-				if(parseInt(rootState.idCancionAhora) === response.data.cancionPedida) {
-					commit('setMySongIsPlaying', true, {root: true});
-				}
+			},
+			success: function(response) {
+				if(response.cancion_pedida) {
+					commit('setCancionPedida', response.cancion_pedida);
+					commit('setHoraCancionPedida', response.added_at);
+					commit('setMsgForbidden', `podrás agregar otra canción cuando la que elegiste haya finalizado`);
+	
+					if(parseInt(rootState.idCancionAhora) === response.cancionPedida) {
+						commit('setMySongIsPlaying', true, {root: true});
+					}
+				}				
 			}
 		});
+		// axios.get(BASE_URL, {
+		// 	params: {
+		// 		accion: 'get_cancion_pedida',
+		// 		sucursal_id: ID_SUCURSAL,
+		// 		dispositivo_id: state.deviceId,
+		// 	}
+		// }).then(response => {
+		// 	if(response.data.cancion_pedida) {
+		// 		commit('setCancionPedida', response.data.cancion_pedida);
+		// 		commit('setHoraCancionPedida', response.data.added_at);
+		// 		commit('setMsgForbidden', `podrás agregar otra canción cuando la que elegiste haya finalizado`);
+
+		// 		if(parseInt(rootState.idCancionAhora) === response.data.cancionPedida) {
+		// 			commit('setMySongIsPlaying', true, {root: true});
+		// 		}
+		// 	}
+		// });
 	},
 
 	getMsgForbidden({ commit }, msg) {

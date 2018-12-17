@@ -1,6 +1,5 @@
 import Vue from 'vue';
 import $ from 'jquery-ajax';
-import _ from 'lodash';
 import { BASE_URL, ID_SUCURSAL } from '../../api/rocola';
 
 
@@ -132,7 +131,7 @@ const actions = {
 
 			currentTranscurrido += 1;
 
-		}, 1000);
+		}, 2000);
 
 	}, // fin songStatus
 

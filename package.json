@@ -12,6 +12,7 @@
     "fingerprintjs2": "^2.0.3",
     "jquery-ajax": "^2.1.4",
     "lodash": "^4.17.11",
+    "lodash.keyby": "^4.6.0",
     "qs": "^6.5.2",
     "vue": "^2.5.17",
     "vue-router": "^3.0.1",

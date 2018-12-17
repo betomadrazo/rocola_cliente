@@ -5,24 +5,44 @@ import { routerHistory, writeHistory } from 'vue-router-back-button';
 
 import store from './store';
 
-import Bienvenido from './components/Bienvenido';
-import Cola from './components/Cola';
-import CatalogoArtistas from './components/CatalogoArtistas';
-import Canciones from './components/Canciones';
+// import Bienvenido from './components/Bienvenido';
+// import Cola from './components/Cola';
+// import CatalogoArtistas from './components/CatalogoArtistas';
+// import Canciones from './components/Canciones';
 
 Vue.use(VueRouter);
 Vue.use(routerHistory);
+
+
+
+
+
+function loadView(view) {
+  // return () => import(/* webpackChunkName: "view-[request]" */ `@/views/${view}.vue`)
+  return () => import(/* webpackChunkName: "view-[request]" */ `@/components/${view}.vue`)
+}
+
+
+
 
 export const router = new VueRouter({
 	// base: '/rocolandia/',
 	// mode: 'abstract',
 	// mode: 'history',
+	// routes: [
+	// 	{path:'/', 					component: Bienvenido},
+	// 	{path:'/cola', 			component: Cola},
+	// 	{path:'/catalogo',  component: CatalogoArtistas},
+	// 	{path:'/canciones', component: Canciones},
+	// ],
+
 	routes: [
-		{path:'/', 					component: Bienvenido},
-		{path:'/cola', 			component: Cola},
-		{path:'/catalogo',  component: CatalogoArtistas},
-		{path:'/canciones', component: Canciones},
+		{path:'/', 					component: loadView('Bienvenido')},
+		{path:'/cola', 			component: loadView('Cola')},
+		{path:'/catalogo',  component: loadView('CatalogoArtistas')},
+		{path:'/canciones', component: loadView('Canciones')},
 	],
+
 	scrollBehavior(to, from, savedPosition) {
 		return {x: 0, y: 0};
 	}
