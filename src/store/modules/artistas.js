@@ -59,7 +59,8 @@ const actions = {
 			type: 'GET',
 			dataType: 'json',
 			data: {
-				accion: 'get_artistas_activos'
+				accion: 'get_artistas_activos',
+				id_sucursal: ID_SUCURSAL
 			},
 			success: function(response) {
 				commit('setArtistas', response);

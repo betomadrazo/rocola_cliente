@@ -174,11 +174,18 @@ h1 {
 		}
 	}
 }
+
+@media(min-width:500px) {
+	.titulo_app {
+    	background-size: 60%;
+	}
+}
 	
 @media(min-width:600px) {
 	.titulo_app {
     	background-size: 35%;
 	}
 }
+
 
 </style>
