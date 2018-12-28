@@ -17,9 +17,6 @@ export default {
 	name: 'Cancion',
 	props: ['id_cancion', 'artista_album', 'cancion', 'album', 'duracion', 'index', 'isCola'],
 	methods: {
-		created(){
-			console.log("=========> ", this.cancion);
-		},
 		setCancion(){
 			console.log(this.id_cancion);
 			this.$store.dispatch('setCancion', this.id_cancion);

@@ -83,13 +83,12 @@ export default {
 		setTimeout(() => {
 			this.$store.dispatch('getPlayerVars').then(() => {
 				if(this.ID_SUCURSAL && this.artistaAhoraServer) {
-					window.history.replaceState({}, document.title, "/");
+					// window.history.replaceState({}, document.title, "/");
 					router.push('/cola');
 				}
 			});
 		}
 		, 5000);
-
 
 		var init = setInterval(() => {
 			this.$store.dispatch('getPlayerVars').then(() => {

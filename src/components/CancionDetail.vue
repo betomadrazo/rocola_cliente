@@ -41,7 +41,7 @@ export default {
 		this.$store.dispatch('getPuedePedir');
 	},
 	methods: {
-		...mapActions(['getPuedePedir']),
+		...mapActions(['getPuedePedir', 'getArtistas']),
 		pedirCancion() {
 			// si tiene canción pedida
 			if(this.cancionPedida || !this.puedePedir) {
@@ -57,6 +57,7 @@ export default {
 				this.$store.dispatch('pedirCancion', this.cancion.id_cancion);
 				var self = this;
 				window.setTimeout(function() {
+					self.$store.dispatch('getArtistas');
 					self.$emit('close');
 					router.push('/cola');
 				}, 500);

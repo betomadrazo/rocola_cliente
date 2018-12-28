@@ -9,7 +9,7 @@
 					<span v-html="artista.nombre_artista"></span>
 				</div>
 			</div>
-			<div class="contenedor-catalogo_artista" v-if="canciones && canciones.length > 0">
+			<div class="contenedor-catalogo_artista" v-if="canciones.length > 0">
 				<ul>
 					<Cancion 
 						@click.native="showModal=true" 
@@ -21,8 +21,11 @@
 					></Cancion>
 				</ul>
 			</div>
+			<div class="contenedor-catalogo_artista" v-else-if="canciones && !canciones.length">
+				<img class="cargando-imagen" :src="loading">
+			</div>
 			<div class="contenedor-catalogo_artista" v-else>
-				<h2 style="text-align: center;">Por el momento no hay canciones disponibles.</h2>
+				<h2>No hay canciones disponibles por el momento</h2>
 			</div>
 		</div>
 		<CancionDetail v-if="showModal" @close="showModal=false"></CancionDetail>
@@ -69,6 +72,10 @@ export default {
 		foto() {
 			var image = require.context('../assets/static/img/');
 			return (this.artista.foto_path) ? this.artista.foto_path : image('./placeholder.png');
+		},
+		loading() {
+			var image = require.context('../assets/static/img/');
+			return image('./loading.gif');
 		}
 	}
 };
@@ -168,6 +175,12 @@ ul {
 .duracion {
 	width: 10%;
 	text-align: center;
+}
+
+.cargando-imagen {
+	display: block;
+	margin:auto;
+	width:5rem;
 }
 
 @media screen and(min-width: 767px), screen and (orientation:landscape) {
