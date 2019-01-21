@@ -2,6 +2,7 @@ import Vue from 'vue';
 import $ from 'jquery-ajax';
 import { BASE_URL, ID_SUCURSAL } from '../../api/rocola';
 
+console.log(BASE_URL, " _____________");
 
 const state = {
 	artistaAhoraServer: "",

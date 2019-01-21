@@ -1,5 +1,5 @@
 module.exports = {
-  // baseUrl: '/rocolandia/',
+  baseUrl: '/rocola/rocola',
   css: {
   	modules: true
   }

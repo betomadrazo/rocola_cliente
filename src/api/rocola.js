@@ -1,10 +1,13 @@
-const DEBUGGING = false;
+const DEBUGGING = true;
 
-const DEBUG_DOMAIN = (DEBUGGING) ? 'http://localhost' 
-																 : 'http://rocola.pendulo.com.mx';
+const DEBUG_DOMAIN = (DEBUGGING) ? 'http://localhost' : 'http://betomad.com';
+// : 'http://rocola.pendulo.com.mx';
 
 const BASE_URL = `${DEBUG_DOMAIN}/rocola/consola/controllers/controller_musica.php`;
 
+
+console.log(BASE_URL);
+// const ID_SUCURSAL = 20;
 var encryptedQueryString = window.location.search.substring(1);
 
 try {
@@ -15,10 +18,11 @@ try {
 // const ID_SUCURSAL = parseInt(new URLSearchParams(encryptedQueryString).get('sucursal_id'));
 const ID_SUCURSAL = parseInt(new URLSearchParams(decryptedQueryString).get('sucursal_id'));
 
-console.log(ID_SUCURSAL);
+console.log("###", ID_SUCURSAL);
+
 
 export {
 	BASE_URL,
 	ID_SUCURSAL,
-	TIPO_SUCURSAL
+	// TIPO_SUCURSAL
 };

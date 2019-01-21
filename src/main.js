@@ -14,19 +14,14 @@ Vue.use(VueRouter);
 Vue.use(routerHistory);
 
 
-
-
-
 function loadView(view) {
   // return () => import(/* webpackChunkName: "view-[request]" */ `@/views/${view}.vue`)
   return () => import(/* webpackChunkName: "view-[request]" */ `@/components/${view}.vue`)
 }
 
 
-
-
 export const router = new VueRouter({
-	// base: '/rocolandia/',
+	base: '/rocola/rocola/',
 	// mode: 'abstract',
 	// mode: 'history',
 	// routes: [

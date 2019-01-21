@@ -19,7 +19,6 @@ export default {
 	name: 'Bienvenido',
 	data: function() {
 		return {
-			mensaje_bienvenida: "Bienvenido a \nla rocola\ndel péndulo",
 			ID_SUCURSAL: null,
 		}
 	},
@@ -69,10 +68,13 @@ export default {
 			var decrypedQueryString = atob(encryptedQueryString);
 		} catch(error) {}
 
-		this.ID_SUCURSAL = parseInt(new URLSearchParams(decrypedQueryString).get('sucursal_id'));
+		console.log(decrypedQueryString, "   oh####");
+
+		this.ID_SUCURSAL = 20; //parseInt(new URLSearchParams(decrypedQueryString).get('sucursal_id'));
 
 		var encryptedQueryString = window.location.search.substring(1);
 
+		console.log(encryptedQueryString, "   ah####");
 		try {
 			var decrypedQueryString = atob(encryptedQueryString);
 		} catch(error) {}
@@ -83,7 +85,7 @@ export default {
 		setTimeout(() => {
 			this.$store.dispatch('getPlayerVars').then(() => {
 				if(this.ID_SUCURSAL && this.artistaAhoraServer) {
-					// window.history.replaceState({}, document.title, "/");
+					window.history.replaceState({}, document.title, "/rocola");
 					router.push('/cola');
 				}
 			});
@@ -94,10 +96,15 @@ export default {
 			this.$store.dispatch('getPlayerVars').then(() => {
 				var a = this.ID_SUCURSAL;
 				var b = this.artistaAhoraServer;
+				console.log("hife", a, b);
+			
 				if(this.ID_SUCURSAL && this.artistaAhoraServer) {
-					window.history.replaceState({}, document.title, "/");
+					// window.history.replaceState({}, document.title, "/");
 					clearInterval(init);
 					router.push('/cola');
+				} else {
+					console.log("qué pedo")
+					
 				}
 				 // else alert(`${a}, ${b}`);
 			});
