@@ -11,7 +11,6 @@
 			</div>
 			<div class="contenedor-catalogo_artista" v-if="canciones && canciones.length > 0">
 			<!-- <div class="contenedor-catalogo_artista"> -->
-			{{ canciones.length }}
 				<ul>
 					<Cancion 
 						@click.native="showModal=true" 
@@ -27,7 +26,6 @@
 
 			<div class="contenedor-catalogo_artista" v-else-if="canciones && !canciones.length">
 			<!-- <div class="contenedor-catalogo_artista"> -->
-			{{ canciones.length }}
 				<img class="cargando-imagen" :src="loading">
 			</div>
 			<div class="contenedor-catalogo_artista" v-else>
