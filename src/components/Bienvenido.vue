@@ -73,9 +73,10 @@ export default {
 		// this.ID_SUCURSAL = 20; //parseInt(new URLSearchParams(decrypedQueryString).get('sucursal_id'));
 		let ID_SUCURSAL = parseInt(new URLSearchParams(decrypedQueryString).get('sucursal_id'));
 
+		console.log(ID_SUCURSAL, "4444444444444444444");
 		this.$store.dispatch('setIDsucursal', ID_SUCURSAL);
 
-		console.log("$ ", this.ID_SUCURSAL, this.ID_SUCURSAL);
+		console.log("$ ", this.ID_SUCURSAL, " ==================== ", this.ID_SUCURSAL);
 
 		var encryptedQueryString = window.location.search.substring(1);
 

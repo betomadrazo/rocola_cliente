@@ -1,6 +1,6 @@
 <template>
 	<div class="contenedor-thumb" @click="getArtista">
-		thmb ->{{ artista }} |*
+		<!-- thmb ->{{ artista }} |* -->
 		<div class="wrapper-imagen">
 			<img :src="foto" alt="">
 		</div>

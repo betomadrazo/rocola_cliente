@@ -68,7 +68,7 @@ const getters = {
 // Estas realizan funciones y llaman a mutations
 const actions = {
 	getArtistas({ commit }) {
-		console.log(state.ID_SUCURSAL);
+		console.log(">>>>>>>>>>>>>>>>>>>>>>>>><< id al pedir artistas: ", state.ID_SUCURSAL);
 		$.ajax({
 			url: BASE_URL,
 			type: 'GET',

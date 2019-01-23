@@ -3,7 +3,7 @@
 		<div class="contenedor-catalogo">
 			<!-- <div> -->
 				<router-link v-for="artista in artistas" to="canciones" :key="artista.id_artista">
-					cat->{{ artista }}
+					<!-- cat->{{ artista }} -->
 					<!-- <ThumbArtista  :artista="artista" :id_artista="artista.id_artista"></ThumbArtista> -->
 					<ThumbArtista
 						:artista="artista" 

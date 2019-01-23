@@ -11,27 +11,27 @@ export default new Vuex.Store({
 		artistas,
 		player,
 	},
-	plugins: [createPersistedState(
-		// {
-		// paths: [
+	// plugins: [createPersistedState(
+	// 	// {
+	// 	// paths: [
 
-		// 	'player',
-		// 	'bienvenido'
+	// 	// 	'player',
+	// 	// 	'bienvenido'
 
-		// 	// 'artistaAhoraServer',
-		// 	// 'cancionAhoraServer',
-		// 	// 'idCancionAhora',
-		// 	// 'tiempoTotalServer',
-		// 	// 'tiempoTranscurridoServer',
-		// 	// 'porcentaje',
-		// 	// 'mySongIsPlaying',
-		// 	// 'currentPlayingDispositivoId',
-		// 	// 'total',
-		// 	// 'transcurrido',
-		// 	// 'restante',
-		// 	// 'intervaloSegundos',
-		// 	// 'seccion'
-		// ]
-	// }
-	)],
+	// 	// 	// 'artistaAhoraServer',
+	// 	// 	// 'cancionAhoraServer',
+	// 	// 	// 'idCancionAhora',
+	// 	// 	// 'tiempoTotalServer',
+	// 	// 	// 'tiempoTranscurridoServer',
+	// 	// 	// 'porcentaje',
+	// 	// 	// 'mySongIsPlaying',
+	// 	// 	// 'currentPlayingDispositivoId',
+	// 	// 	// 'total',
+	// 	// 	// 'transcurrido',
+	// 	// 	// 'restante',
+	// 	// 	// 'intervaloSegundos',
+	// 	// 	// 'seccion'
+	// 	// ]
+	// // }
+	// )],
 });

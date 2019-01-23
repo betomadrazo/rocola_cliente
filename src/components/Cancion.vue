@@ -84,6 +84,7 @@ export default {
 	padding-right:1rem;
 	height: 3rem;
 	font-family: $knockout;
+	cursor: pointer;
 }
 
 .cancion_alt {
