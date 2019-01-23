@@ -9,7 +9,9 @@
 					<span v-html="artista.nombre_artista"></span>
 				</div>
 			</div>
-			<div class="contenedor-catalogo_artista" v-if="canciones.length > 0">
+			<div class="contenedor-catalogo_artista" v-if="canciones && canciones.length > 0">
+			<!-- <div class="contenedor-catalogo_artista"> -->
+			{{ canciones.length }}
 				<ul>
 					<Cancion 
 						@click.native="showModal=true" 
@@ -17,15 +19,19 @@
 						:cancion="cancion"
 						:id_cancion="cancion.id_cancion"
 						:index="index"
-						v-if="cancion.id_cancion != cancionPedida || cancion.id_cancion != idCancionAhora"
+						v-if="(cancion.id_cancion != cancionPedida) || (cancion.id_cancion != idCancionAhora)"
 						:key="index"
 					></Cancion>
 				</ul>
 			</div>
+
 			<div class="contenedor-catalogo_artista" v-else-if="canciones && !canciones.length">
+			<!-- <div class="contenedor-catalogo_artista"> -->
+			{{ canciones.length }}
 				<img class="cargando-imagen" :src="loading">
 			</div>
 			<div class="contenedor-catalogo_artista" v-else>
+			<!-- <div class="contenedor-catalogo_artista"> -->
 				<h2>No hay canciones disponibles por el momento</h2>
 			</div>
 		</div>

@@ -2,8 +2,6 @@ import Vue from 'vue';
 import $ from 'jquery-ajax';
 import { BASE_URL, ID_SUCURSAL } from '../../api/rocola';
 
-console.log(BASE_URL, " _____________");
-
 const state = {
 	artistaAhoraServer: "",
 	cancionAhoraServer: " ",
@@ -78,10 +76,10 @@ const actions = {
 								added_at: rootGetters.horaCancionPedida,
 							},
 							success: function(re) {
-								console.log("3333", re);
+								console.log("(store/player) canción ya tocada", re);
 							},
 							error: function(a, b) {
-								console.log(" **** ", a, b);
+								console.log(" (store/player) canción ya tocada - error ", a, b);
 							}
 						}); 
 
@@ -93,7 +91,7 @@ const actions = {
 				}
 			},
  			error: function(response, p) {
-				console.log("error->", response, p);
+				console.log("error en canción pedida->", response, p);
 			}
 		});
 	},

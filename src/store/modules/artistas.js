@@ -75,7 +75,8 @@ const actions = {
 			dataType: 'json',
 			data: {
 				accion: 'get_artistas_activos',
-				id_sucursal: ID_SUCURSAL
+				// id_sucursal: ID_SUCURSAL
+				id_sucursal: state.ID_SUCURSAL
 			},
 			success: function(response) {
 				commit('setArtistas', response);
@@ -398,6 +399,7 @@ const actions = {
 	},
 
 	setIDsucursal({ commit }, value) {
+		console.log("en setIDsucursal: ", value);
 		commit('setIDsucursal', value);
 	}
 };
@@ -459,8 +461,9 @@ const mutations = {
 
 
 	setIDsucursal(state, value) {
-		console.log("baloo ", value);
+		console.log("ID_SUCURSAL ", value);
 		state.ID_SUCURSAL = value;
+		console.log("state.ID_SUCURSAL ", state.ID_SUCURSAL)
 	}
 }
 

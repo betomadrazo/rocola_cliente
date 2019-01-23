@@ -57,7 +57,6 @@ export default {
 	mounted() {
 		var ruta = this.$router.currentRoute.path;
 		this.$store.dispatch('getSeccion', ruta);
-		console.log("$", this.deviceId);
 		if(!this.deviceId) {
 			this.$router.push('/');
 		}

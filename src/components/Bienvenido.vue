@@ -29,19 +29,12 @@ export default {
 		var self = this;
 		this.$store.dispatch('getCancionesEnCola');
 
-		// pide las variables del player al servidor
-		// this.$store.dispatch('getPlayerVars').then(
-
-		// );
-
 		if(!this.deviceId) {
 			if(window.requestIdleCallback) {
 				requestIdleCallback(function() {
 					Fingerprint2.get(function(components) {
 						var values = components.map(function(component) { return component.value; });
 						var murmur = Fingerprint2.x64hash128(values.join(''), 31);
-	
-						console.log(murmur);
 
 						self.$store.dispatch('setDeviceId', murmur);
 						self.$store.dispatch('getCancionPedida');
@@ -68,15 +61,17 @@ export default {
 			var decrypedQueryString = atob(encryptedQueryString);
 		} catch(error) {}
 
-		console.log(decrypedQueryString, "   ooooooooooooooooooooooh####");
+		// console.log("decrypedQueryString ", decrypedQueryString);
 
 		// this.ID_SUCURSAL = 20; //parseInt(new URLSearchParams(decrypedQueryString).get('sucursal_id'));
 		let ID_SUCURSAL = parseInt(new URLSearchParams(decrypedQueryString).get('sucursal_id'));
 
-		console.log(ID_SUCURSAL, "4444444444444444444");
-		this.$store.dispatch('setIDsucursal', ID_SUCURSAL);
-
-		console.log("$ ", this.ID_SUCURSAL, " ==================== ", this.ID_SUCURSAL);
+		console.log("ID_SUCURSAL ", ID_SUCURSAL);
+		this.$store.dispatch('setIDsucursal', ID_SUCURSAL).then(() => {
+				console.log("this.ID_SUCURSAL------------------ ", this.ID_SUCURSAL);
+			}
+		);
+		// Vue.set(state, 'ID_SUCURSAL', ID_SUCURSAL);
 
 		var encryptedQueryString = window.location.search.substring(1);
 
@@ -86,7 +81,6 @@ export default {
 		} catch(error) {}
 
 		// const ID_SUCURSAL = parseInt(new URLSearchParams(decrypedQueryString).get('sucursal_id'));
-
 		// Esta no es una solución satisfactoria, hay que explorar los promises y los async await.
 		setTimeout(() => {
 			this.$store.dispatch('getPlayerVars').then(() => {
@@ -100,19 +94,20 @@ export default {
 
 		var init = setInterval(() => {
 			this.$store.dispatch('getPlayerVars').then(() => {
-				var a = this.ID_SUCURSAL;
-				var b = this.artistaAhoraServer;
-				console.log("hife", a, b);
+				// var a = this.ID_SUCURSAL;
+				// var b = this.artistaAhoraServer;
+				console.log("this.ID_SUCURSAL ", this.ID_SUCURSAL);
+				console.log("this.ID_SUCURSAL ", this.artistaAhoraServer);
+
 			
 				if(this.ID_SUCURSAL && this.artistaAhoraServer) {
 					// window.history.replaceState({}, document.title, "/");
 					clearInterval(init);
 					router.push('/cola');
 				} else {
-					console.log("qué pedo")
+					console.log("no están listas las variables de id_sucursal o artistaahoraserver")
 					
 				}
-				 // else alert(`${a}, ${b}`);
 			});
 		}
 		, 5000);
@@ -120,10 +115,9 @@ export default {
 	},
 	methods: {
 		...mapActions(['getCancionesEnCola', 'getPlayerVars', 'setDeviceId', 'getCancionPedida', 'songStatus', 'setIDsucursal']),
-		...mapGetters(['ID_SUCURSAL']),
 	},
 	computed: {
-		...mapGetters(['deviceId', 'artistaAhoraServer']),
+		...mapGetters(['deviceId', 'artistaAhoraServer', 'ID_SUCURSAL']),
 		getTitular() {
 			var image = require.context('../assets/static/img/');
 			console.log(image('./titulo_app.png'));

@@ -68,7 +68,7 @@ export default {
 			};
 		},
 		artistaOAlbum: function() {
-			console.log("###", this.cancion);
+			// console.log("###", this.cancion);
 			return (this.cancion.cola) ? this.decodeHtml(this.cancion.artista) : '';
 		}
 	}
