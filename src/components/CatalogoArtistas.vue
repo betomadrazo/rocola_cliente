@@ -32,6 +32,10 @@ export default {
 	created() {
 	},
 	mounted() {
+		if(!this.deviceId) {
+			this.$router.push('/');
+		}
+
 		var ruta = this.$router.currentRoute.path;
 		this.$store.dispatch('getSeccion', ruta);
 		console.log("### ", this.artistas);
@@ -41,7 +45,7 @@ export default {
 	methods: {
 		...mapActions(['getSeccion', 'setArtista', 'setCanciones'])
 	},
-	computed: mapGetters(['artistas']),
+	computed: mapGetters(['artistas', 'deviceId']),
 };
 
 </script>

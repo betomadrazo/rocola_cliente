@@ -26,11 +26,11 @@
 
 			<div class="contenedor-catalogo_artista" v-else-if="canciones && !canciones.length">
 			<!-- <div class="contenedor-catalogo_artista"> -->
-				<img class="cargando-imagen" :src="loading">
+				<h2>No hay canciones disponibles por el momento</h2>
 			</div>
 			<div class="contenedor-catalogo_artista" v-else>
 			<!-- <div class="contenedor-catalogo_artista"> -->
-				<h2>No hay canciones disponibles por el momento</h2>
+				<img class="cargando-imagen" :src="loading">
 			</div>
 		</div>
 		<CancionDetail v-if="showModal" @close="showModal=false"></CancionDetail>
@@ -61,6 +61,10 @@ export default {
 		}, 1000);
 	},
 	mounted() {
+		if(!this.deviceId) {
+			this.$router.push('/');
+		}
+
 		var ruta = this.$router.currentRoute.path;
 		this.$store.dispatch('getSeccion', ruta);
 		console.log("ID_SUCURSAL: ", this.ID_SUCURSAL);
@@ -74,8 +78,11 @@ export default {
 			showModal: false,
 		}
 	},
+	methods: {
+		...mapActions(['getSeccion'])
+	},
 	computed: {
-		...mapGetters(['canciones', 'artista', 'seccion', 'cancionPedida', 'idCancionAhora', 'ID_SUCURSAL']),
+		...mapGetters(['canciones', 'artista', 'seccion', 'cancionPedida', 'idCancionAhora', 'ID_SUCURSAL', 'deviceId']),
 		foto() {
 			var image = require.context('../assets/static/img/');
 			return (this.artista.foto_path) ? this.artista.foto_path : image('./placeholder.png');
@@ -96,6 +103,10 @@ ul {
 	list-style: none;
 	padding: 0;
 	margin:0;
+}
+
+h2 {
+	text-align: center;
 }
 
 .contenedor-foto_artista {
@@ -147,13 +158,11 @@ ul {
 	margin-top:1rem;
 }
 
-
 .nomi {
 	height:4rem;
 	display:table;
 	width:100%;
 }
-
 
 .elementos-cancion {
 	padding-top: 0.8rem;
