@@ -1,5 +1,6 @@
 <template>
 	<div class="contenedor-thumb" @click="getArtista">
+		thmb ->{{ artista }} |*
 		<div class="wrapper-imagen">
 			<img :src="foto" alt="">
 		</div>
@@ -14,6 +15,7 @@ export default {
 	props: ['artista', 'id_artista'],
 	methods: {
 		getArtista() {
+			console.log("(THUMB) getArtista: ", this.id_artista);
 			this.$store.dispatch('setArtista', this.id_artista);
 		},
 		scanTexto(texto) {
@@ -61,6 +63,7 @@ export default {
 	margin-top: 0.4rem;
 	margin-bottom: 0.4rem;
 	// margin:0.8rem;
+	text-align: center;
 	margin:0.6rem;
 	width:9rem;
 	height:11rem;
@@ -68,6 +71,8 @@ export default {
 	display: inline-block;
 	cursor: pointer;
 	vertical-align: top;
+
+
 }
 
 .wrapper-imagen {

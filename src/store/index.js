@@ -11,5 +11,27 @@ export default new Vuex.Store({
 		artistas,
 		player,
 	},
-	plugins: [createPersistedState()],
-})
+	plugins: [createPersistedState(
+		// {
+		// paths: [
+
+		// 	'player',
+		// 	'bienvenido'
+
+		// 	// 'artistaAhoraServer',
+		// 	// 'cancionAhoraServer',
+		// 	// 'idCancionAhora',
+		// 	// 'tiempoTotalServer',
+		// 	// 'tiempoTranscurridoServer',
+		// 	// 'porcentaje',
+		// 	// 'mySongIsPlaying',
+		// 	// 'currentPlayingDispositivoId',
+		// 	// 'total',
+		// 	// 'transcurrido',
+		// 	// 'restante',
+		// 	// 'intervaloSegundos',
+		// 	// 'seccion'
+		// ]
+	// }
+	)],
+});

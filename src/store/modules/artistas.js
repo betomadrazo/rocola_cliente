@@ -26,6 +26,18 @@ const state = {
 	deviceId: null,
 
 	msgForbidden: '',
+
+
+
+
+
+
+
+	ID_SUCURSAL: null
+
+
+
+
 };
 
 // Estos dan la información del state
@@ -49,12 +61,14 @@ const getters = {
 	limiteCanciones: state => state.limiteCanciones,
 
 	msgForbidden: state => state.msgForbidden,
+
+	ID_SUCURSAL: state => state.ID_SUCURSAL,
 };
 
 // Estas realizan funciones y llaman a mutations
 const actions = {
 	getArtistas({ commit }) {
-		console.log(ID_SUCURSAL);
+		console.log(state.ID_SUCURSAL);
 		$.ajax({
 			url: BASE_URL,
 			type: 'GET',
@@ -77,6 +91,15 @@ const actions = {
 	},
 
 	setArtista({ commit }, idArtista) {
+
+		
+		if(!idArtista) {
+			console.log("WWWWWWWWWW", idArtista);
+			commit('setArtista', null);
+			return;
+		}
+		console.log("xxx", idArtista);
+
 		// var artistilla = _.keyBy(state.artistas, 'id_artista')[idArtista];
 		var artistilla = keyBy(state.artistas, 'id_artista')[idArtista];
 		commit('setArtista', artistilla);
@@ -88,7 +111,7 @@ const actions = {
 			data: {
 				accion: 'get_canciones_de_artista_activo',
 				id_artista: idArtista,
-				id_sucursal: ID_SUCURSAL
+				id_sucursal: state.ID_SUCURSAL
 			},
 			success: function(response) {
 				commit('setCanciones', response);
@@ -97,7 +120,6 @@ const actions = {
 				console.log(response, err);
 			}
 		});
-
 	},
 
 	setCancion({ commit }, idCancion) {
@@ -373,6 +395,10 @@ const actions = {
 
 	getMsgForbidden({ commit }, msg) {
 		commit('setMsgForbidden', msg);
+	},
+
+	setIDsucursal({ commit }, value) {
+		commit('setIDsucursal', value);
 	}
 };
 
@@ -425,6 +451,16 @@ const mutations = {
 
 	setMsgForbidden(state, msg) {
 		state.msgForbidden = msg;
+	},
+
+
+
+
+
+
+	setIDsucursal(state, value) {
+		console.log("baloo ", value);
+		state.ID_SUCURSAL = value;
 	}
 }
 

@@ -43,6 +43,17 @@ export const router = new VueRouter({
 	}
 });
 
+router.beforeEach((to, from, next) => {
+	// console.log("to >", to, from, next);
+	// console.log("from >", to, from, next);
+	// console.log("next >", to, from, next);
+
+	console.log('---to: ', to.path);
+	console.log('from: ', from.path);
+	console.log('next: ', next.path);
+	next();
+});
+
 // router.replace('/');
 router.afterEach(writeHistory);
 

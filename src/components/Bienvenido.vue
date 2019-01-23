@@ -12,14 +12,14 @@
 <script>
 import Fingerprint2 from 'fingerprintjs2';
 
-import { mapActions, mapGetters } from 'vuex';
+import { mapActions, mapGetters, mapMutations } from 'vuex';
 import { router } from '../main';
 
 export default {
 	name: 'Bienvenido',
 	data: function() {
 		return {
-			ID_SUCURSAL: null,
+			// ID_SUCURSAL: null,
 		}
 	},
 	created() {
@@ -68,13 +68,18 @@ export default {
 			var decrypedQueryString = atob(encryptedQueryString);
 		} catch(error) {}
 
-		console.log(decrypedQueryString, "   oh####");
+		console.log(decrypedQueryString, "   ooooooooooooooooooooooh####");
 
-		this.ID_SUCURSAL = 20; //parseInt(new URLSearchParams(decrypedQueryString).get('sucursal_id'));
+		// this.ID_SUCURSAL = 20; //parseInt(new URLSearchParams(decrypedQueryString).get('sucursal_id'));
+		let ID_SUCURSAL = parseInt(new URLSearchParams(decrypedQueryString).get('sucursal_id'));
+
+		this.$store.dispatch('setIDsucursal', ID_SUCURSAL);
+
+		console.log("$ ", this.ID_SUCURSAL, this.ID_SUCURSAL);
 
 		var encryptedQueryString = window.location.search.substring(1);
 
-		console.log(encryptedQueryString, "   ah####");
+		console.log(encryptedQueryString, "   xxxxxxxxxxxxxxxxxxxxah####");
 		try {
 			var decrypedQueryString = atob(encryptedQueryString);
 		} catch(error) {}
@@ -113,7 +118,8 @@ export default {
 
 	},
 	methods: {
-		...mapActions(['getCancionesEnCola', 'getPlayerVars', 'setDeviceId', 'getCancionPedida', 'songStatus']),
+		...mapActions(['getCancionesEnCola', 'getPlayerVars', 'setDeviceId', 'getCancionPedida', 'songStatus', 'setIDsucursal']),
+		...mapGetters(['ID_SUCURSAL']),
 	},
 	computed: {
 		...mapGetters(['deviceId', 'artistaAhoraServer']),

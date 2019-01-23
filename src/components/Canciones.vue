@@ -18,6 +18,7 @@
 						:id_cancion="cancion.id_cancion"
 						:index="index"
 						v-if="cancion.id_cancion != cancionPedida || cancion.id_cancion != idCancionAhora"
+						:key="index"
 					></Cancion>
 				</ul>
 			</div>
@@ -50,6 +51,7 @@ export default {
 		CancionDetail,
 	},
 	created() {
+		console.log("(canciones) ARTISTA: ", this.artista);
 		this.getCancionesDeArtista = setInterval(() => {
 			this.$store.dispatch('setArtista', this.artista.id_artista);
 		}, 1000);
@@ -57,6 +59,7 @@ export default {
 	mounted() {
 		var ruta = this.$router.currentRoute.path;
 		this.$store.dispatch('getSeccion', ruta);
+		console.log("ID_SUCURSAL: ", this.ID_SUCURSAL);
 	},
 	destroyed() {
 		clearInterval(this.getCancionesDeArtista);
@@ -68,7 +71,7 @@ export default {
 		}
 	},
 	computed: {
-		...mapGetters(['canciones', 'artista', 'seccion', 'cancionPedida', 'idCancionAhora']),
+		...mapGetters(['canciones', 'artista', 'seccion', 'cancionPedida', 'idCancionAhora', 'ID_SUCURSAL']),
 		foto() {
 			var image = require.context('../assets/static/img/');
 			return (this.artista.foto_path) ? this.artista.foto_path : image('./placeholder.png');

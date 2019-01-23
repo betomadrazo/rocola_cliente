@@ -48,7 +48,6 @@ export default {
 	mounted() {
 		setTimeout(() => {
 			this.cuentaSegsTranscurridos();
-
 		}, 1500);
 	},
 	methods: {

@@ -1,9 +1,16 @@
 <template>
 	<div>
 		<div class="contenedor-catalogo">
-			<router-link to="canciones">
-				<ThumbArtista v-for="artista in artistas" :artista="artista" :id_artista="artista.id_artista"></ThumbArtista>
-			</router-link>
+			<!-- <div> -->
+				<router-link v-for="artista in artistas" to="canciones" :key="artista.id_artista">
+					cat->{{ artista }}
+					<!-- <ThumbArtista  :artista="artista" :id_artista="artista.id_artista"></ThumbArtista> -->
+					<ThumbArtista
+						:artista="artista" 
+						:id_artista="artista.id_artista">
+					</ThumbArtista>
+				</router-link>
+			<!-- </div> -->
 		</div>
 	</div>
 </template>
@@ -49,6 +56,7 @@ export default {
 	overflow-y: auto;
 	scroll-behavior: smooth;
 	z-index: 15;
+	grid-gap: 40px;
 }
 
 </style>
