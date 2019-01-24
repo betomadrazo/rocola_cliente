@@ -21,7 +21,7 @@ function loadView(view) {
 
 
 export const router = new VueRouter({
-	base: '/rocola/rocola/',
+	// base: '/',
 	// mode: 'abstract',
 	// mode: 'history',
 	// routes: [

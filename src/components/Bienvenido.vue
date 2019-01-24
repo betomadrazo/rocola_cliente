@@ -85,7 +85,7 @@ export default {
 		setTimeout(() => {
 			this.$store.dispatch('getPlayerVars').then(() => {
 				if(this.ID_SUCURSAL && this.artistaAhoraServer) {
-					window.history.replaceState({}, document.title, "/rocola");
+					window.history.replaceState({}, document.title, "/");
 					router.push('/cola');
 				}
 			});
