@@ -1,4 +1,4 @@
-const DEBUGGING = false;
+const DEBUGGING = true;
 
 const DEBUG_DOMAIN = (DEBUGGING) ? 'http://localhost' 
 // : 'http://betomad.com';
@@ -6,30 +6,38 @@ const DEBUG_DOMAIN = (DEBUGGING) ? 'http://localhost'
 
 const BASE_URL = `${DEBUG_DOMAIN}/rocola/consola/controllers/controller_musica.php`;
 
-let decryptedQueryString;
-
 console.log(BASE_URL);
-// const ID_SUCURSAL = 20;
-let encryptedQueryString = window.location.search.substring(1);
 
-console.log("encrypted", encryptedQueryString);
+// const ID_SUCURSAL = getIdSucursal(
+// 	new URLSearchParams(
+// 		window.location.search.substring(1)
+// 		).get('sucursal_id'));
 
-try {
-	decryptedQueryString = atob(encryptedQueryString);
-	console.log(decryptedQueryString);
-	console.log("decrypted", decryptedQueryString);
-} catch(error) {
-	console.log("error", error);
-}
-
-// const ID_SUCURSAL = parseInt(new URLSearchParams(encryptedQueryString).get('sucursal_id'));
-const ID_SUCURSAL = parseInt(new URLSearchParams(decryptedQueryString).get('sucursal_id'));
+const ID_SUCURSAL = getIdSucursal(
+	new URLSearchParams(
+		window.location.search.substring(1)
+	).get('sucursal')
+);
 
 console.log("###", ID_SUCURSAL);
+
+function getIdSucursal(idSucursal) {
+	let sucursales = {
+		 'condesa':   11,
+		 'polanco':   12,
+		 'santa_fe':  13,
+		 'perisur':   14,
+		 'zona_rosa': 15,
+		 'roma':      16,
+		 'san_angel': 17,
+		 'prueba':    20
+	};
+
+	return sucursales[idSucursal];
+}
 
 
 export {
 	BASE_URL,
-	ID_SUCURSAL,
-	// TIPO_SUCURSAL
+	ID_SUCURSAL
 };

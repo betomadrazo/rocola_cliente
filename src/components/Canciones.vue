@@ -6,7 +6,7 @@
 					<img :src="foto" alt="">
 				</div>
 				<div class="nomi">
-					<span v-html="artista.nombre_artista"></span>
+					<span  v-if="artista && artista.nombre_artista" v-html="artista.nombre_artista"></span>
 				</div>
 			</div>
 			<div class="contenedor-catalogo_artista" v-if="canciones && canciones.length > 0">
@@ -85,7 +85,14 @@ export default {
 		...mapGetters(['canciones', 'artista', 'seccion', 'cancionPedida', 'idCancionAhora', 'ID_SUCURSAL', 'deviceId']),
 		foto() {
 			var image = require.context('../assets/static/img/');
-			return (this.artista.foto_path) ? this.artista.foto_path : image('./placeholder.png');
+			if(this.artista && this.artista.foto_path) {
+				return this.artista.foto_path;
+			}
+
+			return image('./placeholder.png'); 
+			// let joder = this.artista.foto_path || image('./placeholder.png');
+			// console.log("joder", joder);
+			// return joder;
 		},
 		loading() {
 			var image = require.context('../assets/static/img/');

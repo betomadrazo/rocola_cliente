@@ -17,12 +17,9 @@ import { router } from '../main';
 
 export default {
 	name: 'Bienvenido',
-	data: function() {
-		return {
-			// ID_SUCURSAL: null,
-		}
-	},
 	created() {
+
+		console.log("mierdax", this.$route);
 
 		this.$store.dispatch('songStatus');
 
@@ -55,66 +52,62 @@ export default {
 			}
 		}
 
-		var encryptedQueryString = window.location.search.substring(1);
-
-		try {
-			var decrypedQueryString = atob(encryptedQueryString);
-		} catch(error) {}
-
-		// console.log("decrypedQueryString ", decrypedQueryString);
-
-		// this.ID_SUCURSAL = 20; //parseInt(new URLSearchParams(decrypedQueryString).get('sucursal_id'));
-		let ID_SUCURSAL = parseInt(new URLSearchParams(decrypedQueryString).get('sucursal_id'));
+		let ID_SUCURSAL = this.getIdSucursal(
+			new URLSearchParams(
+				window.location.search.substring(1)
+			).get('sucursal')
+		);
 
 		console.log("ID_SUCURSAL ", ID_SUCURSAL);
 		this.$store.dispatch('setIDsucursal', ID_SUCURSAL).then(() => {
 				console.log("this.ID_SUCURSAL------------------ ", this.ID_SUCURSAL);
 			}
 		);
-		// Vue.set(state, 'ID_SUCURSAL', ID_SUCURSAL);
 
-		var encryptedQueryString = window.location.search.substring(1);
-
-		console.log(encryptedQueryString, "   xxxxxxxxxxxxxxxxxxxxah####");
-		try {
-			var decrypedQueryString = atob(encryptedQueryString);
-		} catch(error) {}
-
-		// const ID_SUCURSAL = parseInt(new URLSearchParams(decrypedQueryString).get('sucursal_id'));
-		// Esta no es una solución satisfactoria, hay que explorar los promises y los async await.
 		setTimeout(() => {
 			this.$store.dispatch('getPlayerVars').then(() => {
 				if(this.ID_SUCURSAL && this.artistaAhoraServer) {
-					window.history.replaceState({}, document.title, "/");
 					router.push('/cola');
 				}
 			});
 		}
-		, 5000);
+		, 2500);
 
 		var init = setInterval(() => {
 			this.$store.dispatch('getPlayerVars').then(() => {
-				// var a = this.ID_SUCURSAL;
-				// var b = this.artistaAhoraServer;
+
 				console.log("this.ID_SUCURSAL ", this.ID_SUCURSAL);
-				console.log("this.ID_SUCURSAL ", this.artistaAhoraServer);
+				console.log("this.artistaAhoraServer ", this.artistaAhoraServer);
 
 			
 				if(this.ID_SUCURSAL && this.artistaAhoraServer) {
-					// window.history.replaceState({}, document.title, "/");
 					clearInterval(init);
 					router.push('/cola');
 				} else {
 					console.log("no están listas las variables de id_sucursal o artistaahoraserver")
-					
 				}
 			});
 		}
-		, 5000);
+		, 2500);
 
 	},
 	methods: {
 		...mapActions(['getCancionesEnCola', 'getPlayerVars', 'setDeviceId', 'getCancionPedida', 'songStatus', 'setIDsucursal']),
+
+		getIdSucursal(idSucursal) {
+			let sucursales = {
+				 'condesa':   11,
+				 'polanco':   12,
+				 'santa_fe':  13,
+				 'perisur':   14,
+				 'zona_rosa': 15,
+				 'roma':      16,
+				 'san_angel': 17,
+				 'prueba':    20
+			};
+
+			return sucursales[idSucursal];
+		}
 	},
 	computed: {
 		...mapGetters(['deviceId', 'artistaAhoraServer', 'ID_SUCURSAL']),

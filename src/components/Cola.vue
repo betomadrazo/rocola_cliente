@@ -2,11 +2,12 @@
 	<div>
 		<!-- <Player></Player> -->
 		<div class="contenedor-cola">
-			<div v-if="cancionesEnCola.length">
+			<!-- {{ cancionesEnCola }} -->
+			<div v-if="cancionesEnCola && cancionesEnCola.length">
 				<div class="lacola">
 					<ul style="margin:0;">
 						<li>
-							<Cancion v-for="(cancion, index) in cancionesEnCola" :index="index" :cancion="cancion"></Cancion>
+							<Cancion v-for="(cancion, index) in cancionesEnCola" :index="index" :cancion="cancion" :key="index"></Cancion>
 						</li>
 					</ul>
 				</div>

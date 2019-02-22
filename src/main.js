@@ -36,6 +36,10 @@ export const router = new VueRouter({
 		{path:'/cola', 			component: loadView('Cola')},
 		{path:'/catalogo',  component: loadView('CatalogoArtistas')},
 		{path:'/canciones', component: loadView('Canciones')},
+		// {path:'/:kaka', 					component: loadView('Bienvenido')},
+		// {path:'/:kaka/cola', 			component: loadView('Cola')},
+		// {path:'/:kaka/catalogo',  component: loadView('CatalogoArtistas')},
+		// {path:'/canciones', component: loadView('Canciones')},
 	],
 
 	scrollBehavior(to, from, savedPosition) {

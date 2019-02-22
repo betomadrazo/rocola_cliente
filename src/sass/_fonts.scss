@@ -1,15 +1,15 @@
 @font-face {
 	font-family: 'Knockout Junior';
 
-	// src: url($font_path + "knockout_junior.woff2") format("woff2");
-	// src: url($font_path + "knockout_junior.woff") format("woff");
-	// src: url($font_path + "knockout_junior.ttf") format("truetype");
-	// src: url($font_path + "knockout_junior.otf") format("opentype");
-
-
-	// src: url($font_path + "knockout_junior.woff") format("woff");
 	src: url($font_path + "knockout_junior.woff2") format("woff2");
+	src: url($font_path + "knockout_junior.woff") format("woff");
 	src: url($font_path + "knockout_junior.ttf") format("truetype");
+	src: url($font_path + "knockout_junior.otf") format("opentype");
+
+
+	// src: url($font_path + "knockout_junior.woff") format("woff");
+	// src: url($font_path + "knockout_junior.woff2") format("woff2");
+	// src: url($font_path + "knockout_junior.ttf") format("truetype");
 	// src: url($font_path + "knockout_junior.otf") format("opentype");
 
 }
@@ -17,14 +17,14 @@
 @font-face {
 	font-family: 'Knockout Feather';
 
-	// src: url($font_path + "knockout_feather.woff2") format("woff2");
-	// src: url($font_path + "knockout_feather.woff") format("woff");
-	// src: url($font_path + "knockout_feather.ttf") format("truetype");
-	// src: url($font_path + "knockout_feather.otf") format("opentype");
-
-
-	// src: url($font_path + "knockout_feather.woff") format("woff");
 	src: url($font_path + "knockout_feather.woff2") format("woff2");
+	src: url($font_path + "knockout_feather.woff") format("woff");
 	src: url($font_path + "knockout_feather.ttf") format("truetype");
+	src: url($font_path + "knockout_feather.otf") format("opentype");
+
+
+	// src: url($font_path + "knockout_feather.woff") format("woff");
+	// src: url($font_path + "knockout_feather.woff2") format("woff2");
+	// src: url($font_path + "knockout_feather.ttf") format("truetype");
 	// src: url($font_path + "knockout_feather.otf") format("opentype");
 }

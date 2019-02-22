@@ -48,17 +48,4 @@ export default {
 	color: #fff;
 }
 
-
-/* @media screen and (max-width: 767px) and (orientation: landscape), screen and (max-height: 767px) {
-	.contenedor {
-		margin-top:11rem;
-	}
-}
- */
-/* @media screen and (orientation: landscape) {
-	.contenedor {
-		margin-top:10rem;
-	}
-}
- */
 </style>
