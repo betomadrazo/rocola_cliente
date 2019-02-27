@@ -8,9 +8,7 @@
 						<p>{{ msgForbidden }}</p>
 					</span>
 				</div>
-		<!-- 		<div class="contenedor-imagen">
-					<img :src="getFotoPath" alt="">
-				</div> -->
+
 				<div class="info clearfix">
 					<span v-html="artista.nombre_artista"></span>
 					<h1 class="titi">{{ cancion.titulo_cancion }}</h1>
@@ -74,7 +72,6 @@ export default {
 			'msgForbidden',
 		]),
 		botonDesactivado: function() {
-			console.log("canción pedida: ", this.cancionPedida, " vs ", "puede pedir: ", this.puedePedir)
 			return {
 				boton_desactivado: this.cancionPedida || !this.puedePedir
 			};	

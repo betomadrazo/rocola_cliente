@@ -15,7 +15,6 @@ export default {
 	props: ['artista', 'id_artista'],
 	methods: {
 		getArtista() {
-			console.log("(THUMB) getArtista: ", this.id_artista);
 			this.$store.dispatch('setArtista', this.id_artista);
 		},
 		scanTexto(texto) {

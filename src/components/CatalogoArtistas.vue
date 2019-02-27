@@ -38,7 +38,6 @@ export default {
 
 		var ruta = this.$router.currentRoute.path;
 		this.$store.dispatch('getSeccion', ruta);
-		console.log("### ", this.artistas);
 		this.$store.dispatch('setArtista', null);
 		this.$store.dispatch('setCanciones', null);
 	},

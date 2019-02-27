@@ -92,7 +92,7 @@ export default {
 			this.segunderoTranscurrido = this.transcurrido;
 		},
 		getSeccion: function() {
-			// Por qué funciona esto???
+
 		}
 	},
 	computed: {

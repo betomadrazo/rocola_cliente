@@ -18,7 +18,6 @@ export default {
 	props: ['id_cancion', 'artista_album', 'cancion', 'album', 'duracion', 'index', 'isCola'],
 	methods: {
 		setCancion(){
-			console.log(this.id_cancion);
 			this.$store.dispatch('setCancion', this.id_cancion);
 		},
 
@@ -68,7 +67,6 @@ export default {
 			};
 		},
 		artistaOAlbum: function() {
-			// console.log("###", this.cancion);
 			return (this.cancion.cola) ? this.decodeHtml(this.cancion.artista) : '';
 		}
 	}

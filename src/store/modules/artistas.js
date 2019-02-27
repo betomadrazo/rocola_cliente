@@ -68,7 +68,6 @@ const getters = {
 // Estas realizan funciones y llaman a mutations
 const actions = {
 	getArtistas({ commit }) {
-		console.log(">>>>>>>>>>>>>>>>>>>>>>>>><< id al pedir artistas: ", state.ID_SUCURSAL);
 		$.ajax({
 			url: BASE_URL,
 			type: 'GET',
@@ -95,13 +94,10 @@ const actions = {
 
 		
 		if(!idArtista) {
-			console.log("WWWWWWWWWW", idArtista);
 			commit('setArtista', null);
 			return;
 		}
-		console.log("xxx", idArtista);
 
-		// var artistilla = _.keyBy(state.artistas, 'id_artista')[idArtista];
 		var artistilla = keyBy(state.artistas, 'id_artista')[idArtista];
 		commit('setArtista', artistilla);
 
@@ -399,7 +395,6 @@ const actions = {
 	},
 
 	setIDsucursal({ commit }, value) {
-		console.log("en setIDsucursal: ", value);
 		commit('setIDsucursal', value);
 	}
 };
@@ -427,7 +422,6 @@ const mutations = {
 	},
 
 	setCancionPedida(state, status) {
-		console.log("saataussssss", status);
 		state.cancionPedida = status;
 	},
 
@@ -455,15 +449,8 @@ const mutations = {
 		state.msgForbidden = msg;
 	},
 
-
-
-
-
-
 	setIDsucursal(state, value) {
-		console.log("ID_SUCURSAL ", value);
 		state.ID_SUCURSAL = value;
-		console.log("state.ID_SUCURSAL ", state.ID_SUCURSAL)
 	}
 }
 

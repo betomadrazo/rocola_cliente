@@ -55,7 +55,6 @@ export default {
 		CancionDetail,
 	},
 	created() {
-		console.log("(canciones) ARTISTA: ", this.artista);
 		this.getCancionesDeArtista = setInterval(() => {
 			this.$store.dispatch('setArtista', this.artista.id_artista);
 		}, 1000);
@@ -67,7 +66,6 @@ export default {
 
 		var ruta = this.$router.currentRoute.path;
 		this.$store.dispatch('getSeccion', ruta);
-		console.log("ID_SUCURSAL: ", this.ID_SUCURSAL);
 	},
 	destroyed() {
 		clearInterval(this.getCancionesDeArtista);
@@ -90,9 +88,6 @@ export default {
 			}
 
 			return image('./placeholder.png'); 
-			// let joder = this.artista.foto_path || image('./placeholder.png');
-			// console.log("joder", joder);
-			// return joder;
 		},
 		loading() {
 			var image = require.context('../assets/static/img/');

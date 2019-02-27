@@ -19,8 +19,6 @@ export default {
 	name: 'Bienvenido',
 	created() {
 
-		console.log("mierdax", this.$route);
-
 		this.$store.dispatch('songStatus');
 
 		var self = this;
@@ -45,24 +43,14 @@ export default {
 						var murmur = Fingerprint2.x64hash128(values.join(''), 31);
 	
 						self.$store.dispatch('setDeviceId', murmur);
-
-						console.log(murmur);
 					})
 				}, 500);
 			}
 		}
 
-		let ID_SUCURSAL = this.getIdSucursal(
-			new URLSearchParams(
-				window.location.search.substring(1)
-			).get('sucursal')
-		);
+		let ID_SUCURSAL = this.getIdSucursal(window.location.search.substring(1));
 
-		console.log("ID_SUCURSAL ", ID_SUCURSAL);
-		this.$store.dispatch('setIDsucursal', ID_SUCURSAL).then(() => {
-				console.log("this.ID_SUCURSAL------------------ ", this.ID_SUCURSAL);
-			}
-		);
+		this.$store.dispatch('setIDsucursal', ID_SUCURSAL);
 
 		setTimeout(() => {
 			this.$store.dispatch('getPlayerVars').then(() => {
@@ -75,10 +63,6 @@ export default {
 
 		var init = setInterval(() => {
 			this.$store.dispatch('getPlayerVars').then(() => {
-
-				console.log("this.ID_SUCURSAL ", this.ID_SUCURSAL);
-				console.log("this.artistaAhoraServer ", this.artistaAhoraServer);
-
 			
 				if(this.ID_SUCURSAL && this.artistaAhoraServer) {
 					clearInterval(init);
@@ -98,11 +82,11 @@ export default {
 			let sucursales = {
 				 'condesa':   11,
 				 'polanco':   12,
-				 'santa_fe':  13,
+				 'santafe':   13,
 				 'perisur':   14,
-				 'zona_rosa': 15,
+				 'zonarosa':  15,
 				 'roma':      16,
-				 'san_angel': 17,
+				 'sanangel':  17,
 				 'prueba':    20
 			};
 
@@ -110,11 +94,9 @@ export default {
 		}
 	},
 	computed: {
-		...mapGetters(['deviceId', 'artistaAhoraServer', 'ID_SUCURSAL']),
+		...mapGetters(['deviceId', 'artistaAhoraServer', 'ID_SUCURSAL', 'transcurrido']),
 		getTitular() {
 			var image = require.context('../assets/static/img/');
-			console.log(image('./titulo_app.png'));
-
 			return (this.ID_SUCURSAL) ? `background-image: url(${image('./titulo_app.png')});`
 									  : `background-image: url(${image('./VISITANOS-APP.png')});`
 		}

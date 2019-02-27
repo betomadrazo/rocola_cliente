@@ -1,4 +1,3 @@
-import Vue from 'vue';
 import $ from 'jquery-ajax';
 import { BASE_URL, ID_SUCURSAL } from '../../api/rocola';
 
@@ -12,7 +11,6 @@ const state = {
 	mySongIsPlaying: false,
 	currentPlayingDispositivoId: null,
 
-	// tíos extraños
 	total: 0,
 	transcurrido: 0,
 	restante: 0,
@@ -103,7 +101,6 @@ const actions = {
 	songStatus({commit, dispatch, getters, rootGetters}) {
 
 		var currentTranscurrido = state.tiempoTranscurridoServer;
-		console.log("inicia transcurrido", currentTranscurrido);
 
 		setInterval(() => {
 			currentTranscurrido = state.tiempoTranscurridoServer;
