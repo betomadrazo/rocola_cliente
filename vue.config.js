@@ -1,6 +1,6 @@
 module.exports = {
-  // baseUrl: '/',
+  publicPath: '/rocola',
   css: {
-  	modules: true
-  }
+    modules: true,
+  },
 }
